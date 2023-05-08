@@ -81,13 +81,13 @@ def jogo():
     colocar()
 
 def colocar():
-    
     l = int(input("\nLinha: "))
     c = int(input("Coluna: "))
     
     print("\nGreen [G]\nYellow [Y]\nRed [R]")
-    cor = input("").upper()
     
+    cor = input("").upper()
+
     if matriz[l][c] == "" or matriz[l][c] == None:
         if cor == "G":
             matriz[l][c] = "G"
@@ -98,13 +98,6 @@ def colocar():
     else:
         print("Posição já preenchida.")
         colocar()
-        
-def botjoga():
-    l = rd.rdint(0,3)
-    c = rd.rdint(0,4)
-    while matriz[l][c] == "":
-        l = rd.rdint(0,3)
-        c = rd.rdint(0,4)
         
 menu()
 
