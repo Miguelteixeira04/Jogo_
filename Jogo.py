@@ -77,27 +77,33 @@ def imprimir_matriz():
 
 def jogo():
     
-    imprimir_matriz()    
-    colocar()
-
+    while True:
+     imprimir_matriz()
+     colocar()
+   
+   
 def colocar():
+    
     l = int(input("\nLinha: "))
     c = int(input("Coluna: "))
     
-    print("\nGreen [G]\nYellow [Y]\nRed [R]")
+    if l < 0 or l > 2 or c < 0 or c > 3:
+        print("Posição inválida.")
+        colocar()
+        return
     
+    print("\nGreen [G]\nYellow [Y]\nRed [R]")
     cor = input("").upper()
-
-    if matriz[l][c] == "" or matriz[l][c] == None:
-        if cor == "G":
-            matriz[l][c] = "G"
-        elif cor == "Y":
-            matriz[l][c] = "Y"
-        else:
-            matriz[l][c] = "R"
+    
+    if matriz[l][c] == "":
+        matriz[l][c] = cor
     else:
         print("Posição já preenchida.")
         colocar()
+    
+    
+
+    
         
 menu()
 
