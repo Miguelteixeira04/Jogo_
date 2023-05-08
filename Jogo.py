@@ -32,6 +32,7 @@ def jogar():
         else:
             print("O primeiro jogador é o " + nome2)
             print("O segundo jogador é o " + nome1)
+            jogo()
         
     elif jogar1 == 2:
         nome1 = input("Insira o nome do jogar: ")
@@ -48,5 +49,10 @@ def jogar():
     else: 
         print("Escolha o numero 1 ou 2. \n")
         jogar()
+        
+def jogo():
+    matriz = [[0,0,0,0], [0,0,0,0], [0,0,0,0]]
+    
+    
 
 menu()
