@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-=======
 import random as rd
 rd.seed()
 
 #Menu
 def menu():
-<<<<<<< HEAD
-    print("Bem-vindo ao jogo do semáforo: ")
-    
-=======
+
+
     print("Bem-vido ao jogo do semáforo!!!!")
     print("Jogar uma partida (1)")
     print("Carregar uma partida apartir de um ficheiro (2)")
@@ -57,7 +53,7 @@ def jogar():
         jogar()
         
 def jogo():
-    matriz = [["","","",""], ["",0,0,0], [0,0,0,0]]
+    matriz = [["","","",""], ["","","",""], ["","","",""]]
     
     print("0:" + matriz[0][0] + " | " + matriz[0][1] + " | " + matriz[0][3] + " | " + matriz[0][4])
     print("---------------")
@@ -67,5 +63,4 @@ def jogo():
     
 
 menu()
->>>>>>> 78985e8ed0b9968dad82f9c88aac927409cda1a1
->>>>>>> 6a7019d68e8e379337e08739359dc4f65292b0b2
+
