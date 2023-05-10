@@ -12,11 +12,23 @@ matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 def menu():
 
 
-    print("Bem-vindo ao jogo do semáforo!!!!")
+    print("|---------------------------------------------------|")
+    print("|\tBem-vindo ao jogo matemático do semáforo    |")
+    print("|---------------------------------------------------|\n")
     print("Jogar uma partida (1)")
     print("Carregar uma partida apartir de um ficheiro (2)")
     print("Apresentar uma descrição do jogo (3)")
     print("Sair da aplicação (4)\n")
+
+    print("                                                                           _________________________________")
+    print("                                                                          |Trabalho realizado por:          | ")
+    print("                                                                          |                                 |")
+    print("                                                                          |   Diogo Cabral         al78834  |")
+    print("                                                                          |   Maria Inês Cardoso   al78222  |")
+    print("                                                                          |   Miguel Teixeira      al78321  |")
+    print("                                                                          |                                 | ")
+    print("                                                                          |---------------------------------|")
+
     
     menu = int(input(""))
     
@@ -34,14 +46,18 @@ def jogar():
         nome2 = input("Insira o nome do jogador 2: ")
         
         primeiro = rd.randint(1,2)
-        
+                
         if primeiro == 1:
             print("\nO primeiro jogador é o " + nome1)
             print("O segundo jogador é o " + nome2)
+            primeiro = nome1
+            segundo = nome2
             jogo()
         else:
             print("\nO primeiro jogador é o " + nome2)
             print("O segundo jogador é o " + nome1)
+            primeiro = nome2
+            segundo = nome1
             jogo()
         
     elif jogar1 == 2:
@@ -85,11 +101,17 @@ def jogo():
     while True:
      imprimir_matriz()
      colocar()
+     
+     victory, winner = verificar_vitoria()
+     if victory:
+            print(f"\n{winner} wins!")
+            break
    
    
-def colocar():
+def colocar(primeiro, segundo):
     
-
+    print(f"Vez do {primeiro} ")
+    print(f"Vez do {segundo}")
     l = int(input("\nLinha: "))
     c = int(input("Coluna: "))
     
@@ -102,8 +124,7 @@ def colocar():
         print("Posição inválida.")
         colocar()
         return
-    
-    print("A primeira cor tem sempre de ser verde.")
+
     print("\nGreen [G]\nYellow [Y]\nRed [R]")
     cor = input("").upper()
     
@@ -127,10 +148,31 @@ def colocar():
         
     
         colocar() 
-    
+        
+def verificar_vitoria():
+    for c in range(4): 
+        if matriz[0][c] == matriz[1][c] == matriz[2][c] != ' ':  
+            imprimir_matriz()
+            return True, matriz[0][c] 
+    for l in range(3):
+        if matriz[l][0] == matriz[l][1] == matriz[l][2] != ' ':
+            imprimir_matriz()
+            return True, matriz[l][0]
+    return False, None  
 
-        
-        
-        
-        
+def jogada_bot(matriz):
+    while True:
+        l = rd.randint(0, 2)
+        c = rd.randint(0, 3)
+        cor = ['G', 'Y', 'R']
+        for i in range(3):
+            if matriz[l][c] == " ":
+                if cor[i] == "G" and matriz[l][c] == " ":
+                    return l, c, cor[i]
+                elif cor[i] == "Y" and matriz[l][c] == "G":
+                    return l, c, cor[i]
+                elif cor[i] == "R" and matriz[l][c] == "Y":
+                    return l, c, cor[i]
+        continue
+
 menu()
