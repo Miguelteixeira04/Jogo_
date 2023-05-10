@@ -12,7 +12,7 @@ matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 def menu():
 
 
-    print("Bem-vido ao jogo do semáforo!!!!")
+    print("Bem-vindo ao jogo do semáforo!!!!")
     print("Jogar uma partida (1)")
     print("Carregar uma partida apartir de um ficheiro (2)")
     print("Apresentar uma descrição do jogo (3)")
@@ -65,6 +65,11 @@ def jogar():
         
 def imprimir_matriz():
     
+    #A = 0
+    #B = 1
+    #C = 2
+    #D = 3
+
     print("\n") 
     print("\t   A    B    C    D")   
     print("\t _________________________")
@@ -84,26 +89,48 @@ def jogo():
    
 def colocar():
     
+
     l = int(input("\nLinha: "))
     c = int(input("Coluna: "))
+    
+    #A = 0
+    #B = 1
+    #C = 2
+    #D = 3
     
     if l < 0 or l > 2 or c < 0 or c > 3:
         print("Posição inválida.")
         colocar()
         return
     
+    print("A primeira cor tem sempre de ser verde.")
     print("\nGreen [G]\nYellow [Y]\nRed [R]")
     cor = input("").upper()
     
-    if matriz[l][c] == "":
+    if cor == "G" and matriz[l][c] == " ":
         matriz[l][c] = cor
+    elif cor == "Y" and matriz[l][c] == "G":
+        matriz[l][c] = cor  
+    elif cor == "R" and matriz[l][c] == "Y":
+        matriz[l][c] = cor
+    elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
+        print("\nNão pode colocar a cor verde nesta posição, tente novamente.")  
+    elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
+        print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
+    elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
+        print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")    
     else:
         print("Posição já preenchida.")
-        colocar()
+        
+    if cor == "Y" and matriz[l][c] == "G":
+        matriz[l][c] = cor   
+        
     
+        colocar() 
     
 
-    
+        
+        
+        
         
 menu()
-
