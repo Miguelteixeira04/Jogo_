@@ -93,9 +93,32 @@ def jogar():
 
 def guardado():
     print("Ola")
-    
+def voltar() : 
+    opcao = input("Pressione '0' para voltar atrás : ")
+    regras()
 def regras():
-        print("ola")
+    escolha = int(input("Apresentar uma descrição do jogo (1) \t Regras do jogo (2) :                "))
+    if escolha == 1 :
+        print("\n\n")
+        print("|----------------------------------------|")
+        print("|            Descrição do jogo           |")
+        print("|----------------------------------------|\n")
+        print("* Autor: Alan Parr \n")
+        print("* Material: 8 peças verdes, 8 amarelas e 8 vermelhas partilhadas pelos jogadores.\n")
+        print("* Objetivo: Ser o primeiro a conseguir uma linha de três peças da mesma cor na horizontal, vertical ou diagonal.\n")
+        voltar()
+    else:
+        print("\n")
+        print("|---------------------------------|")
+        print("|         Regras do jogo          |")
+        print("|---------------------------------|\n")
+        print("* O jogo realiza-se no seguinte tabuleiro, inicialmente vazio. Em cada jogada, cada jogador realiza uma das seguintes ações.\n")
+        print("* Coloca uma peça verde num quadrado vazio;\n")
+        print("* Substitui uma peça verde por uma peça amarela\n")
+        print("* Substitui uma peça amarela por uma peça vermelha\n")
+        print("* De notar que as peças vermelhas não podem ser substituídas. Isto significa que o jogo tem de terminar sempre: à medida que o tabuleiro fica com peças vermelhas, é inevitável que surja uma linha de três peças.\n")
+        voltar()
+
         
 def imprimir_matriz():
 
