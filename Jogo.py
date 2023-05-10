@@ -108,10 +108,9 @@ def jogo():
             break
    
    
-def colocar(primeiro, segundo):
+def colocar():
     
-    print(f"Vez do {primeiro} ")
-    print(f"Vez do {segundo}")
+
     l = int(input("\nLinha: "))
     c = int(input("Coluna: "))
     
