@@ -105,7 +105,7 @@ def jogo(primeiro, segundo, jogar1):
          jogador_atual, vitoria = colocar(primeiro, segundo, jogador_atual)
          if vitoria == True:
              break
-          
+         
     elif jogar1 == 2:
         while True:
             imprimir_matriz()
@@ -123,7 +123,6 @@ def colocar(primeiro, segundo, jogador_atual):
     if l < 0 or l > 2 or c < 0 or c > 3:
         print("Posição inválida.")
         colocar(primeiro, segundo, jogador_atual)
-        return
 
     print("\nGreen [G]\nYellow [Y]\nRed [R]")
     cor = input("").upper()
@@ -135,13 +134,17 @@ def colocar(primeiro, segundo, jogador_atual):
     elif cor == "R" and matriz[l][c] == "Y":
         matriz[l][c] = cor
     elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
-        print("\nNão pode colocar a cor verde nesta posição, tente novamente.")  
+        print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
+        colocar(primeiro, segundo, jogador_atual)
     elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
         print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
+        colocar(primeiro, segundo, jogador_atual)
     elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
-        print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")    
+        print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
+        colocar(primeiro, segundo, jogador_atual)    
     else:
         print("Posição já preenchida.")
+        colocar(primeiro, segundo, jogador_atual)
         
     if cor == "Y" and matriz[l][c] == "G":
         matriz[l][c] = cor   
