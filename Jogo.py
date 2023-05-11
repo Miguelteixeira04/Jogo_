@@ -59,7 +59,7 @@ def jogar():
      
         
     elif jogar1 == 2:
-        nome1 = input("Insira o nome do jogador: ")
+        nome1 = input("\nInsira o nome do jogador: ")
         
         primeiro = rd.randint(1,2)
         
@@ -121,13 +121,14 @@ def regras():
 def imprimir_matriz():
 
     print("\n") 
-    print("\t    A     B     C     D")   
-    print("\t  _______________________")
-    print("0:\t" + " |  " + str(matriz[0][0]) + "  |  " + str(matriz[0][1]) + "  |  " + str(matriz[0][2]) + "  |  " + str(matriz[0][3]) + "  |  " )
-    print("\t |-----|-----|-----|-----|")
-    print("1:\t" + " |  "+ str(matriz[1][0]) + "  |  " + str(matriz[1][1]) + "  |  " + str(matriz[1][2]) + "  |  " + str(matriz[1][3]) + "  |  " )
-    print("\t |-----|-----|-----|-----|")
-    print("2:\t" + " |__" + str(matriz[2][0]) + "__|__" + str(matriz[2][1]) + "__|__" + str(matriz[2][2]) + "__|__" + str(matriz[2][3]) + "__|" )
+    print("\t    A     B     C     D")
+    print("\t ┏━━━━━┳━━━━━┳━━━━━┳━━━━━┓")
+    print("0:\t" + " ┃  " + str(matriz[0][0]) + "  ┃  " + str(matriz[0][1]) + "  ┃  " + str(matriz[0][2]) + "  ┃  " + str(matriz[0][3]) + "  ┃  " )
+    print("\t ┣━━━━━╋━━━━━╋━━━━━╋━━━━━┫")
+    print("1:\t" + " ┃  "+ str(matriz[1][0]) + "  ┃  " + str(matriz[1][1]) + "  ┃  " + str(matriz[1][2]) + "  ┃  " + str(matriz[1][3]) + "  ┃  " )
+    print("\t ┣━━━━━╋━━━━━╋━━━━━╋━━━━━┫")
+    print("2:\t" + " ┃  " + str(matriz[2][0]) + "  ┃  " + str(matriz[2][1]) + "  ┃  " + str(matriz[2][2]) + "  ┃  " + str(matriz[2][3]) + "  ┃ " )
+    print("\t ┗━━━━━┻━━━━━┻━━━━━┻━━━━━┛")
     
 
 def jogo(primeiro, segundo, jogar1, nome1, nome2):
@@ -148,7 +149,7 @@ def jogo(primeiro, segundo, jogar1, nome1, nome2):
     elif jogar1 == 2:
         while True:
             imprimir_matriz()
-            jogador_atual, vitoria = jogada_bot(primeiro,segundo,jogador_atual, nome1, nome2)
+            jogador_atual, vitoria = jogada_bot(primeiro,segundo,jogador_atual)
             if vitoria == True:
                 break
             
@@ -235,12 +236,15 @@ def colocar(primeiro, segundo, jogador_atual):
     return jogador_atual, vitoria        
         
 def verificar_vitoria(jogador_atual):
-    for i in range(3):
-        if matriz[i][0] == matriz[i][1] == matriz[i][2] != ' ':
+    for l in range(3):
+        if matriz[l][0] == matriz[l][1] == matriz[l][2] != ' ':
+            return True, jogador_atual
+    for l in range(3):
+        if matriz[l][1] == matriz[l][2] == matriz[l][3] != ' ':
             return True, jogador_atual
 
-    for j in range(3):
-        if matriz[0][j] == matriz[1][j] == matriz[2][j] != ' ':
+    for c in range(3):
+        if matriz[0][c] == matriz[1][c] == matriz[2][c] != ' ':
             return True, jogador_atual
 
     if matriz[0][0] == matriz[1][1] == matriz[2][2] != ' ':
@@ -260,34 +264,54 @@ def verificar_vitoria(jogador_atual):
 
     return False, None
 
-def jogada_bot(primeiro, segundo, jogador_atual,nome1, nome2):
+def jogada_bot(primeiro, segundo, jogador_atual):
     
-    if jogador_atual == (primeiro == (nome2 == 'BOT')):
+    if jogador_atual == "BOT":
         cor = ['G', 'Y', 'R']
-        
-        i = rd.rdint(0,2)
-        l = rd.randint(0, 2)
-        c = rd.randint(0, 3)
+        jogada_valida = False
+    
+        while not jogada_valida:
+            l = rd.randint(0, 2)
+            c = rd.randint(0, 3)
+
+            if matriz[l][c] == " ":
+                i = rd.randint(0, 2)
+                if cor[i] == "G":
+                    matriz[l][c] = cor[i]
+                elif matriz[l][c] == "G" and cor[i] == "Y":
+                    matriz[l][c] = cor[i]
+                elif matriz[l][c] == "Y" and cor[i] == "R":
+                    matriz[l][c] = cor[i]
+                else:
+                    continue
+                jogada_valida = True
+
+            elif matriz[l][c] == "G":
+                i = rd.randint(0, 2)
+                if cor[i] == "Y":
+                    matriz[l][c] = cor[i]
+                else:
+                    continue
+                jogada_valida = True
+
+            elif matriz[l][c] == "Y":
+                i = rd.randint(0, 2)
+                if cor[i] == "R":
+                    matriz[l][c] = cor[i]
+                else:
+                    continue 
+                jogada_valida = True 
         
         print(f"\nLinha: {l}")
-        print(f"Coluna: {c}")
-
-        if matriz[l][c] == " ":
-            if cor[i] == "G":
-                matriz[l][c] = cor[i]
-            elif matriz[l][c] == "G" and cor[i] == "Y":
-                matriz[l][c] = cor[i]
-            elif matriz[l][c] == "Y" and cor[i] == "R":
-                matriz[l][c] = cor[i]
-        jogador_atual = segundo
-        
+        print(f"Coluna: {c}") 
+        pass     
     else:
         l = int(input("\nLinha: "))
         c = int(input("Coluna: "))
     
         if l < 0 or l > 2 or c < 0 or c > 3:
             print("Posição inválida.")
-            jogada_bot(primeiro, segundo, jogador_atual, nome1, nome2)
+            jogada_bot(primeiro, segundo, jogador_atual)
             
         print("\nGreen [G]\nYellow [Y]\nRed [R]")
         cor = input("").upper()
@@ -300,22 +324,20 @@ def jogada_bot(primeiro, segundo, jogador_atual,nome1, nome2):
             matriz[l][c] = cor
         elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
             print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
-            jogada_bot(primeiro, segundo, jogador_atual,nome1, nome2)
+            jogada_bot(primeiro, segundo, jogador_atual)
         elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
             print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
-            jogada_bot(primeiro, segundo, jogador_atual, nome1, nome2)
+            jogada_bot(primeiro, segundo, jogador_atual)
         elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
             print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
-            jogada_bot(primeiro, segundo, jogador_atual, nome1, nome2)    
+            jogada_bot(primeiro, segundo, jogador_atual)    
         else:
             print("Posição já preenchida.")
-            jogada_bot(primeiro, segundo, jogador_atual, nome1, nome2)
+            jogada_bot(primeiro, segundo, jogador_atual)
         if cor == "Y" and matriz[l][c] == "G":
             matriz[l][c] = cor   
-            jogada_bot(primeiro, segundo, jogador_atual, nome1, nome2) 
-                
-        primeiro = "BOT"
-        jogador_atual = primeiro
+            jogada_bot(primeiro, segundo, jogador_atual) 
+ 
     
     vitoria, cor = verificar_vitoria(jogador_atual)
     if vitoria:
@@ -326,6 +348,7 @@ def jogada_bot(primeiro, segundo, jogador_atual,nome1, nome2):
         jogador_atual = segundo
     elif jogador_atual == segundo:
         print(f"\nÉ a vez do(a) {primeiro}")
+        primeiro = "BOT"
         jogador_atual = primeiro
     
     return jogador_atual, vitoria       
