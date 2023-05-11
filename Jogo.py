@@ -12,27 +12,6 @@ matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 #Menu
 def menu():
 
-<<<<<<< HEAD
-    print("\n|---------------------------------------------------|")
-    print("|\tBem-vindo ao jogo matemático do semáforo    |")
-    print("|---------------------------------------------------|\n")
-    print("Jogar uma partida (1)")
-    print("Carregar uma partida apartir de um ficheiro (2)")
-    print("Apresentar uma descrição do jogo (3)")
-    print("Sair da aplicação (4)\n")
-    menu = int(input(""))
-    print("                                                                           ---------------------------------")
-    print("                                                                          |Trabalho realizado por:          | ")
-    print("                                                                          |                                 |")
-    print("                                                                          |   Diogo Cabral         al78834  |")
-    print("                                                                          |   Maria Inês Cardoso   al78222  |")
-    print("                                                                          |   Miguel Teixeira      al78321  |")
-    print("                                                                          |                                 | ")
-    print("                                                                          |                                 |")
-    print("                                                                           ---------------------------------")
-    
-    
-=======
     print("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                                ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")                                        
     print("┃\tBem-vindo ao jogo matemático do semáforo    ┃                                ┃Trabalho realizado por:          ┃")
     print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                ┃   Diogo Cabral         al78834  ┃")
@@ -43,7 +22,6 @@ def menu():
 
 
     menu = int(input(""))
->>>>>>> 669c4152061cc9c4459292dc816128c382670977
     
     if menu == 1:
         jogar()
@@ -284,12 +262,13 @@ def verificar_vitoria(jogador_atual):
 
 def jogada_bot(primeiro, segundo, jogador_atual,nome1, nome2):
     
-    if jogador_atual == (primeiro == nome2 == "BOT"):
+    if jogador_atual == (primeiro == (nome2 == 'BOT')):
         cor = ['G', 'Y', 'R']
         
         i = rd.rdint(0,2)
         l = rd.randint(0, 2)
         c = rd.randint(0, 3)
+        
         print(f"\nLinha: {l}")
         print(f"Coluna: {c}")
 
