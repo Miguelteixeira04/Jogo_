@@ -84,13 +84,14 @@ def jogar():
 
 def guardado():
     print("Ola")
+    voltar()
 def voltar() : 
     opcao = input("Pressione '2' para voltar atrás ou '3' para voltar ao menu :  ")
     print("\n")
     if opcao == '2':
      regras()
     if opcao == '3':
-        menu()
+     menu()
     else:
         print("Insira um número válido!")
 def regras():
@@ -189,50 +190,71 @@ def jogo(primeiro, segundo, jogar1, nome1, nome2):
    
 def colocar(primeiro, segundo, jogador_atual):
     
-    l = int(input("\nLinha: "))
-    c = int(input("Coluna: "))
+    print("\nDeseja passar a vez?")
+    print("[1] Sim      [2] Não")
+    passar = int(input(""))
     
-    if l < 0 or l > 2 or c < 0 or c > 3:
-        print("Posição inválida.")
-        colocar(primeiro, segundo, jogador_atual)
+    if passar == 1:
+        if jogador_atual == primeiro:
+            print(f"\nÉ a vez do(a) {segundo}")
+            jogador_atual = segundo
+            imprimir_matriz()
+            colocar(primeiro, segundo, jogador_atual)
+        if jogador_atual == segundo:
+            print(f"\nÉ a vez do(a) {primeiro}")
+            jogador_atual = primeiro
+            imprimir_matriz()
+            colocar(primeiro, segundo, jogador_atual)
+            
+    elif passar == 2:        
+        l = int(input("\nLinha: "))
+        c = int(input("Coluna: "))
+    
+        if l < 0 or l > 2 or c < 0 or c > 3:
+            print("Posição inválida.")
+            colocar(primeiro, segundo, jogador_atual)
 
-    print("\nGreen [G]\nYellow [Y]\nRed [R]")
-    cor = input("").upper()
+        print("\nGreen [G]\nYellow [Y]\nRed [R]")
+        cor = input("").upper()
     
-    if cor == "G" and matriz[l][c] == " ":
-        matriz[l][c] = cor
-    elif cor == "Y" and matriz[l][c] == "G":
-        matriz[l][c] = cor  
-    elif cor == "R" and matriz[l][c] == "Y":
-        matriz[l][c] = cor
-    elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
-        print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
-        colocar(primeiro, segundo, jogador_atual)
-    elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
-        print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
-        colocar(primeiro, segundo, jogador_atual)
-    elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
-        print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
-        colocar(primeiro, segundo, jogador_atual)    
-    else:
-        print("Posição já preenchida.")
-        colocar(primeiro, segundo, jogador_atual)    
-    if cor == "Y" and matriz[l][c] == "G":
-        matriz[l][c] = cor   
-        colocar(primeiro, segundo, jogador_atual) 
+        if cor == "G" and matriz[l][c] == " ":
+            matriz[l][c] = cor
+        elif cor == "Y" and matriz[l][c] == "G":
+            matriz[l][c] = cor  
+        elif cor == "R" and matriz[l][c] == "Y":
+            matriz[l][c] = cor
+        elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
+            print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
+            colocar(primeiro, segundo, jogador_atual)
+        elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
+            print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
+            colocar(primeiro, segundo, jogador_atual)
+        elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
+            print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
+            colocar(primeiro, segundo, jogador_atual)    
+        else:
+            print("Posição já preenchida.")
+            colocar(primeiro, segundo, jogador_atual)    
+        if cor == "Y" and matriz[l][c] == "G":
+            matriz[l][c] = cor   
+            colocar(primeiro, segundo, jogador_atual) 
         
-    vitoria, cor = verificar_vitoria(jogador_atual)
-    if vitoria:
-        print(f"\nO jogador {cor} venceu!")
-        imprimir_matriz()
-    elif jogador_atual == primeiro:
-        print(f"\nÉ a vez do(a) {segundo}")
-        jogador_atual = segundo
-    elif jogador_atual == segundo:
-        print(f"\nÉ a vez do(a) {primeiro}")
-        jogador_atual = primeiro
+        vitoria, vencedor = verificar_vitoria(jogador_atual)
+        if vitoria:
+            print(f"\nO jogador {vencedor} venceu!")
+            imprimir_matriz()
+        elif jogador_atual == primeiro:
+            print(f"\nÉ a vez do(a) {segundo}")
+            jogador_atual = segundo
+        elif jogador_atual == segundo:
+            print(f"\nÉ a vez do(a) {primeiro}")
+            jogador_atual = primeiro
     
-    return jogador_atual, vitoria        
+        return jogador_atual, vitoria       
+     
+    else:
+        print("\nInsira um valor válido!")
+        colocar(primeiro, segundo, jogador_atual)
         
 def verificar_vitoria(jogador_atual):
     for l in range(3):
