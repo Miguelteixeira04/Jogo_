@@ -1,5 +1,5 @@
 import pygame
-
+import math
 #compor a espessura das linhas pretas qd se clica no botao!!!!
 
 
@@ -44,15 +44,15 @@ while running:
             c = posicao[0] // cell_width
             l = posicao[1] // cell_height
             
-            # se estiver vazio, desenha o circulo
+            # se estiver vazio, desenha o circulo verde
             if botoes[l][c] == 0:
                 botoes[l][c] = 1
 
-            # se tiver um circulo, desenha o triangulo
+            # se tiver um circulo, desenha o triangulo amarelo
             elif botoes[l][c] == 1:
                 botoes[l][c] = 2
             
-            # se tiver um triangulo, desenha o quadrado
+            # se tiver um triangulo, desenha o quadrado vermelho
             elif botoes[l][c] == 2:
                 botoes[l][c] = 3
      
@@ -72,10 +72,19 @@ while running:
             # desenha o circulo verde
             if botoes[l][c] == 1:
                 pygame.draw.circle(screen, GREEN, cell.center, cell_width // 3)
+            
+            # desenha o triangulo amarelo
             elif botoes[l][c] == 2:
-                pygame.draw.polygon(screen, YELLOW, cell.center, cell_width // 3)
-            else:
-                pygame.draw.rect(screen, COR_ECRA, cell, 1)
+                lado = cell_width * 0.6  # comprimento do lado do triângulo
+                altura = (lado * math.sqrt(3)) / 2  # altura do triângulo equilátero
+                pygame.draw.polygon(screen, YELLOW, [(cell.centerx, cell.centery - altura/2), (cell.centerx - lado/2, cell.centery + altura/2), (cell.centerx + lado/2, cell.centery + altura/2)])
+            
+            # desenha o quadrado vermelho
+            #elif botoes[l][c] == 3:
+                #pygame.draw.rect(screen, RED, [(cell_width // 2), (cell_width // 2), (cell_height // 2), (cell_height // 2)] ) #estou nao esta a funcionar bem :,)
+            
+            #else:
+             #   pygame.draw.rect(screen, COR_ECRA, cell, 1) # o 1 é a espessura da linha do quadradinho :)
 
     pygame.display.update()
 
