@@ -207,10 +207,12 @@ def colocar(primeiro, segundo, jogador_atual):
             colocar(primeiro, segundo, jogador_atual)
             
     elif passar == 2:        
+        
         l = int(input("\nLinha: "))
         c = int(input("Coluna: "))
     
         if l < 0 or l > 2 or c < 0 or c > 3:
+            imprimir_matriz()
             print("Posição inválida.")
             colocar(primeiro, segundo, jogador_atual)
 
@@ -332,6 +334,7 @@ def jogada_bot(primeiro, segundo, jogador_atual):
         c = int(input("Coluna: "))
     
         if l < 0 or l > 2 or c < 0 or c > 3:
+            imprimir_matriz()
             print("Posição inválida.")
             jogada_bot(primeiro, segundo, jogador_atual)
             
