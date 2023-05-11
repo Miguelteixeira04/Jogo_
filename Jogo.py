@@ -9,7 +9,6 @@ GREEN = (0, 255, 0)
 jogador_atual = " "
 matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 
-#Menu
 def menu():
 
     print("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                                ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")                                        
@@ -304,7 +303,8 @@ def jogada_bot(primeiro, segundo, jogador_atual):
         
         print(f"\nLinha: {l}")
         print(f"Coluna: {c}") 
-        pass     
+        pass   
+      
     else:
         l = int(input("\nLinha: "))
         c = int(input("Coluna: "))
@@ -348,7 +348,6 @@ def jogada_bot(primeiro, segundo, jogador_atual):
         jogador_atual = segundo
     elif jogador_atual == segundo:
         print(f"\nÉ a vez do(a) {primeiro}")
-        primeiro = "BOT"
         jogador_atual = primeiro
     
     return jogador_atual, vitoria       
