@@ -58,6 +58,7 @@ while running:
             cell = pygame.Rect(c * cell_width, l * cell_height, cell_width, cell_height)
             pygame.draw.line(screen, BLACK, (c * cell_width - 1, 0), (c * cell_width - 1, screen_height)) # desenha linha preta na vertical
 
+            # desenha o circulo verde
             if botoes[l][c] == 1:
                 pygame.draw.circle(screen, GREEN, cell.center, cell_width // 3)
             else:
