@@ -43,8 +43,19 @@ while running:
             posicao = pygame.mouse.get_pos() # retorna a posição atual do cursor do mouse na tela
             c = posicao[0] // cell_width
             l = posicao[1] // cell_height
+            
+            # se estiver vazio, desenha o circulo
             if botoes[l][c] == 0:
                 botoes[l][c] = 1
+
+            # se tiver um circulo, desenha o triangulo
+            elif botoes[l][c] == 1:
+                botoes[l][c] = 2
+            
+            # se tiver um triangulo, desenha o quadrado
+            elif botoes[l][c] == 2:
+                botoes[l][c] = 3
+     
 
         #fazer um coiso para nao deixar por os amarelos e vermelhos no vazio!!!!
 
@@ -61,8 +72,10 @@ while running:
             # desenha o circulo verde
             if botoes[l][c] == 1:
                 pygame.draw.circle(screen, GREEN, cell.center, cell_width // 3)
+            elif botoes[l][c] == 2:
+                pygame.draw.polygon(screen, YELLOW, cell.center, cell_width // 3)
             else:
-                pygame.draw.rect(screen, BLACK, cell, 1)
+                pygame.draw.rect(screen, COR_ECRA, cell, 1)
 
     pygame.display.update()
 
