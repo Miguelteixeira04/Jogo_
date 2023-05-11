@@ -12,24 +12,15 @@ matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 #Menu
 def menu():
 
-    print("\n|---------------------------------------------------|")
-    print("|\tBem-vindo ao jogo matemático do semáforo    |")
-    print("|---------------------------------------------------|\n")
-    print("Jogar uma partida (1)")
-    print("Carregar uma partida apartir de um ficheiro (2)")
-    print("Apresentar uma descrição do jogo (3)")
-    print("Sair da aplicação (4)\n")
+    print("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                                ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")                                        
+    print("┃\tBem-vindo ao jogo matemático do semáforo    ┃                                ┃Trabalho realizado por:          ┃")
+    print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                ┃   Diogo Cabral         al78834  ┃")
+    print("Jogar uma partida (1)                                                                ┃   Maria Inês Cardoso   al78222  ┃")
+    print("Carregar uma partida apartir de um ficheiro (2)                                      ┃   Miguel Teixeira      al78321  ┃")
+    print("Apresentar uma descrição do jogo / Regras (3)                                        ┃                                 ┃")
+    print("Sair da aplicação (4)                                                                ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
 
-    print("                                                                           ---------------------------------")
-    print("                                                                          |Trabalho realizado por:          | ")
-    print("                                                                          |                                 |")
-    print("                                                                          |   Diogo Cabral         al78834  |")
-    print("                                                                          |   Maria Inês Cardoso   al78222  |")
-    print("                                                                          |   Miguel Teixeira      al78321  |")
-    print("                                                                          |                                 | ")
-    print("                                                                          |                                 |")
-    print("                                                                           ---------------------------------")
-    
+
     menu = int(input(""))
     
     if menu == 1:
@@ -94,24 +85,30 @@ def jogar():
 def guardado():
     print("Ola")
 def voltar() : 
-    opcao = input("Pressione '0' para voltar atrás : ")
-    regras()
+    opcao = input("Pressione '2' para voltar atrás ou '3' para voltar ao menu :  ")
+    print("\n")
+    if opcao == '2':
+     regras()
+    if opcao == '3':
+        menu()
+    else:
+        print("Insira um número válido!")
 def regras():
-    escolha = int(input("Apresentar uma descrição do jogo (1) \t Regras do jogo (2) :                "))
+    escolha = int(input("Apresentar uma descrição do jogo (1) \t Regras do jogo (2) :  "))
     if escolha == 1 :
-        print("\n\n")
-        print("|----------------------------------------|")
-        print("|            Descrição do jogo           |")
-        print("|----------------------------------------|\n")
+        print("\n")
+        print("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
+        print("┃            Descrição do jogo           ┃")
+        print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
         print("* Autor: Alan Parr \n")
         print("* Material: 8 peças verdes, 8 amarelas e 8 vermelhas partilhadas pelos jogadores.\n")
         print("* Objetivo: Ser o primeiro a conseguir uma linha de três peças da mesma cor na horizontal, vertical ou diagonal.\n")
         voltar()
     else:
         print("\n")
-        print("|---------------------------------|")
-        print("|         Regras do jogo          |")
-        print("|---------------------------------|\n")
+        print("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
+        print("┃              Regras do jogo            ┃")
+        print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
         print("* O jogo realiza-se no seguinte tabuleiro, inicialmente vazio. Em cada jogada, cada jogador realiza uma das seguintes ações.\n")
         print("* Coloca uma peça verde num quadrado vazio;\n")
         print("* Substitui uma peça verde por uma peça amarela\n")
