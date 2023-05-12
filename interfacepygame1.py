@@ -1,91 +1,250 @@
 import pygame
-import math
-#compor a espessura das linhas pretas qd se clica no botao!!!!
+
+def botao_sair():
+    # Definir as coordenadas e dimensões do botão
+    botao_largura = 150
+    botao_altura = 75
+    # Posição x no canto inferior direito
+    botao_pos_x = largura - botao_largura - 2
+    # Posição y no canto inferior direito
+    botao_pos_y = altura - botao_altura - 2
+
+    # Criar uma fonte para o texto do botão
+    fonte_botao = pygame.font.Font(None, 30)
+
+    # Renderizar o texto "Sair"
+    texto_sair = fonte_botao.render("Sair", True, cor_texto_sair)
+
+    # Desenhar o botão na janela
+    pygame.draw.rect(janela, cor_botao_sair, (botao_pos_x, botao_pos_y, botao_largura, botao_altura))
+
+    # Desenhar o texto "Sair" no botão
+    texto_retangulo = texto_sair.get_rect(center=(botao_pos_x + botao_largura / 2, botao_pos_y + botao_altura / 2))
+    janela.blit(texto_sair, texto_retangulo)
+
+    # Verificar eventos
+    for evento in pygame.event.get():
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            # Verificar se o botão do mouse foi pressionado
+            if botao_pos_x <= evento.pos[0] <= botao_pos_x + botao_largura and botao_pos_y <= evento.pos[1] <= botao_pos_y + botao_altura:
+                # Clicou no botão, fechar o programa
+                pygame.quit()
+                quit()
+def label_titulo():
+    # Criar uma fonte para o texto da label
+    fonte_label = pygame.font.SysFont(None, 75)  # Usar uma fonte padrão
+
+    # Renderizar o texto da label
+    texto_label = fonte_label.render("JOGO DO SEMÁFORO", True, cor_texto_titulo)
+    
+    # Desenhar a label "JOGO DO SEMÁFORO" no topo central da janela
+    label_retangulo = texto_label.get_rect(midtop=(largura / 2, 65))
+    janela.blit(texto_label, label_retangulo)
+def logo_utad():
+    # Desenhar a imagem do logo na janela
+    janela.blit(imagem_logo, (imagem_logo_pos_x, imagem_logo_pos_y))
+def imagem_semaforo():
+     # Desenhar a imagem do semáforo na janela
+     janela.blit(imagem_tabuleiro, (imagem_pos_x, imagem_pos_y))
+def botao_começar():
+    # Definir as coordenadas e dimensões do botão
+    botao_largura = 200
+    botao_altura = 75
+    # Posição x no centro da janela
+    botao_pos_x = (largura - botao_largura) // 2
+    # Posição y um pouco acima do centro da janela
+    botao_pos_y = altura // 2 - botao_altura -45
+
+    # Criar uma fonte para o texto do botão
+    fonte_botao = pygame.font.Font(None, 30)
+
+    # Renderizar o texto "Começar"
+    texto_comecar = fonte_botao.render("Começar", True, cor_texto_sair)
+
+    # Desenhar o botão na janela
+    pygame.draw.rect(janela, cor_botao_sair, (botao_pos_x, botao_pos_y, botao_largura, botao_altura))
+
+    # Desenhar o texto "Começar" no botão
+    texto_retangulo = texto_comecar.get_rect(center=(botao_pos_x + botao_largura / 2, botao_pos_y + botao_altura / 2))
+    janela.blit(texto_comecar, texto_retangulo)
+def botao_carregar():
+    # Definir as coordenadas e dimensões do botão
+    botao_largura = 200
+    botao_altura = 75
+    # Posição x no centro da janela
+    botao_pos_x = (largura - botao_largura) // 2
+    # Posição y um pouco acima do centro da janela
+    botao_pos_y = altura // 2 - botao_altura + 65
+
+    # Criar uma fonte para o texto do botão
+    fonte_botao = pygame.font.Font(None, 30)
+
+    # Renderizar o texto "Começar"
+    texto_carregar = fonte_botao.render("Carregar", True, cor_texto_sair)
+
+    # Desenhar o botão na janela
+    pygame.draw.rect(janela, cor_botao_sair, (botao_pos_x, botao_pos_y, botao_largura, botao_altura))
+
+    # Desenhar o texto "Começar" no botão
+    texto_retangulo = texto_carregar.get_rect(center=(botao_pos_x + botao_largura / 2, botao_pos_y + botao_altura / 2))
+    janela.blit(texto_carregar, texto_retangulo)
+def botao_descricao_regras():
+    # Definir as coordenadas e dimensões do botão
+    botao_largura = 200
+    botao_altura = 75
+    # Posição x no centro da janela
+    botao_pos_x = (largura - botao_largura) // 2
+    # Posição y um pouco acima do centro da janela
+    botao_pos_y = altura // 2 - botao_altura + 175
+
+    # Criar uma fonte para o texto do botão
+    fonte_botao = pygame.font.Font(None, 30)
+
+    # Renderizar o texto "Descricao/Regras"
+    texto_descricao_regras = fonte_botao.render("Descricao/Regras", True, cor_texto_sair)
+
+    # Desenhar o botão na janela
+    pygame.draw.rect(janela, cor_botao_sair, (botao_pos_x, botao_pos_y, botao_largura, botao_altura))
+
+    # Desenhar o texto "Descricao/Regras" no botão
+    texto_retangulo = texto_descricao_regras.get_rect(center=(botao_pos_x + botao_largura / 2, botao_pos_y + botao_altura / 2))
+    janela.blit(texto_descricao_regras, texto_retangulo)
+def label_nome_diogo():
+    # Criar uma fonte para o texto da label
+    fonte_label = pygame.font.SysFont(None, 30)  # Usar uma fonte padrão
+
+    # Renderizar o texto da label
+    texto_label = fonte_label.render("Diogo Cabral  al78834", True, cor_nomes)
+    
+    # Desenhar a label no meio da lateral esquerda da janela
+    label_retangulo = texto_label.get_rect(midleft=(10, altura -200))
+    janela.blit(texto_label, label_retangulo)
+def label_nome_ines():
+    # Criar uma fonte para o texto da label
+    fonte_label = pygame.font.SysFont(None, 30)  # Usar uma fonte padrão
+
+    # Renderizar o texto da label
+    texto_label = fonte_label.render("Maria Inês  al78222", True, cor_nomes)
+    
+    # Desenhar a label no meio da lateral esquerda da janela
+    label_retangulo = texto_label.get_rect(midleft=(10, altura -160))
+    janela.blit(texto_label, label_retangulo)
+def label_nome_miguel():
+    # Criar uma fonte para o texto da label
+    fonte_label = pygame.font.SysFont(None, 30)  # Usar uma fonte padrão
+
+    # Renderizar o texto da label
+    texto_label = fonte_label.render("Miguel Teixeira  al78321", True, cor_nomes)
+    
+    # Desenhar a label no meio da lateral esquerda da janela
+    label_retangulo = texto_label.get_rect(midleft=(10, altura -120))
+    janela.blit(texto_label, label_retangulo)
+def label_nome_cadeira():
+    # Criar uma fonte para o texto da label
+    fonte_label = pygame.font.SysFont(None, 30)  # Usar uma fonte padrão
+
+    # Renderizar o texto da label
+    texto_label = fonte_label.render("Laboratório de programação          Eng. Informática    2023/2024", True, cor_texto_titulo)
+    
+    # Desenhar a label no meio da lateral esquerda da janela
+    label_retangulo = texto_label.get_rect(midleft=(10, altura-18))
+    janela.blit(texto_label, label_retangulo)
+def imagem_simbolos():
+    # Desenhar a imagem dos símbolos na janela
+    janela.blit(imagem_simbolo, (imagem_simbolos_pos_x, imagem_simbolos_pos_y))
 
 
-# dimensao do ecra
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+# Inicializar o Pygame
+pygame.init()
 
-# titulo da janela
-pygame.display.set_caption("Jogo do Semáforo")
+# Definir as dimensões da janela
+largura = 800
+altura = 600
 
-num_linhas = 3
-num_colunas = 4
+# Criar a janela
+janela = pygame.display.set_mode((largura, altura))
+pygame.display.set_caption("JOGO DO SEMÁFORO")
 
-# dimensao dos quadrados
-cell_width = screen_width // num_colunas
-cell_height = screen_height // num_linhas
-cell = (cell_width, cell_height)
+# Definir as cores
+cor_fundo = (244, 218, 241)  
+cor_botao_sair = (64, 64, 64) #cinzento  
+cor_texto_sair = (255, 255, 255) #branco
+cor_texto_titulo = (214, 86, 56)  #laranja
+cor_nomes = (0,0,0) #preto
 
-# cores
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-YELLOW = (255, 255, 0)
-RED = (255, 0, 0)
-COR_ECRA = (238, 232, 232)
+##################################### Carregar logo utad ################################################
+imagem_logo = pygame.image.load("logo.png")
+# Tamanho 
+largura_imagem_logo = 150
+altura_imagem_logo = int(imagem_logo.get_height() * (largura_imagem_logo / imagem_logo.get_width()))
+imagem_logo = pygame.transform.scale(imagem_logo, (largura_imagem_logo, altura_imagem_logo))
+# Definir a posição da imagem do logo
+imagem_logo_pos_x = 645
+imagem_logo_pos_y = 10
+##########################################################################################################
 
-# criando a matriz que representa os botões
-botoes = []
-for l in range(num_linhas):
-    botoes.append([0] * num_colunas) #nao percebi esta parte!!!!
+##################################### Carregar imagem semáforo ###########################################
+imagem_tabuleiro = pygame.image.load("tabuleiro.png")
+# Tamanho 
+largura_imagem_tabuleiro = 250
+altura_imagem_tabuleiro = int(imagem_tabuleiro.get_height() * (largura_imagem_tabuleiro / imagem_tabuleiro.get_width()))
+imagem_tabuleiro = pygame.transform.scale(imagem_tabuleiro, (largura_imagem_tabuleiro, altura_imagem_tabuleiro))
+# Definir a posição da imagem do semáforo
+imagem_pos_x = 10
+imagem_pos_y = 150
+##########################################################################################################
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        
-        elif event.type == pygame.MOUSEBUTTONUP:
-            # verificar se o clique ocorreu dentro de um botão vazio
-            posicao = pygame.mouse.get_pos() # retorna a posição atual do cursor do mouse na tela
-            c = posicao[0] // cell_width
-            l = posicao[1] // cell_height
-            
-            # se estiver vazio, desenha o circulo verde
-            if botoes[l][c] == 0:
-                botoes[l][c] = 1
+##################################### Carregar imagem simbolo ###########################################
+imagem_simbolo = pygame.image.load("simbolos.png")
+# Tamanho
+largura_imagem_simbolo = 250
+altura_imagem_simbolo = int(imagem_simbolo.get_height() * (largura_imagem_simbolo / imagem_simbolo.get_width()))
+imagem_simbolo = pygame.transform.scale(imagem_simbolo, (largura_imagem_simbolo, altura_imagem_simbolo))
+# Definir a posição da imagem dos símbolos
+imagem_simbolos_pos_x = 530
+imagem_simbolos_pos_y = 150
+##########################################################################################################
 
-            # se tiver um circulo, desenha o triangulo amarelo
-            elif botoes[l][c] == 1:
-                botoes[l][c] = 2
-            
-            # se tiver um triangulo, desenha o quadrado vermelho
-            elif botoes[l][c] == 2:
-                botoes[l][c] = 3
-     
+def tela_menu():
 
-        #fazer um coiso para nao deixar por os amarelos e vermelhos no vazio!!!!
+# Loop principal do jogo
+    rodando = True
+    while rodando:
+        # Verificar eventos
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                # Fechar a janela se o botão de fechar for clicado
+                rodando = False
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                botao_largura = 150
+                botao_altura = 75
+                botao_pos_x = largura - botao_largura - 2
+                botao_pos_y = altura - botao_altura - 2
+                if botao_pos_x <= evento.pos[0] <= botao_pos_x + botao_largura and botao_pos_y <= evento.pos[1] <= botao_pos_y + botao_altura:
+                    # Clicou no botão, fechar o programa
+                    rodando = False
 
-    #cor da tela
-    screen.fill(COR_ECRA)
 
-    # desenhar os botões
-    for l in range(num_linhas):
-        pygame.draw.line(screen, BLACK, (0, l * cell_height - 1), (screen_width, l * cell_height - 1)) # desenha linha preta na horizontal
-        for c in range(num_colunas):
-            cell = pygame.Rect(c * cell_width, l * cell_height, cell_width, cell_height)
-            pygame.draw.line(screen, BLACK, (c * cell_width - 1, 0), (c * cell_width - 1, screen_height)) # desenha linha preta na vertical
+        # Preencher a janela com a cor de fundo
+        janela.fill(cor_fundo)
 
-            # desenha o circulo verde
-            if botoes[l][c] == 1:
-                pygame.draw.circle(screen, GREEN, cell.center, cell_width // 3)
-            
-            # desenha o triangulo amarelo
-            elif botoes[l][c] == 2:
-                lado = cell_width * 0.6  # comprimento do lado do triângulo
-                altura = (lado * math.sqrt(3)) / 2  # altura do triângulo equilátero
-                pygame.draw.polygon(screen, YELLOW, [(cell.centerx, cell.centery - altura/2), (cell.centerx - lado/2, cell.centery + altura/2), (cell.centerx + lado/2, cell.centery + altura/2)])
-            
-            # desenha o quadrado vermelho
-            #elif botoes[l][c] == 3:
-                #pygame.draw.rect(screen, RED, [(cell_width // 2), (cell_width // 2), (cell_height // 2), (cell_height // 2)] ) #estou nao esta a funcionar bem :,)
-            
-            #else:
-             #   pygame.draw.rect(screen, COR_ECRA, cell, 1) # o 1 é a espessura da linha do quadradinho :)
+        botao_sair()
+        label_titulo()
+        logo_utad()
+        imagem_semaforo()
+        botao_começar()
+        botao_carregar()
+        botao_descricao_regras()
+        label_nome_diogo()
+        label_nome_ines()
+        label_nome_miguel()
+        label_nome_cadeira()
+        imagem_simbolos()
 
-    pygame.display.update()
+    # Atualizar a janela
+        pygame.display.update()
+tela_menu()
 
-pygame.quit()
+
+
+
