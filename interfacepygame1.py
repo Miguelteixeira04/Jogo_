@@ -73,6 +73,16 @@ def botao_começar():
     texto_retangulo = texto_comecar.get_rect(center=(botao_pos_x + botao_largura / 2, botao_pos_y + botao_altura / 2))
     janela.blit(texto_comecar, texto_retangulo)
 
+        # Verificar eventos
+    for evento in pygame.event.get():
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            # Verificar se o botão do mouse foi pressionado
+            if botao_pos_x <= evento.pos[0] <= botao_pos_x + botao_largura and botao_pos_y <= evento.pos[1] <= botao_pos_y + botao_altura: 
+                    # Clicou no botão, abrir as regras do jogo
+                    from Jogo import jogar() #isto está a importar o Jogo todo no terminal e não so as regras :,)
+                    jogo = jogar() #ainda nao funciona, estou a experimentar uma cena
+                
+
 def botao_carregar():
     # Definir as coordenadas e dimensões do botão
     botao_largura = 200
