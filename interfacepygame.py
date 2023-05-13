@@ -36,7 +36,7 @@ botao_1vbot = pygame.image.load('1vbot.png')
 botao_1vbot_redim = pygame.transform.scale(botao_1vbot, (352,194))
 # import botao voltar
 botao_voltar = pygame.image.load('voltar.png')
-botao_voltar_redim = pygame.transform.scale(botao_voltar, (352,194))
+botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
 
 
 def abrir_janela_regras():
@@ -52,7 +52,7 @@ def abrir_janela_regras():
                 run_janela_regras = False
 
         janela_regras.blit(menu_regras_redim, (0,0))
-        janela_regras.blit(botao_1v1_redim, (150, 300))
+        janela_regras.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
 
@@ -79,6 +79,7 @@ def abrir_janela_comecar():
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
                     print("tbm funciona")
 
+        #mudar este menu e acrescenctar a seta
         janela_comecar.blit(menu_comecar_redim, (0,0))
         janela_comecar.blit(botao_1v1_redim, (150, 300))
         janela_comecar.blit(botao_1vbot_redim, (800, 295))
