@@ -631,18 +631,21 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                     i = rd.randint(0, 2)
                     if cor[i] == "G":
                         matriz[l][c] = cor[i]
+                        break
                     elif matriz[l][c] == "G" and cor[i] == "Y":
                         matriz[l][c] = cor[i]
+                        break
                     elif matriz[l][c] == "Y" and cor[i] == "R":
                         matriz[l][c] = cor[i]
+                        break
                     else:
                         continue
                     
-                    if verificar_vitoria("BOT")[0]:
-                        if (c > 0 and matriz[l][c-1] == jogador_atual) or (c < 3 and matriz[l][c+1] == jogador_atual):
-                            matriz[l][c] = " "  
-                            continue
-                        jogada_valida = True
+                if verificar_vitoria("BOT")[0]:
+                    if (c > 0 and matriz[l][c-1] == jogador_atual) or (c < 3 and matriz[l][c+1] == jogador_atual):
+                        matriz[l][c] = " "  
+                        continue
+                    jogada_valida = True
 
                 elif matriz[l][c] == "G":
                     i = rd.randint(0, 2)
