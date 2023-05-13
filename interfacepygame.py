@@ -27,8 +27,8 @@ menu_comecar_redim = pygame.transform.scale(menu_comecar, (1280, 720))
 menu_regras= pygame.image.load('menu_regras.png')
 menu_regras_redim = pygame.transform.scale(menu_regras, (1280, 720))
 # import fundo nomes
-menu_nomes = pygame.image.load("jogadores.png")
-menu_nomes = pygame.transform.scale(menu_nomes, (1280, 720))
+menu_nomes = pygame.image.load("menu_nomes.png")
+menu_nomes_redim = pygame.transform.scale(menu_nomes, (1280, 720))
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -94,14 +94,14 @@ def abrir_janela_comecar():
                 mouse_pos = pygame.mouse.get_pos()
 
                 if botao_1v1_redim.get_rect(topleft=(150,300)).collidepoint(mouse_pos):
-                    print("esta a dar")
+                    inserir_nomes()
 
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
                     print("tbm funciona")
                 
                 elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                     run_janela_comecar = False
-
+    
 
         janela_comecar.blit(menu_comecar_redim, (0,0))
         janela_comecar.blit(botao_1v1_redim, (150, 300))
@@ -117,6 +117,9 @@ def inserir_nomes():
 
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
+
+    digitando = True
+    jogador_atual = 1
 
     while digitando:
         for evento in pygame.event.get():
@@ -147,16 +150,17 @@ def inserir_nomes():
                         jogador_atual = 2
                         nome_jogador2 = ""
 
+        pygame.display.update()
     # Desenhar a imagem de fundo
-    janela_nomes.blit(menu_nomes, (0, 0))
+    janela_nomes.blit(menu_nomes_redim, (0, 0))
 
     # Exibindo o nome digitado na janela
     fonte = pygame.font.Font(None, 46)
     texto_jogador1 = fonte.render(nome_jogador1, True, BRANCO)
     texto_jogador2 = fonte.render(nome_jogador2, True, BRANCO)
 
-    posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(menu_nomes // 2 - 525, menu_nomes // 2 + 48))
-    posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(menu_nomes // 2 + 155, menu_nomes // 2 + 48))
+    posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(screen_width // 2 - 525, screen_height // 2 + 48))
+    posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(screen_width // 2 + 155, screen_height // 2 + 48))
 
     # Desenhar retângulos interativos para reescrever o nome
     pygame.draw.rect(janela_nomes,CINZA, posicao_texto_jogador1)
