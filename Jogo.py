@@ -61,11 +61,7 @@ def jogar():
         
     elif jogar1 == 2:
         nome1 = input("\nInsira o nome do jogador: ")
-        
-        print("\nEscolha a dificuldade do BOT:")
-        print("[1] Fácil        [2] Médio       [3] Dificil")
-        dificuldade = int(input(""))
-        
+           
         primeiro = rd.randint(1,2)
         
         if primeiro == 1:
@@ -75,6 +71,7 @@ def jogar():
             print("\n")
             primeiro = nome1
             segundo = nome2
+            dificuldade = 0
             jogo(primeiro, segundo, jogar1, nome1, nome2,dificuldade)
         else:
             nome2 = "BOT"
@@ -83,6 +80,7 @@ def jogar():
             print("\n")   
             primeiro = nome2
             segundo = nome1
+            dificuldade = 0
             jogo(primeiro, segundo, jogar1, nome1, nome2,dificuldade) 
     else: 
         print("Escolha o numero 1 ou 2.\n")
@@ -91,6 +89,7 @@ def jogar():
 def guardado():
     print("Ola")
     voltar()
+    
 def voltar() : 
     opcao = input("Pressione '2' para voltar atrás ou '3' para voltar ao menu :  ")
     print("\n")
@@ -100,6 +99,7 @@ def voltar() :
      menu()
     else:
         print("Insira um número válido!")
+
 def regras():
     escolha = int(input("Apresentar uma descrição do jogo (1) \t Regras do jogo (2) :  "))
     if escolha == 1 :
@@ -122,7 +122,6 @@ def regras():
         print("* Substitui uma peça amarela por uma peça vermelha\n")
         print("* De notar que as peças vermelhas não podem ser substituídas. Isto significa que o jogo tem de terminar sempre: à medida que o tabuleiro fica com peças vermelhas, é inevitável que surja uma linha de três peças.\n")
         voltar()
-
         
 def imprimir_matriz():
 
@@ -136,9 +135,15 @@ def imprimir_matriz():
     print("2:\t" + " ┃  " + str(matriz[2][0]) + "  ┃  " + str(matriz[2][1]) + "  ┃  " + str(matriz[2][2]) + "  ┃  " + str(matriz[2][3]) + "  ┃ " )
     print("\t ┗━━━━━┻━━━━━┻━━━━━┻━━━━━┛")
     
-
 def jogo(primeiro, segundo, jogar1, nome1, nome2, dificuldade):
     
+    if jogar1 == 2:
+        print("\nEscolha a dificuldade do BOT:")
+        print("[1] Fácil        [2] Médio       [3] Dificil")
+        dificuldade = int(input(""))
+    elif jogar1 == 1:
+        dificuldade = 0
+        
     jogador_atual = primeiro
     vitoria = False
     res = 0
@@ -575,31 +580,49 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
 
             if jogada_valida:
                 break
-            
-        if jogador_atual == primeiro == "BOT":
-            jogador_atual = segundo
-        elif jogador_atual == segundo == "BOT":
-            jogador_atual = primeiro
+        
+        if jogada_valida:       
+            if jogador_atual == primeiro and primeiro == "BOT":
+                jogador_atual = segundo
+            elif jogador_atual == segundo and segundo == "BOT":
+                jogador_atual = primeiro
              
-            for primeiro in ['R', 'Y', 'G']:
-                for l in range(3):
-                    for c in range(4):
-                        if matriz[l][c] == " ":
-                            matriz[l][c] = primeiro
-                            if verificar_vitoria(primeiro)[0]:
-                                matriz[l][c] = cor
-                                break
-                            else:
-                                matriz[l][c] = " "
-
-                    if verificar_vitoria(primeiro)[0]:
-                        break
-
-                if verificar_vitoria(primeiro)[0]:
-                    break
-       
-
         if not jogada_valida:
+            for l in range(3):
+                for c in range(4):
+                    if matriz[l][c] == " ":
+                        for i in range(3):
+                            if cor[i] == "G":
+                                matriz[l][c] = cor[i]
+                                if verificar_vitoria(jogador_atual)[0]:
+                                    jogada_valida = True
+                                    break
+                                matriz[l][c] = " "
+                            elif matriz[l][c] == "G" and cor[i] == "Y":
+                                matriz[l][c] = cor[i]
+                                if verificar_vitoria(jogador_atual)[0]:
+                                    jogada_valida = True
+                                    break
+                                matriz[l][c] = " "
+                            elif matriz[l][c] == "Y" and cor[i] == "R":
+                                matriz[l][c] = cor[i]
+                                if verificar_vitoria(jogador_atual)[0]:
+                                    jogada_valida = True
+                                    break
+                                matriz[l][c] = " "
+                            if jogada_valida:
+                                break
+
+                        if jogada_valida:
+                            break
+
+                    if jogada_valida:
+                        break
+        
+        if not jogada_valida and jogador_atual != "BOT":
+            jogador_atual = "BOT"
+       
+        if not jogada_valida and jogador_atual == "BOT":
             while not jogada_valida:
                 l = rd.randint(0, 2)
                 c = rd.randint(0, 3)
@@ -614,7 +637,12 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                         matriz[l][c] = cor[i]
                     else:
                         continue
-                    jogada_valida = True
+                    
+                    if verificar_vitoria("BOT")[0]:
+                        if (c > 0 and matriz[l][c-1] == jogador_atual) or (c < 3 and matriz[l][c+1] == jogador_atual):
+                            matriz[l][c] = " "  
+                            continue
+                        jogada_valida = True
 
                 elif matriz[l][c] == "G":
                     i = rd.randint(0, 2)
@@ -637,15 +665,18 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                     break
 
         if verificar_vitoria("BOT")[0]:
+            print(f"\nLinha: {l}")
+            print(f"Coluna: {c}")
             print("O BOT ganhou!")
-            vitoria, vencedor = verificar_vitoria(jogador_atual)
+            vitoria, cor = verificar_vitoria(jogador_atual)
             if vitoria:
-                print(f"\nO jogador {vencedor} venceu!")
                 imprimir_matriz()
             return jogador_atual, vitoria
         else:
             print(f"\nLinha: {l}")
             print(f"Coluna: {c}") 
+        pass
+        
       
     else:
         l = int(input("\nLinha: "))
