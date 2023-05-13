@@ -51,6 +51,12 @@ def abrir_janela_regras():
             if event.type == pygame.QUIT:
                 run_janela_regras = False
 
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                if botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
+                    run_janela_regras = False
+
         janela_regras.blit(menu_regras_redim, (0,0))
         janela_regras.blit(botao_voltar_redim, (1200, 5))
 
@@ -78,11 +84,15 @@ def abrir_janela_comecar():
 
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
                     print("tbm funciona")
+                
+                elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
+                    run_janela_comecar = False
 
-        #mudar este menu e acrescenctar a seta
+
         janela_comecar.blit(menu_comecar_redim, (0,0))
         janela_comecar.blit(botao_1v1_redim, (150, 300))
         janela_comecar.blit(botao_1vbot_redim, (800, 295))
+        janela_comecar.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
 
