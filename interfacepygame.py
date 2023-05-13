@@ -6,6 +6,17 @@ screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Jogo do Semáforo")
 
+# Definição das cores (opcional)
+BRANCO = (255, 255, 255)
+PRETO = (0, 0, 0)
+CINZA = (68, 68, 68)
+
+# Variáveis para armazenar os nomes dos jogadores
+nome_jogador1 = ""
+nome_jogador2 = ""
+jogador_atual = 1
+digitando = True
+
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -15,6 +26,9 @@ menu_comecar_redim = pygame.transform.scale(menu_comecar, (1280, 720))
 # import fundo regras
 menu_regras= pygame.image.load('menu_regras.png')
 menu_regras_redim = pygame.transform.scale(menu_regras, (1280, 720))
+# import fundo nomes
+menu_nomes = pygame.image.load("jogadores.png")
+menu_nomes = pygame.transform.scale(menu_nomes, (1280, 720))
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -99,6 +113,59 @@ def abrir_janela_comecar():
     main_menu = True
 
 
+def inserir_nomes():
+
+    janela_nomes = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Jogo do Semáforo")
+
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                digitando = False
+            elif evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_RETURN:
+                    if jogador_atual == 1:
+                        jogador_atual = 2
+                    else:
+                        digitando = False
+                elif evento.key == pygame.K_BACKSPACE:
+                    if jogador_atual == 1:
+                        nome_jogador1 = nome_jogador1[:-1]
+                    else:
+                        nome_jogador2 = nome_jogador2[:-1]
+                else:
+                    if jogador_atual == 1:
+                        nome_jogador1 += evento.unicode
+                    else:
+                        nome_jogador2 += evento.unicode
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                if evento.button == 1:
+                    if posicao_texto_jogador1.collidepoint(evento.pos):
+                        jogador_atual = 1
+                        nome_jogador1 = ""
+                    elif posicao_texto_jogador2.collidepoint(evento.pos):
+                        jogador_atual = 2
+                        nome_jogador2 = ""
+
+    # Desenhar a imagem de fundo
+    janela_nomes.blit(menu_nomes, (0, 0))
+
+    # Exibindo o nome digitado na janela
+    fonte = pygame.font.Font(None, 46)
+    texto_jogador1 = fonte.render(nome_jogador1, True, BRANCO)
+    texto_jogador2 = fonte.render(nome_jogador2, True, BRANCO)
+
+    posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(menu_nomes // 2 - 525, menu_nomes // 2 + 48))
+    posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(menu_nomes // 2 + 155, menu_nomes // 2 + 48))
+
+    # Desenhar retângulos interativos para reescrever o nome
+    pygame.draw.rect(janela_nomes,CINZA, posicao_texto_jogador1)
+    pygame.draw.rect(janela_nomes, CINZA, posicao_texto_jogador2)
+
+    janela_nomes.blit(texto_jogador1, posicao_texto_jogador1)
+    janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
+
+    pygame.display.flip()
 
 
 
