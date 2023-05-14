@@ -29,7 +29,9 @@ menu_nomebot_redim = pygame.transform.scale(menu_nomebot, (1280, 720))
 # import fundo escolha do bot
 menu_escolhabot = pygame.image.load("menu_escolhabot.png")
 menu_escolhabot_redim = pygame.transform.scale(menu_escolhabot, (1280, 720))
-
+# import fundo tabuleiro 
+menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
+menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro , (1280, 720))
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -61,6 +63,15 @@ botao_medio_redim = pygame.transform.scale(botao_medio, (319,106))
 # import botao dificil
 botao_dificil = pygame.image.load('dificil.png')
 botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106))
+# import botao passar vez
+botao_passarvez = pygame.image.load('passarvez.png')
+botao_passarvez_redim = pygame.transform.scale(botao_passarvez, (319,106))
+# import label nome1
+label_nome1 = pygame.image.load('nome1.png')
+label_nome1_redim = pygame.transform.scale(label_nome1, (319,106)) #compor
+# import label nome2
+label_nome2 = pygame.image.load('nome2.png')
+label_nome2_redim = pygame.transform.scale(label_nome2, (319,106)) #compor
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
@@ -145,8 +156,8 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        pass # para evitar que depois da inserção dos nomes o programa volte para a janela anterior, ao clicar na tecla ENTER!!
-                
+                        abrir_tabuleiro_1v1()
+                        
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
@@ -284,7 +295,25 @@ def abrir_janela_dificuldade():
 
     main_menu = True
 
-#
+def abrir_tabuleiro_1v1():
+    janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
+
+    digitando = True
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                digitando = False
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit() 
+
+        janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
+
+        janela_tabuleiro.blit(sair_redim, (1052, 625))
+
+        pygame.display.update()
 
 
 ################## MAIN ####################
