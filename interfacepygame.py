@@ -128,8 +128,7 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        # para evitar que depois da inserção dos nomes o programa volte para a janela anterior, ao clicar na tecla ENTER!!
-                        pass
+                        pass # para evitar que depois da inserção dos nomes o programa volte para a janela anterior, ao clicar na tecla ENTER!!
                 
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
