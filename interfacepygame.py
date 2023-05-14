@@ -32,7 +32,7 @@ botao_comecar = pygame.image.load('comecar.png')
 comecar_redim = pygame.transform.scale(botao_comecar, (281,106))
 # import botao carregar
 botao_carregar = pygame.image.load('carregar.png')
-carregar_redim = pygame.transform.scale(botao_carregar, (281,106))
+carregar_redim = pygame.transform.scale(botao_carregar, (281,110))
 # import botao regras
 botao_regras = pygame.image.load('regras.png')
 regras_redim = pygame.transform.scale(botao_regras, (281,106))
@@ -142,9 +142,9 @@ def abrir_janela_nomes():
                     else:
                         nome_jogador2 += evento.unicode
 
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
-                
+            elif evento.type == pygame.MOUSEBUTTONDOWN:  
+                mouse_pos = pygame.mouse.get_pos()       
+
                 if evento.button == 1:
                     if posicao_texto_jogador1.collidepoint(evento.pos):
                         jogador_atual = 1
@@ -152,9 +152,8 @@ def abrir_janela_nomes():
                     elif posicao_texto_jogador2.collidepoint(evento.pos):
                         jogador_atual = 2
                         nome_jogador2 = ""
-                
-                elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
-                    digitando = False
+                    elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
+                        digitando = False
 
         pygame.display.update()
    
@@ -177,7 +176,7 @@ def abrir_janela_nomes():
         janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
 
         pygame.display.update()
-
+    
 
 
 ################## MAIN ####################
