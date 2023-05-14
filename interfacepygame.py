@@ -54,13 +54,13 @@ botao_voltar = pygame.image.load('voltar.png')
 botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
 # import botao facil
 botao_facil = pygame.image.load('facil.png')
-botao_facil_redim = pygame.transform.scale(botao_facil, (73,54)) #compor
-# import botao facil
+botao_facil_redim = pygame.transform.scale(botao_facil, (319,106)) #compor
+# import botao medio
 botao_medio = pygame.image.load('medio.png')
-botao_medio_redim = pygame.transform.scale(botao_medio, (73,54)) #compor
-# import botao facil
+botao_medio_redim = pygame.transform.scale(botao_medio, (319,106)) #compor
+# import botao dificil
 botao_dificil = pygame.image.load('dificil.png')
-botao_dificil_redim = pygame.transform.scale(botao_dificil, (73,54)) #compor
+botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106)) #compor
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
@@ -254,10 +254,14 @@ def abrir_janela_dificuldade():
     while digitando:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return False
+                digitando = False
         
-
+            
+        
         janela_dificuldade.blit(menu_escolhabot_redim, (0, 0))
+        janela_dificuldade.blit(botao_facil_redim, (700, 295))
+        janela_dificuldade.blit(botao_medio_redim, (700, 418))
+        janela_dificuldade.blit(botao_dificil_redim, (700, 540))
         janela_dificuldade.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
