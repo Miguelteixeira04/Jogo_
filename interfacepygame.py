@@ -284,7 +284,7 @@ def abrir_janela_dificuldade():
 
     main_menu = True
 
-
+#
 
 
 ################## MAIN ####################
