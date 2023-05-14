@@ -11,12 +11,6 @@ BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 CINZA = (68, 68, 68)
 
-# Variáveis para armazenar os nomes dos jogadores
-nome_jogador1 = ""
-nome_jogador2 = ""
-jogador_atual = 1
-digitando = True
-
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -94,7 +88,7 @@ def abrir_janela_comecar():
                 mouse_pos = pygame.mouse.get_pos()
 
                 if botao_1v1_redim.get_rect(topleft=(150,300)).collidepoint(mouse_pos):
-                    inserir_nomes()
+                    abrir_janela_nomes()
 
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
                     print("tbm funciona")
@@ -113,35 +107,44 @@ def abrir_janela_comecar():
     main_menu = True
 
 
-def inserir_nomes():
+def abrir_janela_nomes():
 
+    main_menu = False
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
 
     digitando = True
     jogador_atual = 1
+    nome_jogador1 = ""
+    nome_jogador2 = ""
 
     while digitando:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 digitando = False
+
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
                         digitando = False
+                
                 elif evento.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
                     else:
                         nome_jogador2 = nome_jogador2[:-1]
+                
                 else:
                     if jogador_atual == 1:
                         nome_jogador1 += evento.unicode
                     else:
                         nome_jogador2 += evento.unicode
+
             elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                
                 if evento.button == 1:
                     if posicao_texto_jogador1.collidepoint(evento.pos):
                         jogador_atual = 1
@@ -149,31 +152,35 @@ def inserir_nomes():
                     elif posicao_texto_jogador2.collidepoint(evento.pos):
                         jogador_atual = 2
                         nome_jogador2 = ""
+                
+                elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
+                    digitando = False
 
         pygame.display.update()
-    # Desenhar a imagem de fundo
-    janela_nomes.blit(menu_nomes_redim, (0, 0))
+   
+        janela_nomes.blit(menu_nomes_redim, (0, 0))
+        janela_nomes.blit(botao_voltar_redim, (1200, 5))
 
-    # Exibindo o nome digitado na janela
-    fonte = pygame.font.Font(None, 46)
-    texto_jogador1 = fonte.render(nome_jogador1, True, BRANCO)
-    texto_jogador2 = fonte.render(nome_jogador2, True, BRANCO)
+        # Exibindo o nome digitado na janela
+        fonte = pygame.font.Font(None, 46)
+        texto_jogador1 = fonte.render(nome_jogador1, True, BRANCO)
+        texto_jogador2 = fonte.render(nome_jogador2, True, BRANCO)
 
-    posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(screen_width // 2 - 525, screen_height // 2 + 48))
-    posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(screen_width // 2 + 155, screen_height // 2 + 48))
+        posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(screen_width // 2 - 525, screen_height // 2 + 48))
+        posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(screen_width // 2 + 155, screen_height // 2 + 48))
 
-    # Desenhar retângulos interativos para reescrever o nome
-    pygame.draw.rect(janela_nomes,CINZA, posicao_texto_jogador1)
-    pygame.draw.rect(janela_nomes, CINZA, posicao_texto_jogador2)
+        # Desenhar retângulos interativos para reescrever o nome
+        pygame.draw.rect(janela_nomes,CINZA, posicao_texto_jogador1)
+        pygame.draw.rect(janela_nomes, CINZA, posicao_texto_jogador2)
 
-    janela_nomes.blit(texto_jogador1, posicao_texto_jogador1)
-    janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
+        janela_nomes.blit(texto_jogador1, posicao_texto_jogador1)
+        janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
 
-    pygame.display.flip()
+        pygame.display.update()
 
 
 
-########### MAIN ####################
+################## MAIN ####################
 
 running = True
 while running:
