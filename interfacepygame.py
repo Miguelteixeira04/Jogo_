@@ -6,7 +6,7 @@ screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Jogo do Semáforo")
 
-# Definição das cores (opcional)
+# Definição das cores
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 CINZA = (68, 68, 68)
@@ -88,7 +88,7 @@ def abrir_janela_comecar():
                 mouse_pos = pygame.mouse.get_pos()
 
                 if botao_1v1_redim.get_rect(topleft=(150,300)).collidepoint(mouse_pos):
-                    abrir_janela_nomes()
+                    abrir_janela_nomes_1v1()
 
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
                     print("tbm funciona")
@@ -107,7 +107,7 @@ def abrir_janela_comecar():
     main_menu = True
 
 
-def abrir_janela_nomes():
+def abrir_janela_nomes_1v1():
 
     main_menu = False
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
@@ -119,18 +119,19 @@ def abrir_janela_nomes():
     nome_jogador2 = ""
 
     while digitando:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 digitando = False
 
-            elif evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_RETURN:
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        digitando = False
+                        # para evitar que depois da inserção dos nomes o programa volte para a janela anterior, ao clicar na tecla ENTER!!
+                        pass
                 
-                elif evento.key == pygame.K_BACKSPACE:
+                elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
                     else:
@@ -138,18 +139,18 @@ def abrir_janela_nomes():
                 
                 else:
                     if jogador_atual == 1:
-                        nome_jogador1 += evento.unicode
+                        nome_jogador1 += event.unicode
                     else:
-                        nome_jogador2 += evento.unicode
+                        nome_jogador2 += event.unicode
 
-            elif evento.type == pygame.MOUSEBUTTONDOWN:  
+            elif event.type == pygame.MOUSEBUTTONDOWN:  
                 mouse_pos = pygame.mouse.get_pos()       
 
-                if evento.button == 1:
-                    if posicao_texto_jogador1.collidepoint(evento.pos):
+                if event.button == 1:
+                    if posicao_texto_jogador1.collidepoint(event.pos):
                         jogador_atual = 1
                         nome_jogador1 = ""
-                    elif posicao_texto_jogador2.collidepoint(evento.pos):
+                    elif posicao_texto_jogador2.collidepoint(event.pos):
                         jogador_atual = 2
                         nome_jogador2 = ""
                     elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
@@ -208,7 +209,7 @@ while running:
     screen.blit(menu_redim, (0,0))
     screen.blit(sair_redim, (1052,625))
     screen.blit(comecar_redim, (500, 250))
-    screen.blit(carregar_redim, (500, 375))
+    screen.blit(carregar_redim, (500, 372))
     screen.blit(regras_redim, (500,500))
 
     pygame.display.update()
