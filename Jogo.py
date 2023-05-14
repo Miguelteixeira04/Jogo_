@@ -292,7 +292,7 @@ def verificar_vitoria(jogador_atual):
         if matriz[l][1] == matriz[l][2] == matriz[l][3] != ' ':
             return True, jogador_atual
 
-    for c in range(3):
+    for c in range(4):
         if matriz[0][c] == matriz[1][c] == matriz[2][c] != ' ':
             return True, jogador_atual
 
@@ -586,38 +586,60 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                 jogador_atual = segundo
             elif jogador_atual == segundo and segundo == "BOT":
                 jogador_atual = primeiro
-             
+        
+        for l in range(3):
+            for c in range(4):
+                if matriz[l][c] == " ":
+                    # simula jogada do adversário
+                    if jogador_atual == primeiro and primeiro == "BOT":
+                        jogador_atual = segundo
+                    elif jogador_atual == segundo and segundo == "BOT":
+                        jogador_atual = primeiro
+                    else:
+                        jogador_atual = "BOT"
+                    matriz[l][c] = cor[0] if jogador_atual == "BOT" else cor[2]
+                    if verificar_vitoria(jogador_atual)[0]:
+                        matriz[l][c] = " "
+                        continue
+                    matriz[l][c] = " "
+
+                    # verifica se o adversário tem sequência vencedora após essa jogada
+                    matriz[l][c] = cor[0] if jogador_atual != "BOT" else cor[2]
+                    if verificar_vitoria(jogador_atual)[0]:
+                        matriz[l][c] = " "
+                        return l, c
+                    matriz[l][c] = " "
+
+                     
         if not jogada_valida:
             for l in range(3):
                 for c in range(4):
                     if matriz[l][c] == " ":
                         for i in range(3):
-                            if cor[i] == "G":
+                            if cor[i] == "R":
                                 matriz[l][c] = cor[i]
                                 if verificar_vitoria(jogador_atual)[0]:
-                                    jogada_valida = True
-                                    break
+                                    matriz[l][c] = " "
+                                    return l, c
                                 matriz[l][c] = " "
-                            elif matriz[l][c] == "G" and cor[i] == "Y":
+                            elif matriz[l][c] == "Y" and cor[i] == "G":
                                 matriz[l][c] = cor[i]
                                 if verificar_vitoria(jogador_atual)[0]:
-                                    jogada_valida = True
-                                    break
+                                    matriz[l][c] = " "
+                                    return l, c
                                 matriz[l][c] = " "
-                            elif matriz[l][c] == "Y" and cor[i] == "R":
+                            elif matriz[l][c] == " " and cor[i] == "R":
                                 matriz[l][c] = cor[i]
                                 if verificar_vitoria(jogador_atual)[0]:
-                                    jogada_valida = True
-                                    break
+                                    matriz[l][c] = " "
+                                    return l, c
                                 matriz[l][c] = " "
-                            if jogada_valida:
-                                break
-
-                        if jogada_valida:
-                            break
-
-                    if jogada_valida:
-                        break
+                            elif matriz[l][c] == " " and cor[i] == "Y":
+                                matriz[l][c] = cor[i]
+                                if verificar_vitoria(jogador_atual)[0]:
+                                    matriz[l][c] = " "
+                                    return l, c
+                                matriz[l][c] = " "
         
         if not jogada_valida and jogador_atual != "BOT":
             jogador_atual = "BOT"
