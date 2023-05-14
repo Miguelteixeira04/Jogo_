@@ -65,13 +65,13 @@ botao_dificil = pygame.image.load('dificil.png')
 botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106))
 # import botao passar vez
 botao_passarvez = pygame.image.load('passarvez.png')
-botao_passarvez_redim = pygame.transform.scale(botao_passarvez, (319,106))
+botao_passarvez_redim = pygame.transform.scale(botao_passarvez, (334,78))
 # import label nome1
 label_nome1 = pygame.image.load('nome1.png')
-label_nome1_redim = pygame.transform.scale(label_nome1, (319,106)) #compor
+label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
 # import label nome2
 label_nome2 = pygame.image.load('nome2.png')
-label_nome2_redim = pygame.transform.scale(label_nome2, (319,106)) #compor
+label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
@@ -310,7 +310,9 @@ def abrir_tabuleiro_1v1():
                     quit() 
 
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
-
+        janela_tabuleiro.blit(label_nome1_redim, (855,200))
+        janela_tabuleiro.blit(label_nome2_redim, (855,300))
+        janela_tabuleiro.blit(botao_passarvez_redim, (855,480))
         janela_tabuleiro.blit(sair_redim, (1052, 625))
 
         pygame.display.update()
