@@ -23,6 +23,13 @@ menu_regras_redim = pygame.transform.scale(menu_regras, (1280, 720))
 # import fundo nomes
 menu_nomes = pygame.image.load("menu_nomes.png")
 menu_nomes_redim = pygame.transform.scale(menu_nomes, (1280, 720))
+# import fundo nome com bot
+menu_nomebot = pygame.image.load("menu_nomebot.png")
+menu_nomebot_redim = pygame.transform.scale(menu_nomebot, (1280, 720))
+# import fundo escolha do bot
+menu_escolhabot = pygame.image.load("menu_escolhabot.png")
+menu_escolhabot_redim = pygame.transform.scale(menu_escolhabot, (1280, 720))
+
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -45,8 +52,17 @@ botao_1vbot_redim = pygame.transform.scale(botao_1vbot, (352,194))
 # import botao voltar
 botao_voltar = pygame.image.load('voltar.png')
 botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
+# import botao facil
+botao_facil = pygame.image.load('facil.png')
+botao_facil_redim = pygame.transform.scale(botao_facil, (73,54)) #compor
+# import botao facil
+botao_medio = pygame.image.load('medio.png')
+botao_medio_redim = pygame.transform.scale(botao_medio, (73,54)) #compor
+# import botao facil
+botao_dificil = pygame.image.load('dificil.png')
+botao_dificil_redim = pygame.transform.scale(botao_dificil, (73,54)) #compor
 
-
+# mostrar as regras do jogo
 def abrir_janela_regras():
     main_menu = False
 
@@ -72,6 +88,7 @@ def abrir_janela_regras():
 
     main_menu = True
 
+# mostrar qd se clica no botao comecar (1v1 e 1vbot)
 def abrir_janela_comecar():
     main_menu = False
 
@@ -91,7 +108,7 @@ def abrir_janela_comecar():
                     abrir_janela_nomes_1v1()
 
                 elif botao_1vbot_redim.get_rect(topleft=(800,295)).collidepoint(mouse_pos):
-                    print("tbm funciona")
+                    abrir_janela_nomes_1vbot()
                 
                 elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                     run_janela_comecar = False
@@ -106,7 +123,7 @@ def abrir_janela_comecar():
 
     main_menu = True
 
-
+# inserir o nome dos jogadores 1v1
 def abrir_janela_nomes_1v1():
 
     main_menu = False
@@ -176,11 +193,76 @@ def abrir_janela_nomes_1v1():
         janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
 
         pygame.display.update()
+   
+# inserir o nome do jogador 1vbot
+def abrir_janela_nomes_1vbot():
     
+    janela_nomebot = pygame.display.set_mode((screen_width, screen_height))
+    
+    digitando = True
+    jogador_atual = 1
+    nome_jogador = ""
 
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                return False
+
+            elif evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_RETURN:
+                    abrir_janela_dificuldade()
+
+                elif evento.key == pygame.K_BACKSPACE:
+                    nome_jogador = nome_jogador[:-1]
+
+                else:
+                    nome_jogador += evento.unicode
+
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                if evento.button == 1:
+                    if posicao_texto_jogador.collidepoint(evento.pos):
+                        jogador_atual = 1
+                        nome_jogador = ""
+                    elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
+                        return True
+
+        janela_nomebot.blit(menu_nomebot_redim, (0, 0))
+        janela_nomebot.blit(botao_voltar_redim, (1200, 5))
+
+        # Exibindo o nome digitado na janela
+        fonte = pygame.font.Font(None, 46)
+        texto_jogador = fonte.render(nome_jogador, True, BRANCO)
+
+        posicao_texto_jogador = texto_jogador.get_rect(midleft=(screen_width // 2 - 525, screen_height // 2 + 48))
+
+        # Desenhar retângulo interativo para reescrever o nome
+        pygame.draw.rect(janela_nomebot, CINZA, posicao_texto_jogador)
+
+        janela_nomebot.blit(texto_jogador, posicao_texto_jogador)
+
+        pygame.display.update()
+
+    return False
+
+def abrir_janela_dificuldade():
+    
+    janela_dificuldade = pygame.display.set_mode((screen_width, screen_height))
+
+    digitando = True
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                return False
+        
+
+        janela_dificuldade.blit(menu_escolhabot_redim, (0, 0))
+        janela_dificuldade.blit(botao_voltar_redim, (1200, 5))
+
+        pygame.display.update()
 
 ################## MAIN ####################
-
 running = True
 while running:
     for event in pygame.event.get():
