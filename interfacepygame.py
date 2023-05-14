@@ -54,13 +54,13 @@ botao_voltar = pygame.image.load('voltar.png')
 botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
 # import botao facil
 botao_facil = pygame.image.load('facil.png')
-botao_facil_redim = pygame.transform.scale(botao_facil, (319,106)) #compor
+botao_facil_redim = pygame.transform.scale(botao_facil, (319,106))
 # import botao medio
 botao_medio = pygame.image.load('medio.png')
-botao_medio_redim = pygame.transform.scale(botao_medio, (319,106)) #compor
+botao_medio_redim = pygame.transform.scale(botao_medio, (319,106))
 # import botao dificil
 botao_dificil = pygame.image.load('dificil.png')
-botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106)) #compor
+botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106))
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
@@ -210,7 +210,7 @@ def abrir_janela_nomes_1vbot():
 
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
-                    abrir_janela_dificuldade()
+                    abrir_janela_dificuldade() #clicar no enter, passa a prox janela
 
                 elif evento.key == pygame.K_BACKSPACE:
                     nome_jogador = nome_jogador[:-1]
@@ -246,9 +246,12 @@ def abrir_janela_nomes_1vbot():
 
     return False
 
+# escolher dificuldade do bot
 def abrir_janela_dificuldade():
+    main_menu = False
     
     janela_dificuldade = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Jogo do Semáforo")
 
     digitando = True
     while digitando:
@@ -256,7 +259,20 @@ def abrir_janela_dificuldade():
             if evento.type == pygame.QUIT:
                 digitando = False
         
-            
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                if botao_facil_redim.get_rect(topleft=(700,295)).collidepoint(mouse_pos):
+                    print("funciona")
+
+                elif botao_medio_redim.get_rect(topleft=(700,418)).collidepoint(mouse_pos):
+                    print("tbm funciona")
+                
+                elif botao_dificil_redim.get_rect(topleft=(700,540)).collidepoint(mouse_pos):
+                    print("tbm funciona :)")
+                
+                elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
+                    digitando = False 
         
         janela_dificuldade.blit(menu_escolhabot_redim, (0, 0))
         janela_dificuldade.blit(botao_facil_redim, (700, 295))
@@ -265,6 +281,11 @@ def abrir_janela_dificuldade():
         janela_dificuldade.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
+
+    main_menu = True
+
+
+
 
 ################## MAIN ####################
 running = True
