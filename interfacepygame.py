@@ -11,6 +11,9 @@ BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 CINZA = (68, 68, 68)
 
+# import pagina inicial
+pagina_inicial = pygame.image.load('pagina_inicial.png')
+pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720))
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
