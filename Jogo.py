@@ -590,7 +590,6 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
         for l in range(3):
             for c in range(4):
                 if matriz[l][c] == " ":
-                    # simula jogada do adversário
                     if jogador_atual == primeiro and primeiro == "BOT":
                         jogador_atual = segundo
                     elif jogador_atual == segundo and segundo == "BOT":
@@ -602,8 +601,6 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                         matriz[l][c] = " "
                         continue
                     matriz[l][c] = " "
-
-                    # verifica se o adversário tem sequência vencedora após essa jogada
                     matriz[l][c] = cor[0] if jogador_atual != "BOT" else cor[2]
                     if verificar_vitoria(jogador_atual)[0]:
                         matriz[l][c] = " "
@@ -621,26 +618,40 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                                 if verificar_vitoria(jogador_atual)[0]:
                                     matriz[l][c] = " "
                                     return l, c
+                                elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "Y"):
+                                    matriz[l][c] = " "
+                                    break
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "G" or matriz[l][c-1] == matriz[l][c+1] == "G" or matriz[l][c-2] == matriz[l][c-1] == "G")):
+                                    matriz[l][c] = " "
+                                    break
                                 matriz[l][c] = " "
-                            elif matriz[l][c] == "Y" and cor[i] == "G":
+                            elif cor[i] == "Y":
                                 matriz[l][c] = cor[i]
                                 if verificar_vitoria(jogador_atual)[0]:
                                     matriz[l][c] = " "
                                     return l, c
+                                elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "R"):
+                                    matriz[l][c] = " "
+                                    break
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "G" or matriz[l][c-1] == matriz[l][c+1] == "G" or matriz[l][c-2] == matriz[l][c-1] == "G")):
+                                    matriz[l][c] = " "
+                                    break
                                 matriz[l][c] = " "
-                            elif matriz[l][c] == " " and cor[i] == "R":
+                            elif cor[i] == "G":
                                 matriz[l][c] = cor[i]
                                 if verificar_vitoria(jogador_atual)[0]:
                                     matriz[l][c] = " "
                                     return l, c
-                                matriz[l][c] = " "
-                            elif matriz[l][c] == " " and cor[i] == "Y":
-                                matriz[l][c] = cor[i]
-                                if verificar_vitoria(jogador_atual)[0]:
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "R" or matriz[l][c-1] == matriz[l][c+1] == "R" or matriz[l][c-2] == matriz[l][c-1] == "R")):
                                     matriz[l][c] = " "
-                                    return l, c
+                                    break
+                                elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "Y"):
+                                    matriz[l][c] = " "
+                                    break
                                 matriz[l][c] = " "
-        
+
+
+                
         if not jogada_valida and jogador_atual != "BOT":
             jogador_atual = "BOT"
        
