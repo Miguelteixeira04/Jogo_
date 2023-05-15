@@ -295,6 +295,7 @@ def abrir_janela_dificuldade():
 
     main_menu = True
 
+# mostra tabuleiro do 1v1
 def abrir_tabuleiro_1v1():
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
