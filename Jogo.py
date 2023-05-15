@@ -581,11 +581,6 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
             if jogada_valida:
                 break
         
-        if jogada_valida:       
-            if jogador_atual == primeiro and primeiro == "BOT":
-                jogador_atual = segundo
-            elif jogador_atual == segundo and segundo == "BOT":
-                jogador_atual = primeiro
         
         for l in range(3):
             for c in range(4):
@@ -607,8 +602,13 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                         return l, c
                     matriz[l][c] = " "
 
+        if jogada_valida:       
+            if jogador_atual == primeiro and primeiro == "BOT":
+                jogador_atual = segundo
+            elif jogador_atual == segundo and segundo == "BOT":
+                jogador_atual = primeiro
                      
-        if not jogada_valida:
+        if jogada_valida == False:
             for l in range(3):
                 for c in range(4):
                     if matriz[l][c] == " ":
@@ -621,7 +621,13 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                                 elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "Y"):
                                     matriz[l][c] = " "
                                     break
+                                elif verificar_vitoria(jogador_atual == 2 and matriz[l+1][c] == matriz[l+2][c] == "Y"):
+                                    matriz[l][c] = " "
+                                    break
                                 elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "G" or matriz[l][c-1] == matriz[l][c+1] == "G" or matriz[l][c-2] == matriz[l][c-1] == "G")):
+                                    matriz[l][c] = " "
+                                    break
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l+1][c] == matriz[l+2][c] == "G " or matriz[l-1][c] == matriz[l+1][c] == "G" or matriz[l-1][c] == matriz[l-2][c] == "G")):
                                     matriz[l][c] = " "
                                     break
                                 matriz[l][c] = " "
@@ -642,16 +648,21 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                                 if verificar_vitoria(jogador_atual)[0]:
                                     matriz[l][c] = " "
                                     return l, c
-                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "R" or matriz[l][c-1] == matriz[l][c+1] == "R" or matriz[l][c-2] == matriz[l][c-1] == "R")):
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l][c+1] == matriz[l][c+2] == "G" or matriz[l][c-1] == matriz[l][c+1] == "G" or matriz[l][c-2] == matriz[l][c-1] == "G")):
+                                    matriz[l][c] = " "
+                                    break
+                                elif verificar_vitoria(jogador_atual == 2 and (matriz[l+1][c] == matriz[l+2][c] == "G" or matriz[l-1][c] == matriz[l+1][c] == "G" or matriz[l-2][c] == matriz[l-1][c] == "G")):
                                     matriz[l][c] = " "
                                     break
                                 elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "Y"):
                                     matriz[l][c] = " "
                                     break
-                                matriz[l][c] = " "
+                                elif verificar_vitoria(jogador_atual == 2 and matriz[l+1][c] == matriz[l+2][c] == "Y"):
+                                    matriz[l][c] = " "
+                                    break
+                                matriz[l][c] = " "                               
 
-
-                
+          
         if not jogada_valida and jogador_atual != "BOT":
             jogador_atual = "BOT"
        
