@@ -1,4 +1,7 @@
 import pygame
+import random
+random.seed()
+
 pygame.init()
 
 screen_width = 1280 
@@ -139,7 +142,6 @@ def abrir_janela_comecar():
 
 # inserir o nome dos jogadores 1v1
 def abrir_janela_nomes_1v1():
-
     main_menu = False
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
@@ -148,6 +150,8 @@ def abrir_janela_nomes_1v1():
     jogador_atual = 1
     nome_jogador1 = ""
     nome_jogador2 = ""
+    
+
 
     while digitando:
         for event in pygame.event.get():
@@ -159,7 +163,7 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1()
+                        abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2)
                         
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
@@ -191,7 +195,6 @@ def abrir_janela_nomes_1v1():
         janela_nomes.blit(menu_nomes_redim, (0, 0))
         janela_nomes.blit(botao_voltar_redim, (1200, 5))
 
-        # Exibindo o nome digitado na janela
         fonte = pygame.font.Font(None, 46)
         texto_jogador1 = fonte.render(nome_jogador1, True, BRANCO)
         texto_jogador2 = fonte.render(nome_jogador2, True, BRANCO)
@@ -199,15 +202,14 @@ def abrir_janela_nomes_1v1():
         posicao_texto_jogador1 = texto_jogador1.get_rect(midleft=(screen_width // 2 - 525, screen_height // 2 + 48))
         posicao_texto_jogador2 = texto_jogador2.get_rect(midleft=(screen_width // 2 + 155, screen_height // 2 + 48))
 
-        # Desenhar retângulos interativos para reescrever o nome
-        pygame.draw.rect(janela_nomes,CINZA, posicao_texto_jogador1)
+        pygame.draw.rect(janela_nomes, CINZA, posicao_texto_jogador1)
         pygame.draw.rect(janela_nomes, CINZA, posicao_texto_jogador2)
 
         janela_nomes.blit(texto_jogador1, posicao_texto_jogador1)
         janela_nomes.blit(texto_jogador2, posicao_texto_jogador2)
 
         pygame.display.update()
-   
+
 # inserir o nome do jogador 1vbot
 def abrir_janela_nomes_1vbot():
     
@@ -259,8 +261,6 @@ def abrir_janela_nomes_1vbot():
         pygame.display.update()
 
     return False
-
-# escolher dificuldade do bot
 def abrir_janela_dificuldade():
     main_menu = False
     
@@ -297,9 +297,8 @@ def abrir_janela_dificuldade():
         pygame.display.update()
 
     main_menu = True
-
-# mostra tabuleiro do 1v1
-def abrir_tabuleiro_1v1():
+# escolher dificuldade do bot
+def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
     digitando = True
@@ -314,12 +313,24 @@ def abrir_tabuleiro_1v1():
                     quit() 
 
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
-        janela_tabuleiro.blit(label_nome1_redim, (855,200))
-        janela_tabuleiro.blit(label_nome2_redim, (855,300))
-        janela_tabuleiro.blit(botao_passarvez_redim, (855,480))
+
+        # Renderizar e posicionar o texto nome1
+        fonte = pygame.font.Font(None, 46)
+        texto_nome1 = fonte.render(nome_jogador1, True, BRANCO)
+        posicao_nome1 = (900, 255)
+        janela_tabuleiro.blit(label_nome1_redim, (855, 230))
+        janela_tabuleiro.blit(texto_nome1, posicao_nome1)
+
+        texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
+        posicao_nome2 = (900, 360)
+        janela_tabuleiro.blit(label_nome2_redim, (855, 335))
+        janela_tabuleiro.blit(texto_nome2, posicao_nome2)
+
+        janela_tabuleiro.blit(botao_passarvez_redim, (855, 480))
         janela_tabuleiro.blit(sair_redim, (1052, 625))
 
         pygame.display.update()
+
 
 
 ################## MAIN ####################
