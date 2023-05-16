@@ -13,7 +13,7 @@ CINZA = (68, 68, 68)
 
 # import pagina inicial
 pagina_inicial = pygame.image.load('pagina_inicial.png')
-pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720))
+pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720)) #trocar
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -34,7 +34,7 @@ menu_escolhabot = pygame.image.load("menu_escolhabot.png")
 menu_escolhabot_redim = pygame.transform.scale(menu_escolhabot, (1280, 720))
 # import fundo tabuleiro 
 menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
-menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro , (1280, 720))
+menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro , (1280, 720)) #
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
