@@ -1,6 +1,6 @@
 import pygame
-import random
-random.seed()
+#import random
+#random.seed()
 
 pygame.init()
 
@@ -16,7 +16,7 @@ CINZA = (68, 68, 68)
 
 # import pagina inicial
 pagina_inicial = pygame.image.load('pagina_inicial.png')
-pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720)) #trocar
+pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720)) 
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -151,8 +151,6 @@ def abrir_janela_nomes_1v1():
     nome_jogador1 = ""
     nome_jogador2 = ""
     
-
-
     while digitando:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -261,6 +259,7 @@ def abrir_janela_nomes_1vbot():
         pygame.display.update()
 
     return False
+
 def abrir_janela_dificuldade():
     main_menu = False
     
@@ -297,6 +296,7 @@ def abrir_janela_dificuldade():
         pygame.display.update()
 
     main_menu = True
+
 # escolher dificuldade do bot
 def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
@@ -331,39 +331,52 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
 
         pygame.display.update()
 
+# menu principal com as opções de jogo
+def abrir_menu_jogo():
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            # detectar quando o usuário clica nos botões
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                if sair_redim.get_rect(topleft=(1052,625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit()
+
+                elif comecar_redim.get_rect(topleft=(500, 250)).collidepoint(mouse_pos):
+                    abrir_janela_comecar()
+
+                elif carregar_redim.get_rect(topleft=(500, 375)).collidepoint(mouse_pos):
+                    print("Botão carregar foi clicado!")
+
+                elif regras_redim.get_rect(topleft=(500, 500)).collidepoint(mouse_pos):
+                    abrir_janela_regras()
+
+        # apresentar os botoes no ecra
+        screen.blit(menu_redim, (0,0))
+        screen.blit(sair_redim, (1052,625))
+        screen.blit(comecar_redim, (500, 250))
+        screen.blit(carregar_redim, (500, 372))
+        screen.blit(regras_redim, (500,500))
+
+        pygame.display.update()
 
 
-################## MAIN ####################
+
+############## MAIN ################
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-        # detectar quando o usuário clica nos botões
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = pygame.mouse.get_pos()
-
-            if sair_redim.get_rect(topleft=(1052,625)).collidepoint(mouse_pos):
-                pygame.quit()
-                quit()
-
-            elif comecar_redim.get_rect(topleft=(500, 250)).collidepoint(mouse_pos):
-                abrir_janela_comecar()
-
-            elif carregar_redim.get_rect(topleft=(500, 375)).collidepoint(mouse_pos):
-                print("Botão carregar foi clicado!")
-
-            elif regras_redim.get_rect(topleft=(500, 500)).collidepoint(mouse_pos):
-                abrir_janela_regras()
-
-    # apresentar os botoes no ecra
-    screen.blit(menu_redim, (0,0))
-    screen.blit(sair_redim, (1052,625))
-    screen.blit(comecar_redim, (500, 250))
-    screen.blit(carregar_redim, (500, 372))
-    screen.blit(regras_redim, (500,500))
+        
+        elif event.type == pygame.KEYDOWN:
+            abrir_menu_jogo()
+    
+    screen.blit(pagina_inicial_redim, (0,0))
 
     pygame.display.update()
-
-
