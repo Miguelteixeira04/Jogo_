@@ -37,7 +37,10 @@ menu_escolhabot = pygame.image.load("menu_escolhabot.png")
 menu_escolhabot_redim = pygame.transform.scale(menu_escolhabot, (1280, 720))
 # import fundo tabuleiro 
 menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
-menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro , (1280, 720)) #
+menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro, (1280, 720))
+# import fundo vitoria
+menu_vitoria = pygame.image.load("vitoria.png")
+menu_vitoria_redim = pygame.transform.scale(menu_vitoria, (1280, 720))
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -78,6 +81,9 @@ label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
 # import label nome2
 label_nome2 = pygame.image.load('nome2.png')
 label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
+# import botao menu (vitoria)
+botao_menu = pygame.image.load('menu.png')
+botao_menu_redim = pygame.transform.scale(botao_menu, (334,78)) #compor
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
