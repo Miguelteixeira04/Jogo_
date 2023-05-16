@@ -81,9 +81,9 @@ label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
 # import label nome2
 label_nome2 = pygame.image.load('nome2.png')
 label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
-# import botao menu (vitoria)
+# import botao menu (para a vitoria)
 botao_menu = pygame.image.load('menu.png')
-botao_menu_redim = pygame.transform.scale(botao_menu, (334,78)) #compor
+botao_menu_redim = pygame.transform.scale(botao_menu, (236,101)) #compor igual ao botao sair acho
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
