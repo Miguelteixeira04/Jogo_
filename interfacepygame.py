@@ -1,6 +1,6 @@
 import pygame
-#import random
-#random.seed()
+import random
+random.seed()
 
 pygame.init()
 
@@ -301,6 +301,9 @@ def abrir_janela_dificuldade():
 def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
+    # Selecionar aleatoriamente o nome do jogador
+    nome_jogador_selecionado = random.choice([nome_jogador1, nome_jogador2])
+
     digitando = True
     while digitando:
         for evento in pygame.event.get():
@@ -311,23 +314,40 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                 if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     pygame.quit()
                     quit() 
+                elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
+                    digitando = False
 
+        janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
 
         # Renderizar e posicionar o texto nome1
         fonte = pygame.font.Font(None, 46)
         texto_nome1 = fonte.render(nome_jogador1, True, BRANCO)
-        posicao_nome1 = (900, 255)
-        janela_tabuleiro.blit(label_nome1_redim, (855, 230))
+        posicao_nome1 = (900, 290)
+        janela_tabuleiro.blit(label_nome1_redim, (855, 265))
         janela_tabuleiro.blit(texto_nome1, posicao_nome1)
 
         texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
-        posicao_nome2 = (900, 360)
-        janela_tabuleiro.blit(label_nome2_redim, (855, 335))
+        posicao_nome2 = (900, 375)
+        janela_tabuleiro.blit(label_nome2_redim, (855, 350))
         janela_tabuleiro.blit(texto_nome2, posicao_nome2)
 
-        janela_tabuleiro.blit(botao_passarvez_redim, (855, 480))
+        if nome_jogador_selecionado == nome_jogador1:
+            texto_nome_selecionado = fonte.render( nome_jogador_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 185)
+            janela_tabuleiro.blit(label_nome1_redim, (855, 162))
+            janela_tabuleiro.blit(texto_nome_selecionado,posicao_nome_selecionado)
+
+        else:
+            texto_nome_selecionado = fonte.render(nome_jogador_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 185)
+            janela_tabuleiro.blit(label_nome2_redim, (855, 162))
+            janela_tabuleiro.blit(texto_nome_selecionado, posicao_nome_selecionado)
+
+
+        janela_tabuleiro.blit(botao_passarvez_redim, (855, 500))
         janela_tabuleiro.blit(sair_redim, (1052, 625))
+        janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
 
