@@ -1,11 +1,6 @@
 import random as rd
 rd.seed()
 
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-YELLOW = (255, 255, 0)
-GREEN = (0, 255, 0)
-
 jogador_atual = " "
 matriz = [[" "," "," "," "], [" "," "," "," "], [" "," "," "," "]]
 
@@ -153,7 +148,7 @@ def jogo(primeiro, segundo, jogar1, nome1, nome2, dificuldade):
        
         while True:
          imprimir_matriz()
-         jogador_atual, vitoria = colocar(primeiro, segundo, jogador_atual)
+         vitoria = colocar(primeiro, segundo, jogador_atual, jogar1)
          if vitoria == True:
              break
         
@@ -214,7 +209,7 @@ def jogo(primeiro, segundo, jogar1, nome1, nome2, dificuldade):
         else: 
             return
    
-def colocar(primeiro, segundo, jogador_atual):
+def colocar(primeiro, segundo, jogador_atual, jogar1):
     
     print("\nDeseja passar a vez?")
     print("[1] Sim      [2] Não")
@@ -225,12 +220,12 @@ def colocar(primeiro, segundo, jogador_atual):
             print(f"\nÉ a vez do(a) {segundo}")
             jogador_atual = segundo
             imprimir_matriz()
-            colocar(primeiro, segundo, jogador_atual)
+            colocar(primeiro, segundo, jogador_atual, jogar1)
         if jogador_atual == segundo:
             print(f"\nÉ a vez do(a) {primeiro}")
             jogador_atual = primeiro
             imprimir_matriz()
-            colocar(primeiro, segundo, jogador_atual)
+            colocar(primeiro, segundo, jogador_atual, jogar1)
             
     elif passar == 2:        
         
@@ -238,51 +233,53 @@ def colocar(primeiro, segundo, jogador_atual):
         c = int(input("Coluna: "))
     
         if l < 0 or l > 2 or c < 0 or c > 3:
+            print("Posição inválida.\n")
             imprimir_matriz()
-            print("Posição inválida.")
-            colocar(primeiro, segundo, jogador_atual)
-
-        print("\nGreen [G]\nYellow [Y]\nRed [R]")
-        cor = input("").upper()
-    
-        if cor == "G" and matriz[l][c] == " ":
-            matriz[l][c] = cor
-        elif cor == "Y" and matriz[l][c] == "G":
-            matriz[l][c] = cor  
-        elif cor == "R" and matriz[l][c] == "Y":
-            matriz[l][c] = cor
-        elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
-            print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
-            colocar(primeiro, segundo, jogador_atual)
-        elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
-            print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
-            colocar(primeiro, segundo, jogador_atual)
-        elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
-            print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
-            colocar(primeiro, segundo, jogador_atual)    
+            colocar(primeiro, segundo, jogador_atual, jogar1)
         else:
-            print("Posição já preenchida.")
-            colocar(primeiro, segundo, jogador_atual)    
-        if cor == "Y" and matriz[l][c] == "G":
-            matriz[l][c] = cor   
-            colocar(primeiro, segundo, jogador_atual) 
+
+            print("\nGreen [G]\nYellow [Y]\nRed [R]")
+            cor = input("").upper()
         
-        vitoria, vencedor = verificar_vitoria(jogador_atual)
-        if vitoria:
-            print(f"\nO jogador {vencedor} venceu!")
-            imprimir_matriz()
-        elif jogador_atual == primeiro:
-            print(f"\nÉ a vez do(a) {segundo}")
-            jogador_atual = segundo
-        elif jogador_atual == segundo:
-            print(f"\nÉ a vez do(a) {primeiro}")
-            jogador_atual = primeiro
-    
-        return jogador_atual, vitoria       
-     
+            if cor == "G" and matriz[l][c] == " ":
+                matriz[l][c] = cor
+            elif cor == "Y" and matriz[l][c] == "G":
+                matriz[l][c] = cor  
+            elif cor == "R" and matriz[l][c] == "Y":
+                matriz[l][c] = cor
+            elif cor == "G" and (matriz[l][c] == "Y" or matriz[l][c] == "R"):
+                print("\nNão pode colocar a cor verde nesta posição, tente novamente.")
+                colocar(primeiro, segundo, jogador_atual)
+            elif cor == "Y" and (matriz[l][c] == "R" or matriz[l][c] == " "):
+                print("\nNão pode colocar a cor amarela nesta posição, tente novamente.") 
+                colocar(primeiro, segundo, jogador_atual)
+            elif cor == "R" and (matriz[l][c] == "G" or matriz[l][c] == " "):
+                print("\nNão pode colocar a cor vermelho nesta posição, tente novamente")
+                colocar(primeiro, segundo, jogador_atual)    
+            else:
+                print("Posição já preenchida.")
+                colocar(primeiro, segundo, jogador_atual, jogar1)    
+            if cor == "Y" and matriz[l][c] == "G":
+                matriz[l][c] = cor   
+                colocar(primeiro, segundo, jogador_atual) 
+            
+            vitoria, vencedor = verificar_vitoria(jogador_atual)
+            if vitoria:
+                print(f"\nO jogador {vencedor} venceu!")
+                imprimir_matriz()
+            elif jogador_atual == primeiro:
+                print(f"\nÉ a vez do(a) {segundo}")
+                jogador_atual = segundo
+            elif jogador_atual == segundo:
+                print(f"\nÉ a vez do(a) {primeiro}")
+                jogador_atual = primeiro
+        
+            return jogador_atual, vitoria       
+        
     else:
         print("\nInsira um valor válido!")
-        colocar(primeiro, segundo, jogador_atual)
+        imprimir_matriz()
+        colocar(primeiro, segundo, jogador_atual, jogar1)
         
 def verificar_vitoria(jogador_atual):
     for l in range(3):
@@ -652,12 +649,6 @@ def jogada_bot_dificil(primeiro, segundo, jogador_atual):
                                     matriz[l][c] = " "
                                     break
                                 elif verificar_vitoria(jogador_atual == 2 and (matriz[l+1][c] == matriz[l+2][c] == "G" or matriz[l-1][c] == matriz[l+1][c] == "G" or matriz[l-2][c] == matriz[l-1][c] == "G")):
-                                    matriz[l][c] = " "
-                                    break
-                                elif verificar_vitoria(jogador_atual == 2 and matriz[l][c+1] == matriz[l][c+2] == "Y"):
-                                    matriz[l][c] = " "
-                                    break
-                                elif verificar_vitoria(jogador_atual == 2 and matriz[l+1][c] == matriz[l+2][c] == "Y"):
                                     matriz[l][c] = " "
                                     break
                                 matriz[l][c] = " "                               
