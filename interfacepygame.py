@@ -75,12 +75,51 @@ botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106))
 # import botao passar vez
 botao_passarvez = pygame.image.load('passarvez.png')
 botao_passarvez_redim = pygame.transform.scale(botao_passarvez, (334,78))
+
+# import botao tabuleiro
+botao_tabuleiro_1_1 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_1_1_redim = pygame.transform.scale(botao_tabuleiro_1_1, (163, 133))
+
+botao_tabuleiro_1_2 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_1_2_redim = pygame.transform.scale(botao_tabuleiro_1_2, (163, 133))
+
+botao_tabuleiro_1_3 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_1_3_redim = pygame.transform.scale(botao_tabuleiro_1_1, (163, 133))
+
+botao_tabuleiro_1_4 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_1_4_redim = pygame.transform.scale(botao_tabuleiro_1_4, (163, 133))
+
+botao_tabuleiro_2_1 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_2_1_redim = pygame.transform.scale(botao_tabuleiro_2_1, (163, 133))
+
+botao_tabuleiro_2_2 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_2_2_redim = pygame.transform.scale(botao_tabuleiro_2_2, (163, 133))
+
+botao_tabuleiro_2_3 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_2_3_redim = pygame.transform.scale(botao_tabuleiro_2_3, (163, 133))
+
+botao_tabuleiro_2_4 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_2_4_redim = pygame.transform.scale(botao_tabuleiro_2_4, (163, 133))
+
+botao_tabuleiro_3_1 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_3_1_redim = pygame.transform.scale(botao_tabuleiro_3_1, (163, 133))
+
+botao_tabuleiro_3_2 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_3_2_redim = pygame.transform.scale(botao_tabuleiro_3_2, (163, 133))
+
+botao_tabuleiro_3_3 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_3_3_redim = pygame.transform.scale(botao_tabuleiro_3_3, (163, 133))
+                                                   
+botao_tabuleiro_3_4 = pygame.image.load('botao_tabuleiro.png')
+botao_tabuleiro_3_4_redim = pygame.transform.scale(botao_tabuleiro_3_4, (163, 133))
+
 # import label nome1
 label_nome1 = pygame.image.load('nome1.png')
 label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
 # import label nome2
 label_nome2 = pygame.image.load('nome2.png')
 label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
+
 # import botao menu (para a vitoria)
 botao_menu = pygame.image.load('menu.png')
 botao_menu_redim = pygame.transform.scale(botao_menu, (236,101)) #compor igual ao botao sair acho
@@ -167,8 +206,8 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2)
-                        
+                         abrir_tabuleiro_1v1(nome_jogador1[:15], nome_jogador2[:15])  # Limiting names to 15 characters
+
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
@@ -177,9 +216,11 @@ def abrir_janela_nomes_1v1():
                 
                 else:
                     if jogador_atual == 1:
-                        nome_jogador1 += event.unicode
+                        if len(nome_jogador1) < 15:  # Limiting name length to 15 characters
+                            nome_jogador1 += event.unicode
                     else:
-                        nome_jogador2 += event.unicode
+                        if len(nome_jogador2) < 15:  # Limiting name length to 15 characters
+                            nome_jogador2 += event.unicode
 
             elif event.type == pygame.MOUSEBUTTONDOWN:  
                 mouse_pos = pygame.mouse.get_pos()       
@@ -236,7 +277,8 @@ def abrir_janela_nomes_1vbot():
                     nome_jogador = nome_jogador[:-1]
 
                 else:
-                    nome_jogador += evento.unicode
+                    if len(nome_jogador) < 15:  # Limitador de 15 caracteres
+                        nome_jogador += evento.unicode
 
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -273,6 +315,7 @@ def abrir_janela_dificuldade():
     pygame.display.set_caption("Jogo do Semáforo")
 
     digitando = True
+    nome_jogador = ""  # Variável para armazenar o nome do jogador
     while digitando:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -288,7 +331,7 @@ def abrir_janela_dificuldade():
                     print("tbm funciona")
                 
                 elif botao_dificil_redim.get_rect(topleft=(700,540)).collidepoint(mouse_pos):
-                    print("tbm funciona :)")
+                    abrir_tabuleiro_1vbot_dificil(nome_jogador)  # Passa o nome do jogador como argumento
                 
                 elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                     digitando = False 
@@ -309,8 +352,33 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
 
     # Selecionar aleatoriamente o nome do jogador
     nome_jogador_selecionado = random.choice([nome_jogador1, nome_jogador2])
+    
+    circulo_redim = pygame.image.load('circulo.png')
+    circulo_redim = pygame.transform.scale(circulo_redim, (125, 125))
+    triangulo_redim = pygame.image.load('triangulo.png')
+    triangulo_redim = pygame.transform.scale(triangulo_redim, (150, 150))
+    quadrado_redim = pygame.image.load('quadrado.png')
+    quadrado_redim = pygame.transform.scale(quadrado_redim, (150, 150))
+
+    botao_vazio_redim = pygame.Surface((125, 125))
+    botao_vazio_redim.fill((166, 124, 74))
 
     digitando = True
+    imagem_botao_1_1 = botao_vazio_redim
+    imagem_botao_1_2 = botao_vazio_redim
+    imagem_botao_1_3 = botao_vazio_redim
+    imagem_botao_1_4 = botao_vazio_redim 
+    imagem_botao_2_1 = botao_vazio_redim
+    imagem_botao_2_2 = botao_vazio_redim
+    imagem_botao_2_3 = botao_vazio_redim
+    imagem_botao_2_4 = botao_vazio_redim
+    imagem_botao_3_1 = botao_vazio_redim
+    imagem_botao_3_2 = botao_vazio_redim
+    imagem_botao_3_3 = botao_vazio_redim
+    imagem_botao_3_4 = botao_vazio_redim
+
+    jogador1_clicou_passarvez = False 
+
     while digitando:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -322,9 +390,130 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                     quit() 
                 elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
                     digitando = False
+                
+                elif botao_tabuleiro_1_1_redim.get_rect(topleft=(80, 214)).collidepoint(mouse_pos):
+                    if imagem_botao_1_1 == botao_vazio_redim:
+                        imagem_botao_1_1 = circulo_redim
+                    elif imagem_botao_1_1 == circulo_redim:
+                        imagem_botao_1_1 = triangulo_redim
+                    else:
+                        imagem_botao_1_1 = quadrado_redim
+                elif botao_tabuleiro_1_2_redim.get_rect(topleft=(254, 214)).collidepoint(mouse_pos):
+                    if imagem_botao_1_2 == botao_vazio_redim:
+                        imagem_botao_1_2 = circulo_redim
+                    elif imagem_botao_1_2 == circulo_redim:
+                        imagem_botao_1_2 = triangulo_redim
+                    else:
+                        imagem_botao_1_2 = quadrado_redim
+                elif botao_tabuleiro_1_3_redim.get_rect(topleft=(428, 214)).collidepoint(mouse_pos):
+                    if imagem_botao_1_3 == botao_vazio_redim:
+                        imagem_botao_1_3 = circulo_redim
+                    elif imagem_botao_1_3 == circulo_redim:
+                        imagem_botao_1_3 = triangulo_redim
+                    else:
+                        imagem_botao_1_3 = quadrado_redim
+                elif botao_tabuleiro_1_4_redim.get_rect(topleft=(602, 214)).collidepoint(mouse_pos):
+                    if imagem_botao_1_4 == botao_vazio_redim:
+                        imagem_botao_1_4 = circulo_redim
+                    elif imagem_botao_1_4 == circulo_redim:
+                        imagem_botao_1_4 = triangulo_redim
+                    else:
+                        imagem_botao_1_4 = quadrado_redim
+                elif botao_tabuleiro_2_1_redim.get_rect(topleft=(80, 358)).collidepoint(mouse_pos):
+                    if imagem_botao_2_1 == botao_vazio_redim:
+                        imagem_botao_2_1 = circulo_redim
+                    elif imagem_botao_2_1 == circulo_redim:
+                        imagem_botao_2_1 = triangulo_redim
+                    else:
+                        imagem_botao_2_1 = quadrado_redim
+                elif botao_tabuleiro_2_2_redim.get_rect(topleft=(254, 358)).collidepoint(mouse_pos):
+                    if imagem_botao_2_2 == botao_vazio_redim:
+                        imagem_botao_2_2 = circulo_redim
+                    elif imagem_botao_2_2 == circulo_redim:
+                        imagem_botao_2_2 = triangulo_redim
+                    else:
+                        imagem_botao_2_2 = quadrado_redim   
+                elif botao_tabuleiro_2_3_redim.get_rect(topleft=(428, 358)).collidepoint(mouse_pos):
+                    if imagem_botao_2_3 == botao_vazio_redim:
+                        imagem_botao_2_3 = circulo_redim
+                    elif imagem_botao_2_3 == circulo_redim:
+                        imagem_botao_2_3 = triangulo_redim
+                    else:
+                        imagem_botao_2_3 = quadrado_redim
+                elif botao_tabuleiro_2_4_redim.get_rect(topleft=(602, 358)).collidepoint(mouse_pos):
+                    if imagem_botao_2_4 == botao_vazio_redim:
+                        imagem_botao_2_4 = circulo_redim
+                    elif imagem_botao_2_4 == circulo_redim:
+                        imagem_botao_2_4 = triangulo_redim
+                    else:
+                        imagem_botao_2_4 = quadrado_redim
+                elif botao_tabuleiro_3_1_redim.get_rect(topleft=(80, 502)).collidepoint(mouse_pos):
+                    if imagem_botao_3_1 == botao_vazio_redim:
+                        imagem_botao_3_1 = circulo_redim
+                    elif imagem_botao_3_1 == circulo_redim:
+                        imagem_botao_3_1 = triangulo_redim
+                    else:
+                        imagem_botao_3_1 = quadrado_redim
+                elif botao_tabuleiro_3_2_redim.get_rect(topleft=(254, 502)).collidepoint(mouse_pos):
+                    if imagem_botao_3_2 == botao_vazio_redim:
+                        imagem_botao_3_2 = circulo_redim
+                    elif imagem_botao_3_2 == circulo_redim:
+                        imagem_botao_3_2 = triangulo_redim
+                    else:
+                        imagem_botao_3_2 = quadrado_redim
+                elif botao_tabuleiro_3_3_redim.get_rect(topleft=(428, 502)).collidepoint(mouse_pos):
+                    if imagem_botao_3_3 == botao_vazio_redim:
+                        imagem_botao_3_3 = circulo_redim
+                    elif imagem_botao_3_3 == circulo_redim:
+                        imagem_botao_3_3 = triangulo_redim
+                    else:
+                        imagem_botao_3_3 = quadrado_redim
+                elif botao_tabuleiro_3_4_redim.get_rect(topleft=(602, 502)).collidepoint(mouse_pos):
+                    if imagem_botao_3_4 == botao_vazio_redim:
+                        imagem_botao_3_4 = circulo_redim
+                    elif imagem_botao_3_4 == circulo_redim:
+                        imagem_botao_3_4 = triangulo_redim
+                    else:
+                        imagem_botao_3_4 = quadrado_redim
+                elif botao_passarvez_redim.get_rect(topleft=(936, 625)).collidepoint(mouse_pos):
+                    if nome_jogador_selecionado == nome_jogador1:
+                        nome_jogador_selecionado = nome_jogador2
+                    else:
+                        nome_jogador_selecionado = nome_jogador1
+                    jogador1_clicou_passarvez = True
+
+
+
 
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
+        janela_tabuleiro.blit(botao_tabuleiro_1_1_redim, (80, 214))
+        janela_tabuleiro.blit(botao_tabuleiro_1_2_redim, (254, 214))
+        janela_tabuleiro.blit(botao_tabuleiro_1_3_redim, (428, 214))
+        janela_tabuleiro.blit(botao_tabuleiro_1_4_redim, (602, 214))
+
+        janela_tabuleiro.blit(botao_tabuleiro_2_1_redim, (80, 358))
+        janela_tabuleiro.blit(botao_tabuleiro_2_2_redim, (254, 358))
+        janela_tabuleiro.blit(botao_tabuleiro_2_3_redim, (428, 358))
+        janela_tabuleiro.blit(botao_tabuleiro_2_4_redim, (602, 358))
+
+        janela_tabuleiro.blit(botao_tabuleiro_3_1_redim, (80, 502))
+        janela_tabuleiro.blit(botao_tabuleiro_3_2_redim, (254, 502))
+        janela_tabuleiro.blit(botao_tabuleiro_3_3_redim, (428, 502))
+        janela_tabuleiro.blit(botao_tabuleiro_3_4_redim, (602, 502))
+
+        janela_tabuleiro.blit(imagem_botao_1_1, (80, 214))
+        janela_tabuleiro.blit(imagem_botao_1_2, (254, 214))
+        janela_tabuleiro.blit(imagem_botao_1_3, (428, 214))
+        janela_tabuleiro.blit(imagem_botao_1_4, (602, 214))
+        janela_tabuleiro.blit(imagem_botao_2_1, (80, 358))
+        janela_tabuleiro.blit(imagem_botao_2_2, (254, 358))
+        janela_tabuleiro.blit(imagem_botao_2_3, (428, 358))
+        janela_tabuleiro.blit(imagem_botao_2_4, (602, 358))
+        janela_tabuleiro.blit(imagem_botao_3_1, (80, 502))
+        janela_tabuleiro.blit(imagem_botao_3_2, (254, 502))
+        janela_tabuleiro.blit(imagem_botao_3_3, (428, 502))
+        janela_tabuleiro.blit(imagem_botao_3_4, (602, 502))
 
         # Renderizar e posicionar o texto nome1
         fonte = pygame.font.Font(None, 46)
@@ -350,12 +539,245 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
             janela_tabuleiro.blit(label_nome2_redim, (855, 162))
             janela_tabuleiro.blit(texto_nome_selecionado, posicao_nome_selecionado)
 
-
         janela_tabuleiro.blit(botao_passarvez_redim, (855, 500))
         janela_tabuleiro.blit(sair_redim, (1052, 625))
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
 
         pygame.display.update()
+
+def vitoria(imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4):
+    vit = False
+
+    ##linhas
+    if(imagem_botao_1_1 == imagem_botao_1_2 and imagem_botao_1_1 == imagem_botao_1_3 and imagem_botao_1_1 != '' and  imagem_botao_1_2 != '' and  imagem_botao_1_3 != '' ) :
+        vit = True
+    if(imagem_botao_1_2 == imagem_botao_1_3 and imagem_botao_1_2 == imagem_botao_1_4 and imagem_botao_1_2 != '' and  imagem_botao_1_3 != '' and  imagem_botao_1_4 != '' ) :
+        vit = True
+    if(imagem_botao_2_1 == imagem_botao_2_2 and imagem_botao_2_1 == imagem_botao_2_3 and imagem_botao_2_1 != '' and  imagem_botao_2_2 != '' and  imagem_botao_2_3 != '' ) :
+        vit = True
+    if(imagem_botao_2_2 == imagem_botao_2_3 and imagem_botao_2_2 == imagem_botao_2_4 and imagem_botao_2_2 != '' and  imagem_botao_2_3 != '' and  imagem_botao_2_4 != '' ) :
+        vit = True
+    if(imagem_botao_3_1 == imagem_botao_3_2 and imagem_botao_3_1 == imagem_botao_3_3 and imagem_botao_3_1 != '' and  imagem_botao_3_2 != '' and  imagem_botao_3_3 != '' ) :
+        vit = True
+    if(imagem_botao_3_2 == imagem_botao_3_3 and imagem_botao_3_2 == imagem_botao_3_4 and imagem_botao_3_2 != '' and  imagem_botao_3_3 != '' and  imagem_botao_3_4 != '' ) :
+        vit = True
+
+    ##colunas
+    if(imagem_botao_1_1 == imagem_botao_2_1 and imagem_botao_1_1 == imagem_botao_3_1 and imagem_botao_1_1 != '' and  imagem_botao_2_1 != '' and  imagem_botao_3_1 != '' ) :
+        vit = True
+    if(imagem_botao_1_2 == imagem_botao_2_2 and imagem_botao_1_2 == imagem_botao_3_2 and imagem_botao_1_2 != '' and  imagem_botao_2_2 != '' and  imagem_botao_3_2 != '' ) :
+        vit = True
+    if(imagem_botao_1_3 == imagem_botao_2_3 and imagem_botao_1_3 == imagem_botao_3_3 and imagem_botao_1_3 != '' and  imagem_botao_2_3 != '' and  imagem_botao_3_3 != '' ) :
+        vit = True
+    if(imagem_botao_1_4 == imagem_botao_2_4 and imagem_botao_1_4 == imagem_botao_3_4 and imagem_botao_1_4 != '' and  imagem_botao_2_4 != '' and  imagem_botao_3_4 != '' ) :
+        vit = True
+
+    #diagonais
+    if(imagem_botao_1_1 == imagem_botao_2_2 and imagem_botao_1_1 == imagem_botao_3_3 and imagem_botao_1_1 != '' and  imagem_botao_2_2 != '' and  imagem_botao_3_3 != '' ) :
+        vit = True
+    if(imagem_botao_1_2 == imagem_botao_2_3 and imagem_botao_1_2 == imagem_botao_3_4 and imagem_botao_1_2 != '' and  imagem_botao_2_3 != '' and  imagem_botao_3_4 != '' ) :
+        vit = True
+    if(imagem_botao_3_1 == imagem_botao_2_2 and imagem_botao_3_1 == imagem_botao_1_3 and imagem_botao_3_1 != '' and  imagem_botao_2_2 != '' and  imagem_botao_1_3 != '' ) :
+        vit = True
+    if(imagem_botao_3_2 == imagem_botao_2_3 and imagem_botao_3_2 == imagem_botao_1_4 and imagem_botao_3_2 != '' and  imagem_botao_2_3 != '' and  imagem_botao_1_4 != '' ) :
+        vit = True
+
+def abrir_tabuleiro_1vbot_facil(nome_jogador):
+    pygame.init()
+
+    # Inicializa a janela do Pygame
+    janela_tabuleiro_1vbot_dificil = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Tabuleiro 1vBot Difícil")
+
+    # Carrega a imagem de fundo do tabuleiro e redimensiona
+    fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
+    fundo_tabuleiro = pygame.transform.scale(fundo_tabuleiro, (screen_width, screen_height))
+
+    bot = "BOT"
+    nome_ou_bot_selecionado = random.choice([nome_jogador, bot])
+
+    botao_vazio_redim = pygame.Surface((125, 125))
+    botao_vazio_redim.fill((166, 124, 74))
+
+    digitando = True
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                digitando = False
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit()
+                elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
+                    digitando = False       
+
+        # Desenha a imagem de fundo do tabuleiro
+        janela_tabuleiro_1vbot_dificil.blit(fundo_tabuleiro, (0, 0))
+
+        # Renderizar e posicionar o texto nome1
+        fonte = pygame.font.Font(None, 46)
+        texto_nome = fonte.render(nome_jogador, True, BRANCO)
+        posicao_nome1 = (900, 290)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 265))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome, posicao_nome1)
+
+        texto_nome2 = fonte.render("BOT", True, BRANCO)
+        posicao_nome2 = (900, 375)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 350))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome2, posicao_nome2)
+
+        if nome_ou_bot_selecionado == nome_jogador:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        else:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        janela_tabuleiro_1vbot_dificil.blit(botao_passarvez_redim, (855, 500))
+        janela_tabuleiro_1vbot_dificil.blit(sair_redim, (1052, 625))
+        janela_tabuleiro_1vbot_dificil.blit(botao_voltar_redim, (1200, 5))
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+def abrir_tabuleiro_1vbot_medio(nome_jogador):
+    pygame.init()
+
+    # Inicializa a janela do Pygame
+    janela_tabuleiro_1vbot_dificil = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Tabuleiro 1vBot Difícil")
+
+    # Carrega a imagem de fundo do tabuleiro e redimensiona
+    fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
+    fundo_tabuleiro = pygame.transform.scale(fundo_tabuleiro, (screen_width, screen_height))
+
+    bot = "BOT"
+    nome_ou_bot_selecionado = random.choice([nome_jogador, bot])
+
+    botao_vazio_redim = pygame.Surface((125, 125))
+    botao_vazio_redim.fill((166, 124, 74))
+
+    digitando = True
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                digitando = False
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit()
+                elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
+                    digitando = False       
+
+        # Desenha a imagem de fundo do tabuleiro
+        janela_tabuleiro_1vbot_dificil.blit(fundo_tabuleiro, (0, 0))
+
+        # Renderizar e posicionar o texto nome1
+        fonte = pygame.font.Font(None, 46)
+        texto_nome = fonte.render(nome_jogador, True, BRANCO)
+        posicao_nome1 = (900, 290)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 265))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome, posicao_nome1)
+
+        texto_nome2 = fonte.render("BOT", True, BRANCO)
+        posicao_nome2 = (900, 375)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 350))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome2, posicao_nome2)
+
+        if nome_ou_bot_selecionado == nome_jogador:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        else:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        janela_tabuleiro_1vbot_dificil.blit(botao_passarvez_redim, (855, 500))
+        janela_tabuleiro_1vbot_dificil.blit(sair_redim, (1052, 625))
+        janela_tabuleiro_1vbot_dificil.blit(botao_voltar_redim, (1200, 5))
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+def abrir_tabuleiro_1vbot_dificil(nome_jogador):
+    pygame.init()
+
+    # Inicializa a janela do Pygame
+    janela_tabuleiro_1vbot_dificil = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Tabuleiro 1vBot Difícil")
+
+    # Carrega a imagem de fundo do tabuleiro e redimensiona
+    fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
+    fundo_tabuleiro = pygame.transform.scale(fundo_tabuleiro, (screen_width, screen_height))
+
+    bot = "BOT"
+    nome_ou_bot_selecionado = random.choice([nome_jogador, bot])
+
+    botao_vazio_redim = pygame.Surface((125, 125))
+    botao_vazio_redim.fill((166, 124, 74))
+
+    digitando = True
+    while digitando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                digitando = False
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit()
+                elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
+                    digitando = False       
+
+        # Desenha a imagem de fundo do tabuleiro
+        janela_tabuleiro_1vbot_dificil.blit(fundo_tabuleiro, (0, 0))
+
+        # Renderizar e posicionar o texto nome1
+        fonte = pygame.font.Font(None, 46)
+        texto_nome = fonte.render(nome_jogador, True, BRANCO)
+        posicao_nome1 = (900, 290)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 265))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome, posicao_nome1)
+
+        texto_nome2 = fonte.render("BOT", True, BRANCO)
+        posicao_nome2 = (900, 375)
+        janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 350))
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome2, posicao_nome2)
+
+        if nome_ou_bot_selecionado == nome_jogador:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        else:
+            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 120))
+            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+
+        janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        janela_tabuleiro_1vbot_dificil.blit(botao_passarvez_redim, (855, 500))
+        janela_tabuleiro_1vbot_dificil.blit(sair_redim, (1052, 625))
+        janela_tabuleiro_1vbot_dificil.blit(botao_voltar_redim, (1200, 5))
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+
 
 # menu principal com as opções de jogo
 def abrir_menu_jogo():
