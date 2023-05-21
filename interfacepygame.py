@@ -378,6 +378,7 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     imagem_botao_3_4 = botao_vazio_redim
 
     jogador1_clicou_passarvez = False 
+    jogador_atual = 1
 
     while digitando:
         for evento in pygame.event.get():
@@ -393,88 +394,232 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                 
                 elif botao_tabuleiro_1_1_redim.get_rect(topleft=(80, 214)).collidepoint(mouse_pos):
                     if imagem_botao_1_1 == botao_vazio_redim:
-                        imagem_botao_1_1 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_1_1 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_1_1 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_1_1 == circulo_redim:
                         imagem_botao_1_1 = triangulo_redim
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
                     else:
                         imagem_botao_1_1 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+
                 elif botao_tabuleiro_1_2_redim.get_rect(topleft=(254, 214)).collidepoint(mouse_pos):
                     if imagem_botao_1_2 == botao_vazio_redim:
-                        imagem_botao_1_2 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_1_2 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_1_2 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_1_2 == circulo_redim:
                         imagem_botao_1_2 = triangulo_redim
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
                     else:
                         imagem_botao_1_2 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_1_3_redim.get_rect(topleft=(428, 214)).collidepoint(mouse_pos):
                     if imagem_botao_1_3 == botao_vazio_redim:
-                        imagem_botao_1_3 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_1_3 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_1_3 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_1_3 == circulo_redim:
                         imagem_botao_1_3 = triangulo_redim
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
                     else:
                         imagem_botao_1_3 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_1_4_redim.get_rect(topleft=(602, 214)).collidepoint(mouse_pos):
                     if imagem_botao_1_4 == botao_vazio_redim:
-                        imagem_botao_1_4 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_1_4 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_1_4 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_1_4 == circulo_redim:
                         imagem_botao_1_4 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_1_4 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_2_1_redim.get_rect(topleft=(80, 358)).collidepoint(mouse_pos):
                     if imagem_botao_2_1 == botao_vazio_redim:
-                        imagem_botao_2_1 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_2_1 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_2_1 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_2_1 == circulo_redim:
                         imagem_botao_2_1 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_2_1 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_2_2_redim.get_rect(topleft=(254, 358)).collidepoint(mouse_pos):
                     if imagem_botao_2_2 == botao_vazio_redim:
-                        imagem_botao_2_2 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_2_2 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_2_2 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_2_2 == circulo_redim:
                         imagem_botao_2_2 = triangulo_redim
-                    else:
-                        imagem_botao_2_2 = quadrado_redim   
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
+                        imagem_botao_2_2 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2") 
+                
                 elif botao_tabuleiro_2_3_redim.get_rect(topleft=(428, 358)).collidepoint(mouse_pos):
                     if imagem_botao_2_3 == botao_vazio_redim:
-                        imagem_botao_2_3 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_2_3 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_2_3 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_2_3 == circulo_redim:
                         imagem_botao_2_3 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_2_3 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+               
                 elif botao_tabuleiro_2_4_redim.get_rect(topleft=(602, 358)).collidepoint(mouse_pos):
                     if imagem_botao_2_4 == botao_vazio_redim:
-                        imagem_botao_2_4 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_2_4 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_2_4 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_2_4 == circulo_redim:
                         imagem_botao_2_4 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_2_4 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_3_1_redim.get_rect(topleft=(80, 502)).collidepoint(mouse_pos):
                     if imagem_botao_3_1 == botao_vazio_redim:
-                        imagem_botao_3_1 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_3_1 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_3_1 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_3_1 == circulo_redim:
                         imagem_botao_3_1 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_3_1 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_3_2_redim.get_rect(topleft=(254, 502)).collidepoint(mouse_pos):
                     if imagem_botao_3_2 == botao_vazio_redim:
-                        imagem_botao_3_2 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_3_2 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_3_2 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_3_2 == circulo_redim:
                         imagem_botao_3_2 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_3_2 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_tabuleiro_3_3_redim.get_rect(topleft=(428, 502)).collidepoint(mouse_pos):
                     if imagem_botao_3_3 == botao_vazio_redim:
-                        imagem_botao_3_3 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_3_3 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_3_3 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_3_3 == circulo_redim:
                         imagem_botao_3_3 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_3_3 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+
                 elif botao_tabuleiro_3_4_redim.get_rect(topleft=(602, 502)).collidepoint(mouse_pos):
                     if imagem_botao_3_4 == botao_vazio_redim:
-                        imagem_botao_3_4 = circulo_redim
+                        if jogador_atual == 1:
+                            imagem_botao_3_4 = circulo_redim
+                            jogador_atual = 2
+                            print("É a vez do jogador 2")
+                        elif jogador_atual == 2:
+                            imagem_botao_3_4 = triangulo_redim
+                            jogador_atual = 1
+                            print("É a vez do jogador 1")
                     elif imagem_botao_3_4 == circulo_redim:
                         imagem_botao_3_4 = triangulo_redim
-                    else:
+                        jogador_atual = 1
+                        print("É a vez do jogador 1")
+                    else: 
                         imagem_botao_3_4 = quadrado_redim
+                        jogador_atual = 2
+                        print("É a vez do jogador 2")
+                
                 elif botao_passarvez_redim.get_rect(topleft=(936, 625)).collidepoint(mouse_pos):
                     if nome_jogador_selecionado == nome_jogador1:
                         nome_jogador_selecionado = nome_jogador2
@@ -484,6 +629,7 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
 
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
+
         janela_tabuleiro.blit(botao_tabuleiro_1_1_redim, (80, 214))
         janela_tabuleiro.blit(botao_tabuleiro_1_2_redim, (254, 214))
         janela_tabuleiro.blit(botao_tabuleiro_1_3_redim, (428, 214))
@@ -525,7 +671,7 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
         janela_tabuleiro.blit(texto_nome2, posicao_nome2)
 
         if nome_jogador_selecionado == nome_jogador1:
-            texto_nome_selecionado = fonte.render( nome_jogador_selecionado, True, BRANCO)
+            texto_nome_selecionado = fonte.render(nome_jogador_selecionado, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
             janela_tabuleiro.blit(label_nome1_redim, (855, 120))
             janela_tabuleiro.blit(texto_nome_selecionado,posicao_nome_selecionado)
