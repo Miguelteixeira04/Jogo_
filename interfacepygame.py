@@ -526,14 +526,14 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
 
         if nome_jogador_selecionado == nome_jogador1:
             texto_nome_selecionado = fonte.render( nome_jogador_selecionado, True, BRANCO)
-            posicao_nome_selecionado = (900, 185)
-            janela_tabuleiro.blit(label_nome1_redim, (855, 162))
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro.blit(label_nome1_redim, (855, 120))
             janela_tabuleiro.blit(texto_nome_selecionado,posicao_nome_selecionado)
 
         else:
             texto_nome_selecionado = fonte.render(nome_jogador_selecionado, True, BRANCO)
-            posicao_nome_selecionado = (900, 185)
-            janela_tabuleiro.blit(label_nome2_redim, (855, 162))
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro.blit(label_nome2_redim, (855, 120))
             janela_tabuleiro.blit(texto_nome_selecionado, posicao_nome_selecionado)
 
         janela_tabuleiro.blit(botao_passarvez_redim, (855, 500))
@@ -583,7 +583,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
     pygame.init()
 
     # Inicializa a janela do Pygame
-    janela_tabuleiro_1vbot_dificil = pygame.display.set_mode((screen_width, screen_height))
+    janela_tabuleiro_1vbot_facil = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Tabuleiro 1vBot Difícil")
 
     # Carrega a imagem de fundo do tabuleiro e redimensiona
@@ -607,49 +607,47 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                     pygame.quit()
                     quit()
                 elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
-                    digitando = False       
+                    digitando = False  
 
         # Desenha a imagem de fundo do tabuleiro
-        janela_tabuleiro_1vbot_dificil.blit(fundo_tabuleiro, (0, 0))
+        janela_tabuleiro_1vbot_facil.blit(fundo_tabuleiro, (0, 0))
 
         # Renderizar e posicionar o texto nome1
         fonte = pygame.font.Font(None, 46)
         texto_nome = fonte.render(nome_jogador, True, BRANCO)
         posicao_nome1 = (900, 290)
-        janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 265))
-        janela_tabuleiro_1vbot_dificil.blit(texto_nome, posicao_nome1)
+        janela_tabuleiro_1vbot_facil.blit(label_nome1_redim, (855, 265))
+        janela_tabuleiro_1vbot_facil.blit(texto_nome, posicao_nome1)
 
         texto_nome2 = fonte.render("BOT", True, BRANCO)
         posicao_nome2 = (900, 375)
-        janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 350))
-        janela_tabuleiro_1vbot_dificil.blit(texto_nome2, posicao_nome2)
+        janela_tabuleiro_1vbot_facil.blit(label_nome2_redim, (855, 350))
+        janela_tabuleiro_1vbot_facil.blit(texto_nome2, posicao_nome2)
 
         if nome_ou_bot_selecionado == nome_jogador:
             texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
-            janela_tabuleiro_1vbot_dificil.blit(label_nome1_redim, (855, 120))
-            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+            janela_tabuleiro_1vbot_facil.blit(label_nome1_redim, (855, 120))
+            janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado, posicao_nome_selecionado)
         else:
             texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
-            janela_tabuleiro_1vbot_dificil.blit(label_nome2_redim, (855, 120))
-            janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+            janela_tabuleiro_1vbot_facil.blit(label_nome2_redim, (855, 120))
+            janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado, posicao_nome_selecionado)
 
-        janela_tabuleiro_1vbot_dificil.blit(texto_nome_selecionado, posicao_nome_selecionado)
-        janela_tabuleiro_1vbot_dificil.blit(botao_passarvez_redim, (855, 500))
-        janela_tabuleiro_1vbot_dificil.blit(sair_redim, (1052, 625))
-        janela_tabuleiro_1vbot_dificil.blit(botao_voltar_redim, (1200, 5))
+        janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado, posicao_nome_selecionado)
+        janela_tabuleiro_1vbot_facil.blit(botao_passarvez_redim, (855, 500))
+        janela_tabuleiro_1vbot_facil.blit(sair_redim, (1052, 625))
+        janela_tabuleiro_1vbot_facil.blit(botao_voltar_redim, (1200, 5))
 
-        pygame.display.flip()
-
-    pygame.quit()
+        pygame.display.update()
 
 def abrir_tabuleiro_1vbot_medio(nome_jogador):
     pygame.init()
 
     # Inicializa a janela do Pygame
     janela_tabuleiro_1vbot_medio = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Tabuleiro 1vBot Médio")
+    pygame.display.set_caption("Tabuleiro 1vBot Difícil")
 
     # Carrega a imagem de fundo do tabuleiro e redimensiona
     fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
@@ -691,13 +689,13 @@ def abrir_tabuleiro_1vbot_medio(nome_jogador):
 
         if nome_ou_bot_selecionado == nome_jogador:
             texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
-            posicao_nome_selecionado = (900, 185)
-            janela_tabuleiro_1vbot_medio.blit(label_nome1_redim, (855, 162))
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_medio.blit(label_nome1_redim, (855, 120))
             janela_tabuleiro_1vbot_medio.blit(texto_nome_selecionado, posicao_nome_selecionado)
         else:
             texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
-            posicao_nome_selecionado = (900, 185)
-            janela_tabuleiro_1vbot_medio.blit(label_nome2_redim, (855, 162))
+            posicao_nome_selecionado = (900, 145)
+            janela_tabuleiro_1vbot_medio.blit(label_nome2_redim, (855, 120))
             janela_tabuleiro_1vbot_medio.blit(texto_nome_selecionado, posicao_nome_selecionado)
 
         janela_tabuleiro_1vbot_medio.blit(texto_nome_selecionado, posicao_nome_selecionado)
