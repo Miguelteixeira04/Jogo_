@@ -872,12 +872,21 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
         pygame.display.update()
 
-def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
+def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
     # Selecionar aleatoriamente o nome do jogador
-    nome_jogador_selecionado = random.choice([nome_jogador1, nome_jogador2])
-    
+    jogador_selecionado = random.randint(1,2)
+    jogador_atual = 1
+    nome_jogador_selecionado = ''
+
+    if jogador_selecionado == 1:
+        jogador_atual = 1
+        nome_jogador_selecionado = nome_jogador1
+    else:
+        jogador_atual = 2
+        nome_jogador_selecionado = nome_jogador2
+
     circulo_redim = pygame.image.load('circulo.png')
     circulo_redim = pygame.transform.scale(circulo_redim, (125, 125))
     triangulo_redim = pygame.image.load('triangulo.png')
@@ -902,8 +911,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     imagem_botao_3_3 = botao_vazio_redim
     imagem_botao_3_4 = botao_vazio_redim
 
-    jogador_atual = 1
-    jogador_vencedor = None
 
     while digitando:
         for evento in pygame.event.get():
@@ -923,14 +930,13 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                             imagem_botao_1_1 = circulo_redim
                             jogador_atual = 2
                         elif jogador_atual == 2:
-                            imagem_botao_1_1 = triangulo_redim
+                            imagem_botao_1_1 = circulo_redim
                             jogador_atual = 1
 
                     elif imagem_botao_1_1 == circulo_redim:
                         if jogador_atual == 1:
                             imagem_botao_1_1 = triangulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_1 = triangulo_redim
                             jogador_atual = 1
@@ -939,7 +945,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_1 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_1 = quadrado_redim
                             jogador_atual = 1
@@ -950,7 +955,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_2 = circulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_2 = circulo_redim
                             jogador_atual = 1
@@ -959,7 +963,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_2 = triangulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_2 = triangulo_redim
                             jogador_atual = 1
@@ -968,7 +971,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_2 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_2 = quadrado_redim
                             jogador_atual = 1
@@ -979,7 +981,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_3 = circulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_3 = circulo_redim
                             jogador_atual = 1
@@ -988,7 +989,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_3 = triangulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_3 = triangulo_redim
                             jogador_atual = 1
@@ -997,7 +997,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_3 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_3 = quadrado_redim
                             jogador_atual = 1
@@ -1008,7 +1007,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_4 = circulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_4 = circulo_redim
                             jogador_atual = 1
@@ -1017,7 +1015,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_4 = triangulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_4 = triangulo_redim
                             jogador_atual = 1
@@ -1026,7 +1023,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_1_4 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_1_4 = quadrado_redim
                             jogador_atual = 1
@@ -1037,7 +1033,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_1 = circulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_2_1 = circulo_redim
                             jogador_atual = 1
@@ -1046,7 +1041,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_1 = triangulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_2_1 = triangulo_redim
                             jogador_atual = 1
@@ -1055,7 +1049,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_1 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_2_1 = quadrado_redim
                             jogador_atual = 1
@@ -1066,7 +1059,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_2 = circulo_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_2_2 = circulo_redim
                             jogador_atual = 1
@@ -1075,7 +1067,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_2 = triangulo_redim
                             jogador_atual = 2
-                      
                         elif jogador_atual == 2:
                             imagem_botao_2_2 = triangulo_redim
                             jogador_atual = 1
@@ -1084,7 +1075,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_2 = quadrado_redim
                             jogador_atual = 2
-                  
                         elif jogador_atual == 2:
                             imagem_botao_2_2 = quadrado_redim
                             jogador_atual = 1
@@ -1095,7 +1085,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_3 = circulo_redim
                             jogador_atual = 2
-                
                         elif jogador_atual == 2:
                             imagem_botao_2_3 = circulo_redim
                             jogador_atual = 1
@@ -1104,7 +1093,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_3 = triangulo_redim
                             jogador_atual = 2
-                        
                         elif jogador_atual == 2:
                             imagem_botao_2_3 = triangulo_redim
                             jogador_atual = 1
@@ -1113,7 +1101,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_3 = quadrado_redim
                             jogador_atual = 2
-              
                         elif jogador_atual == 2:
                             imagem_botao_2_3 = quadrado_redim
                             jogador_atual = 1
@@ -1124,7 +1111,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_4 = circulo_redim
                             jogador_atual = 2
-                         
                         elif jogador_atual == 2:
                             imagem_botao_2_4 = circulo_redim
                             jogador_atual = 1
@@ -1133,7 +1119,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_4 = triangulo_redim
                             jogador_atual = 2
-                           
                         elif jogador_atual == 2:
                             imagem_botao_2_4 = triangulo_redim
                             jogador_atual = 1
@@ -1142,7 +1127,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_2_4 = quadrado_redim
                             jogador_atual = 2
-                      
                         elif jogador_atual == 2:
                             imagem_botao_2_4 = quadrado_redim
                             jogador_atual = 1
@@ -1153,7 +1137,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_1 = circulo_redim
                             jogador_atual = 2
-                      
                         elif jogador_atual == 2:
                             imagem_botao_3_1 = circulo_redim
                             jogador_atual = 1
@@ -1162,7 +1145,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_1 = triangulo_redim
                             jogador_atual = 2
-                          
                         elif jogador_atual == 2:
                             imagem_botao_3_1 = triangulo_redim
                             jogador_atual = 1
@@ -1171,7 +1153,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_1 = quadrado_redim
                             jogador_atual = 2
-                     
                         elif jogador_atual == 2:
                             imagem_botao_3_1 = quadrado_redim
                             jogador_atual = 1
@@ -1182,7 +1163,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_2 = circulo_redim
                             jogador_atual = 2
-         
                         elif jogador_atual == 2:
                             imagem_botao_3_2 = circulo_redim
                             jogador_atual = 1
@@ -1191,7 +1171,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_2 = triangulo_redim
                             jogador_atual = 2
-                    
                         elif jogador_atual == 2:
                             imagem_botao_3_2 = triangulo_redim
                             jogador_atual = 1
@@ -1200,7 +1179,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_2 = quadrado_redim
                             jogador_atual = 2
-             
                         elif jogador_atual == 2:
                             imagem_botao_3_2 = quadrado_redim
                             jogador_atual = 1
@@ -1211,7 +1189,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_3 = circulo_redim
                             jogador_atual = 2
-             
                         elif jogador_atual == 2:
                             imagem_botao_3_3 = circulo_redim
                             jogador_atual = 1
@@ -1219,8 +1196,7 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                     elif imagem_botao_3_3 == circulo_redim:
                         if jogador_atual == 1:
                             imagem_botao_3_3 = triangulo_redim
-                            jogador_atual = 2
-               
+                            jogador_atual = 2     
                         elif jogador_atual == 2:
                             imagem_botao_3_3 = triangulo_redim
                               
@@ -1228,7 +1204,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_3 = quadrado_redim
                             jogador_atual = 2
-
                         elif jogador_atual == 2:
                             imagem_botao_3_3 = quadrado_redim
                             jogador_atual = 1
@@ -1239,7 +1214,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_4 = circulo_redim
                             jogador_atual = 2
-     
                         elif jogador_atual == 2:
                             imagem_botao_3_4 = circulo_redim
                             jogador_atual = 1
@@ -1248,7 +1222,6 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_4 = triangulo_redim
                             jogador_atual = 2
-                    
                         elif jogador_atual == 2:
                             imagem_botao_3_4 = triangulo_redim
                             jogador_atual = 1
@@ -1257,20 +1230,16 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                         if jogador_atual == 1:
                             imagem_botao_3_4 = quadrado_redim
                             jogador_atual = 2
-             
                         elif jogador_atual == 2:
                             imagem_botao_3_4 = quadrado_redim
                             jogador_atual = 1
-             
                  
                 if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
                     nome_jogador_win = jogador_atual
                     if jogador_atual == 1:
-                        print(nome_jogador_win)
-                        abrir_janela_vitoria_p1(nome_jogador_win)
+                        abrir_janela_vitoria_p2(nome_jogador2)
                     elif jogador_atual == 2:
-                        print(nome_jogador_win)
-                        abrir_janela_vitoria_p2(nome_jogador_win)
+                        abrir_janela_vitoria_p1(nome_jogador1)
 
 
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
@@ -1390,8 +1359,8 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
         janela_tabuleiro.blit(texto_nome2, posicao_nome2)
 
         #resultado do random dos nomes
-        if nome_jogador_selecionado == nome_jogador1:
-            texto_nome_selecionado = fonte.render(nome_jogador_selecionado, True, BRANCO)
+        if jogador_selecionado == 1:
+            texto_nome_selecionado = fonte.render(nome_jogador1, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
             janela_tabuleiro.blit(label_nome1_redim, (855, 120))
             janela_tabuleiro.blit(texto_nome_selecionado,posicao_nome_selecionado)
@@ -1408,19 +1377,19 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                 janela_tabuleiro.blit(label_nome2_redim, (855, 120))
                 janela_tabuleiro.blit(texto_nome2, posicao_nome2)
 
-        else:
-            texto_nome_selecionado = fonte.render(nome_jogador_selecionado, True, BRANCO)
+        elif jogador_selecionado == 2:
+            texto_nome_selecionado = fonte.render(nome_jogador2, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
             janela_tabuleiro.blit(label_nome2_redim, (855, 120))
             janela_tabuleiro.blit(texto_nome_selecionado, posicao_nome_selecionado)
             
-            if jogador_atual == 2:
+            if jogador_atual == 1:
                 texto_nome1 = fonte.render(nome_jogador1, True, BRANCO)
                 posicao_nome1 = (900, 145)
                 janela_tabuleiro.blit(label_nome1_redim, (855, 120))
                 janela_tabuleiro.blit(texto_nome1, posicao_nome1)
 
-            elif jogador_atual == 1:
+            elif jogador_atual == 2:
                 texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
                 posicao_nome2 = (900, 145)
                 janela_tabuleiro.blit(label_nome2_redim, (855, 120))
@@ -1463,10 +1432,8 @@ def abrir_janela_vitoria_p1(nome_jogador1):
         janela_vitoria.blit(label_nome1_redim,(500,500))
         janela_vitoria.blit(texto_nome1, posicao_nome1)
         
-
         janela_vitoria.blit(sair_redim, (1052, 625))
         janela_vitoria.blit(botao_menu_redim, (1052, 425))
-
         pygame.display.update()
 
 
