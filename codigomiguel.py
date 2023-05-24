@@ -859,7 +859,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
         pygame.display.update()
 
-def abrir_tabuleiro_1v1(vitoria, nome_jogador1,nome_jogador2):
+def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
     # Selecionar aleatoriamente o nome do jogador
@@ -1251,9 +1251,6 @@ def abrir_tabuleiro_1v1(vitoria, nome_jogador1,nome_jogador2):
                             jogador_atual = 1
                             print("É a vez do jogador 1")
                 
-                if vitoria:
-                    abrir_janela_vitoria(jogador_atual, nome_jogador1, nome_jogador2, botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4)
-
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro.blit(menu_tabuleiro_redim, (0, 0))
 
@@ -1531,7 +1528,7 @@ def abrir_janela_vitoria(jogador_atual, nome_jogador1, nome_jogador2, botao_vazi
 
     digitando = True
         
-    while digitando:
+    while digitando: 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 digitando = False
