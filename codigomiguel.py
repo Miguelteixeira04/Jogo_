@@ -312,9 +312,15 @@ def verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem
 
     if imagem_botao_1_1 == imagem_botao_1_2 == imagem_botao_1_3 != botao_vazio_redim:
         return True
+    elif imagem_botao_1_2 == imagem_botao_1_3 == imagem_botao_1_4 != botao_vazio_redim:
+        return True
     elif imagem_botao_2_1 == imagem_botao_2_2 == imagem_botao_2_3 != botao_vazio_redim:
         return True
+    elif imagem_botao_2_2 == imagem_botao_2_3 == imagem_botao_2_4 != botao_vazio_redim:
+        return True
     elif imagem_botao_3_1 == imagem_botao_3_2 == imagem_botao_3_3 != botao_vazio_redim:
+        return True
+    elif imagem_botao_3_2 == imagem_botao_3_3 == imagem_botao_3_4 != botao_vazio_redim:
         return True
 
     # Verificar colunas
@@ -323,6 +329,8 @@ def verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem
     elif imagem_botao_1_2 == imagem_botao_2_2 == imagem_botao_3_2 != botao_vazio_redim:
         return True
     elif imagem_botao_1_3 == imagem_botao_2_3 == imagem_botao_3_3 != botao_vazio_redim:
+        return True
+    elif imagem_botao_1_4 == imagem_botao_2_4 == imagem_botao_3_4 != botao_vazio_redim:
         return True
 
     # Verificar diagonais
@@ -333,6 +341,7 @@ def verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem
 
     # Nenhuma vitória
     return False
+
 def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
     janela_tabuleiro_1vbot_facil = pygame.display.set_mode((screen_width, screen_height))
@@ -890,6 +899,7 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
     imagem_botao_3_4 = botao_vazio_redim
 
     jogador_atual = 1
+    jogador_vencedor = None
 
     while digitando:
         for evento in pygame.event.get():
@@ -1248,17 +1258,15 @@ def abrir_tabuleiro_1v1(nome_jogador1,nome_jogador2):
                             imagem_botao_3_4 = quadrado_redim
                             jogador_atual = 1
              
-                
-                
-                if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4):
+                 
+                if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
+                    nome_jogador_win = jogador_atual
                     if jogador_atual == 1:
-                        nome_jogador_win = nome_jogador2
                         print(nome_jogador_win)
                         abrir_janela_vitoria_p1(nome_jogador_win)
                     elif jogador_atual == 2:
-                        nome_jogador_win = nome_jogador1
                         print(nome_jogador_win)
-                        abrir_janela_vitoria_p1(nome_jogador_win)
+                        abrir_janela_vitoria_p2(nome_jogador_win)
 
 
         janela_tabuleiro.blit(botao_voltar_redim, (1200, 5))
@@ -1457,6 +1465,42 @@ def abrir_janela_vitoria_p1(nome_jogador1):
 
         pygame.display.update()
 
+def abrir_janela_vitoria(nome_jogador1, nome_jogador2):
+    janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Jogo do Semáforo")
+    
+    run = True
+    while run:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+                quit()
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
+                    pygame.quit()
+                    quit()
+                elif botao_menu_redim.get_rect(topleft=(1052, 425)).collidepoint(mouse_pos):
+                    abrir_menu_jogo()
+                    return
+
+
+        janela_vitoria.blit(menu_vitoria_redim, (0, 0))
+
+        #if verificar_vitoria
+
+
+        fonte = pygame.font.Font(None, 46)
+        texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
+        posicao_nome2 = (545, 525)
+        janela_vitoria.blit(label_nome2_redim, (500, 500))
+        janela_vitoria.blit(texto_nome2, posicao_nome2)
+
+        janela_vitoria.blit(sair_redim, (1052, 625))
+        janela_vitoria.blit(botao_menu_redim, (1052, 425))
+        pygame.display.update()
+
 
 def abrir_janela_vitoria_p2(nome_jogador2):
     pygame.init()
@@ -1529,96 +1573,44 @@ def abrir_menu_jogo():
 
         pygame.display.update()
 
-def bot_facil(janela_tabuleiro_1vbot_facil,jogador_atual,circulo_redim,triangulo_redim,quadrado_redim,botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4):
+def bot_facil(janela_tabuleiro_1vbot_facil, circulo_redim, triangulo_redim, quadrado_redim, botao_vazio_redim, imagem_botao_1_1, imagem_botao_1_2, imagem_botao_1_3, imagem_botao_1_4, imagem_botao_2_1, imagem_botao_2_2, imagem_botao_2_3, imagem_botao_2_4, imagem_botao_3_1, imagem_botao_3_2, imagem_botao_3_3, imagem_botao_3_4):
+    tabuleiro = [[imagem_botao_1_1, imagem_botao_1_2, imagem_botao_1_3, imagem_botao_1_4],
+                 [imagem_botao_2_1, imagem_botao_2_2, imagem_botao_2_3, imagem_botao_2_4],
+                 [imagem_botao_3_1, imagem_botao_3_2, imagem_botao_3_3, imagem_botao_3_4]]
 
-    imagem_botao_1_1 = botao_vazio_redim
-    imagem_botao_1_2 = botao_vazio_redim
-    imagem_botao_1_3 = botao_vazio_redim
-    imagem_botao_1_4 = botao_vazio_redim 
-    imagem_botao_2_1 = botao_vazio_redim
-    imagem_botao_2_2 = botao_vazio_redim
-    imagem_botao_2_3 = botao_vazio_redim
-    imagem_botao_2_4 = botao_vazio_redim
-    imagem_botao_3_1 = botao_vazio_redim
-    imagem_botao_3_2 = botao_vazio_redim
-    imagem_botao_3_3 = botao_vazio_redim
-    imagem_botao_3_4 = botao_vazio_redim
+    jogada_valida = False
 
-    if jogador_atual == "BOT":
-        cores = [circulo_redim,triangulo_redim,quadrado_redim]
-        jogada_valida = False
+    while not jogada_valida:
+        l = random.randint(0, 2)
+        c = random.randint(0, 3)
+        m = tabuleiro[l][c]
 
-        while not jogada_valida:
-            l = random.randint(0,2)
-            c = random.randint(0,3)
+        if m == botao_vazio_redim:
+            m = circulo_redim
+        elif m == circulo_redim:
+            m = triangulo_redim
+        elif m == triangulo_redim:
+            m = quadrado_redim
+        else:
+            continue
 
-            if l == 0 and c == 0:
-                m = imagem_botao_1_1
-            elif l == 0 and c == 1:
-                m = imagem_botao_1_2
-            elif l == 0 and c == 2:
-                m = imagem_botao_1_3
-            elif l == 0 and c == 3:
-                m = imagem_botao_1_4
-            elif l == 1 and c == 0:
-                m = imagem_botao_2_1
-            elif l == 1 and c == 1:
-                m = imagem_botao_2_2
-            elif l == 1 and c == 2:
-                m = imagem_botao_2_3
-            elif l == 1 and c == 3:
-                m = imagem_botao_2_4
-            elif l == 2 and c == 0:
-                m = imagem_botao_3_1
-            elif l == 2 and c == 1:
-                m = imagem_botao_3_2
-            elif l == 2 and c == 2:
-                m = imagem_botao_3_3
-            else:
-                m = imagem_botao_3_4
-                
-            if m == botao_vazio_redim:
-                i = random.randint(0,2)
-                if cores[i] == circulo_redim:
-                    m = cores[i]
-                elif m == circulo_redim and cores[i] == triangulo_redim:
-                    m = cores[i]
-                elif m == triangulo_redim and cores[i] == quadrado_redim:
-                    m = cores[i]
-                else:
-                    continue
-                jogada_valida = True
+        tabuleiro[l][c] = m
+        jogada_valida = True
 
-            elif m == circulo_redim:
-                i = random.randint(0, 2)
-                if cores[i] == triangulo_redim:
-                    m = cores[i]
-                else:
-                    continue
-                jogada_valida = True
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[0][0], (80, 214))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[0][1], (254, 214))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[0][2], (428, 214))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[0][3], (602, 214))
 
-            elif m == triangulo_redim:
-                i = random.randint(0, 2)
-                if cores[i] == quadrado_redim:
-                    m = cores[i]
-                else:
-                    continue 
-                jogada_valida = True
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[1][0], (80, 358))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[1][1], (254, 358))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[1][2], (428, 358))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[1][3], (602, 358))
 
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_1_1_redim, (80, 214))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_1_2_redim, (254, 214))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_1_3_redim, (428, 214))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_1_4_redim, (602, 214))
-
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_2_1_redim, (80, 358))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_2_2_redim, (254, 358))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_2_3_redim, (428, 358))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_2_4_redim, (602, 358))
-
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_3_1_redim, (80, 502))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_3_2_redim, (254, 502))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_3_3_redim, (428, 502))
-        janela_tabuleiro_1vbot_facil.blit(botao_tabuleiro_3_4_redim, (602, 502))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][0], (80, 502))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][1], (254, 502))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][2], (428, 502))
+    janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][3], (602, 502))
 
 
 ############## MAIN ################
