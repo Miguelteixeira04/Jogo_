@@ -336,7 +336,11 @@ def verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem
     # Verificar diagonais
     elif imagem_botao_1_1 == imagem_botao_2_2 == imagem_botao_3_3 != botao_vazio_redim:
         return True
-    elif imagem_botao_1_3 == imagem_botao_2_2 == imagem_botao_3_1 != botao_vazio_redim:
+    elif imagem_botao_1_2 == imagem_botao_2_3 == imagem_botao_3_4 != botao_vazio_redim:
+        return True
+    elif imagem_botao_3_1 == imagem_botao_2_2 == imagem_botao_1_3 != botao_vazio_redim:
+        return True
+    elif imagem_botao_3_2 == imagem_botao_2_3 == imagem_botao_1_4 != botao_vazio_redim:
         return True
 
     # Nenhuma vitória
@@ -1465,42 +1469,6 @@ def abrir_janela_vitoria_p1(nome_jogador1):
 
         pygame.display.update()
 
-def abrir_janela_vitoria(nome_jogador1, nome_jogador2):
-    janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
-    
-    run = True
-    while run:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                run = False
-                pygame.quit()
-                quit()
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
-                if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
-                    pygame.quit()
-                    quit()
-                elif botao_menu_redim.get_rect(topleft=(1052, 425)).collidepoint(mouse_pos):
-                    abrir_menu_jogo()
-                    return
-
-
-        janela_vitoria.blit(menu_vitoria_redim, (0, 0))
-
-        #if verificar_vitoria
-
-
-        fonte = pygame.font.Font(None, 46)
-        texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
-        posicao_nome2 = (545, 525)
-        janela_vitoria.blit(label_nome2_redim, (500, 500))
-        janela_vitoria.blit(texto_nome2, posicao_nome2)
-
-        janela_vitoria.blit(sair_redim, (1052, 625))
-        janela_vitoria.blit(botao_menu_redim, (1052, 425))
-        pygame.display.update()
-
 
 def abrir_janela_vitoria_p2(nome_jogador2):
     pygame.init()
@@ -1578,6 +1546,7 @@ def bot_facil(janela_tabuleiro_1vbot_facil, circulo_redim, triangulo_redim, quad
                  [imagem_botao_2_1, imagem_botao_2_2, imagem_botao_2_3, imagem_botao_2_4],
                  [imagem_botao_3_1, imagem_botao_3_2, imagem_botao_3_3, imagem_botao_3_4]]
 
+
     jogada_valida = False
 
     while not jogada_valida:
@@ -1611,7 +1580,6 @@ def bot_facil(janela_tabuleiro_1vbot_facil, circulo_redim, triangulo_redim, quad
     janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][1], (254, 502))
     janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][2], (428, 502))
     janela_tabuleiro_1vbot_facil.blit(tabuleiro[2][3], (602, 502))
-
 
 ############## MAIN ################
 running = True
