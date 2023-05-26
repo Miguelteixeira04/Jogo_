@@ -206,7 +206,7 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1(nome_jogador1[:15], nome_jogador2[:15])  # Limiting names to 15 characters
+                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # Limiting names to 15 characters
 
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
@@ -216,10 +216,10 @@ def abrir_janela_nomes_1v1():
                 
                 else:
                     if jogador_atual == 1:
-                        if len(nome_jogador1) < 15:  # Limiting name length to 15 characters
+                        if len(nome_jogador1) < 12:  # Limiting name length to 15 characters
                             nome_jogador1 += event.unicode
                     else:
-                        if len(nome_jogador2) < 15:  # Limiting name length to 15 characters
+                        if len(nome_jogador2) < 12:  # Limiting name length to 15 characters
                             nome_jogador2 += event.unicode
 
             elif event.type == pygame.MOUSEBUTTONDOWN:  
@@ -977,7 +977,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
         pygame.display.update()
 
-
 def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
     janela_tabuleiro = pygame.display.set_mode((screen_width, screen_height))
 
@@ -1454,6 +1453,7 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         
         # Renderizar e posicionar o texto nome1
         fonte = pygame.font.Font(None, 46)
+        
         texto_nome1 = fonte.render(nome_jogador1, True, BRANCO)
         posicao_nome1 = (900, 290)
         janela_tabuleiro.blit(label_nome1_redim, (855, 265))
@@ -1512,7 +1512,7 @@ def abrir_janela_vitoria_p1(nome_jogador1):
     pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
-    label_nome1_redim = pygame.transform.scale(label_nome1, (564,131))
+    label_nome1_redim = pygame.transform.scale(label_nome1, (531,123))
 
     while run:
         for evento in pygame.event.get():
@@ -1528,21 +1528,22 @@ def abrir_janela_vitoria_p1(nome_jogador1):
 
         janela_vitoria.blit(menu_vitoria_redim, (0, 0))
 
-        fonte = pygame.font.Font(None, 46)
+        fonte = pygame.font.Font(None, 48)
         texto_nome1 = fonte.render(nome_jogador1, True, BRANCO)
-        posicao_nome1 = (545, 525)
-        janela_vitoria.blit(label_nome1_redim,(350,380))
+        posicao_nome1 = (440, 417)
+        janela_vitoria.blit(label_nome1_redim,(370,370))
         janela_vitoria.blit(texto_nome1, posicao_nome1)
         
         janela_vitoria.blit(botao_menu_redim, (1052, 625))
         pygame.display.update()
-
 
 def abrir_janela_vitoria_p2(nome_jogador2):
     janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
+    label_nome2_redim = pygame.transform.scale(label_nome2, (531,123))
+
     while run:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -1557,15 +1558,14 @@ def abrir_janela_vitoria_p2(nome_jogador2):
 
         janela_vitoria.blit(menu_vitoria_redim, (0, 0))
 
-        fonte = pygame.font.Font(None, 46)
+        fonte = pygame.font.Font(None, 48)
         texto_nome2 = fonte.render(nome_jogador2, True, BRANCO)
-        posicao_nome2 = (545, 525)
-        janela_vitoria.blit(label_nome2_redim, (500, 500))
+        posicao_nome2 = (440, 417)
+        janela_vitoria.blit(label_nome2_redim, (370, 370))
         janela_vitoria.blit(texto_nome2, posicao_nome2)
 
         janela_vitoria.blit(botao_menu_redim, (1052, 625))
         pygame.display.update()
-
 
 # menu principal com as opções de jogo
 def abrir_menu_jogo():
