@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 random.seed()
 
 pygame.init()
@@ -591,6 +592,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
             #bot
             elif (jogador_atual == nome2):  # Verifica se é a vez do bot jogar
+                time.sleep(0.5)
                 p1 = False  # Desativa a vez do jogador 1
                 p2 = True 
                 random.seed()
