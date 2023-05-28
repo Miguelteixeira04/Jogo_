@@ -816,18 +816,19 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         jogador_atual = nome_jogador
                     else:
                         valida = False
-
+                time.sleep(0.5)
                 p1 = True
                 p2 = False
 
             if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
                 nome_jogador_win = jogador_atual
                 if jogador_atual == nome_jogador:
+                    time.sleep(0.5)
                     abrir_janela_vitoria_bot(nome2)
-                    print("Ganhou o bot")
                 elif jogador_atual == nome2:
+                    time.sleep(0.5)
                     abrir_janela_vitoria_player(nome_jogador)
-                    print("Ganhou o jogador")
+
 
         janela_tabuleiro_1vbot_facil.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro_1vbot_facil.blit(fundo_tabuleiro_redim, (0, 0))
