@@ -2,6 +2,10 @@ import pygame
 import random
 import time
 
+#cenas que faltam fazer:
+#pausa no jogo antes da janela da vitoria para ver a ultima jogada
+#guardar e carregar :,)
+
 pygame.init()
 random.seed()
 
