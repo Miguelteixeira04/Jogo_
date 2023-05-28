@@ -33,9 +33,6 @@ menu_nomes_redim = pygame.transform.scale(menu_nomes, (1280, 720))
 # import fundo nome com bot
 menu_nomebot = pygame.image.load("menu_nomebot.png")
 menu_nomebot_redim = pygame.transform.scale(menu_nomebot, (1280, 720))
-# import fundo escolha do bot
-menu_escolhabot = pygame.image.load("menu_escolhabot.png")
-menu_escolhabot_redim = pygame.transform.scale(menu_escolhabot, (1280, 720))
 # import fundo tabuleiro 
 menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
 menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro, (1280, 720))
@@ -67,15 +64,6 @@ botao_1vbot_redim = pygame.transform.scale(botao_1vbot, (352,194))
 # import botao voltar
 botao_voltar = pygame.image.load('voltar.png')
 botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
-# import botao facil
-botao_facil = pygame.image.load('facil.png')
-botao_facil_redim = pygame.transform.scale(botao_facil, (319,106))
-# import botao medio
-botao_medio = pygame.image.load('medio.png')
-botao_medio_redim = pygame.transform.scale(botao_medio, (319,106))
-# import botao dificil
-botao_dificil = pygame.image.load('dificil.png')
-botao_dificil_redim = pygame.transform.scale(botao_dificil, (319,106))
 
 # import botao tabuleiro
 botao_tabuleiro_1_1 = pygame.image.load('botao_tabuleiro.png')
@@ -121,7 +109,7 @@ label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
 label_nome2 = pygame.image.load('nome2.png')
 label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
 
-# import botao menu (para a vitoria)
+# import botao menu (para a janela da vitoria)
 botao_menu = pygame.image.load('menu.png')
 botao_menu_redim = pygame.transform.scale(botao_menu, (236,101)) #compor igual ao botao sair acho
 
