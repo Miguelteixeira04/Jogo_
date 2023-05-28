@@ -824,8 +824,10 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 nome_jogador_win = jogador_atual
                 if jogador_atual == 1:
                     abrir_janela_vitoria_bot(nome2)
+                    print("Ganhou o bot")
                 elif jogador_atual == 2:
                     abrir_janela_vitoria_player(nome_jogador)
+                    print("Ganhou o jogador")
 
         janela_tabuleiro_1vbot_facil.blit(botao_voltar_redim, (1200, 5))
         janela_tabuleiro_1vbot_facil.blit(fundo_tabuleiro_redim, (0, 0))
