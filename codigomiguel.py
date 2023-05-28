@@ -822,10 +822,10 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
             if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
                 nome_jogador_win = jogador_atual
-                if jogador_atual == 1:
+                if jogador_atual == nome_jogador:
                     abrir_janela_vitoria_bot(nome2)
                     print("Ganhou o bot")
-                elif jogador_atual == 2:
+                elif jogador_atual == nome2:
                     abrir_janela_vitoria_player(nome_jogador)
                     print("Ganhou o jogador")
 
