@@ -37,7 +37,7 @@ menu_nomebot_redim = pygame.transform.scale(menu_nomebot, (1280, 720))
 menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
 menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro, (1280, 720))
 # import fundo vitoria
-menu_vitoria = pygame.image.load("vitoria.png")
+menu_vitoria = pygame.image.load("menu_vitoria.png")
 menu_vitoria_redim = pygame.transform.scale(menu_vitoria, (1280, 720))
 # import fundo 1vbot
 fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
