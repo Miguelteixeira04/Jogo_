@@ -1,15 +1,15 @@
 import pygame
 import random
 import time
-random.seed()
-pygame.init()
 
+pygame.init()
+random.seed()
 screen_width = 1280 
 screen_height = 720 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("JOGO DO SEMÁFORO")
 
-# Definição das cores
+# define cores
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 CINZA = (68, 68, 68)
@@ -17,7 +17,6 @@ CINZA = (68, 68, 68)
 # import pagina inicial
 pagina_inicial = pygame.image.load('pagina_inicial.png')
 pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720)) 
-
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -75,44 +74,31 @@ botao_voltar_redim = pygame.transform.scale(botao_voltar, (73,54))
 botao_menu = pygame.image.load('menu.png')
 botao_menu_redim = pygame.transform.scale(botao_menu, (236,101))
 
-# import botao tabuleiro
+# import botoes tabuleiro
 botao_tabuleiro_1_1 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_1_1_redim = pygame.transform.scale(botao_tabuleiro_1_1, (163, 133))
-
 botao_tabuleiro_1_2 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_1_2_redim = pygame.transform.scale(botao_tabuleiro_1_2, (163, 133))
-
 botao_tabuleiro_1_3 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_1_3_redim = pygame.transform.scale(botao_tabuleiro_1_1, (163, 133))
-
 botao_tabuleiro_1_4 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_1_4_redim = pygame.transform.scale(botao_tabuleiro_1_4, (163, 133))
-
 botao_tabuleiro_2_1 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_2_1_redim = pygame.transform.scale(botao_tabuleiro_2_1, (163, 133))
-
 botao_tabuleiro_2_2 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_2_2_redim = pygame.transform.scale(botao_tabuleiro_2_2, (163, 133))
-
 botao_tabuleiro_2_3 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_2_3_redim = pygame.transform.scale(botao_tabuleiro_2_3, (163, 133))
-
 botao_tabuleiro_2_4 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_2_4_redim = pygame.transform.scale(botao_tabuleiro_2_4, (163, 133))
-
 botao_tabuleiro_3_1 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_3_1_redim = pygame.transform.scale(botao_tabuleiro_3_1, (163, 133))
-
 botao_tabuleiro_3_2 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_3_2_redim = pygame.transform.scale(botao_tabuleiro_3_2, (163, 133))
-
 botao_tabuleiro_3_3 = pygame.image.load('botao_tabuleiro.png')
-botao_tabuleiro_3_3_redim = pygame.transform.scale(botao_tabuleiro_3_3, (163, 133))
-                                                   
+botao_tabuleiro_3_3_redim = pygame.transform.scale(botao_tabuleiro_3_3, (163, 133))                                      
 botao_tabuleiro_3_4 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_3_4_redim = pygame.transform.scale(botao_tabuleiro_3_4, (163, 133))
-
-
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
