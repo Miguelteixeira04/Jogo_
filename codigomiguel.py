@@ -8,7 +8,7 @@ pygame.init()
 screen_width = 1280 
 screen_height = 720 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Jogo do Semáforo")
+pygame.display.set_caption("JOGO DO SEMÁFORO")
 
 # Definição das cores
 BRANCO = (255, 255, 255)
@@ -115,9 +115,7 @@ botao_menu_redim = pygame.transform.scale(botao_menu, (236,101)) #compor igual a
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
-
     janela_regras = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
 
     run_janela_regras = True
     while run_janela_regras:
@@ -139,9 +137,7 @@ def abrir_janela_regras():
 
 # mostrar qd se clica no botao comecar (1v1 e 1vbot)
 def abrir_janela_comecar():
-
     janela_comecar = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
 
     run_janela_comecar = True
     while run_janela_comecar:
@@ -173,7 +169,6 @@ def abrir_janela_comecar():
 # inserir o nome dos jogadores 1v1
 def abrir_janela_nomes_1v1():
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
 
     digitando = True
     jogador_atual = 1
@@ -241,7 +236,6 @@ def abrir_janela_nomes_1v1():
 
 # inserir o nome do jogador 1vbot
 def abrir_janela_nomes_1vbot():
-    
     janela_nomebot = pygame.display.set_mode((screen_width, screen_height))
     
     digitando = True
@@ -1416,7 +1410,6 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
 
 def abrir_janela_vitoria_p1(nome_jogador1):
     janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
     label_nome1_redim = pygame.transform.scale(label_nome1, (531,123))
@@ -1446,7 +1439,6 @@ def abrir_janela_vitoria_p1(nome_jogador1):
 
 def abrir_janela_vitoria_p2(nome_jogador2):
     janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
     label_nome2_redim = pygame.transform.scale(label_nome2, (531,123))
@@ -1476,7 +1468,6 @@ def abrir_janela_vitoria_p2(nome_jogador2):
 
 def abrir_janela_vitoria_player(nome_jogador):
     janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
     label_nome1_redim = pygame.transform.scale(label_nome1, (531,123))
@@ -1506,7 +1497,6 @@ def abrir_janela_vitoria_player(nome_jogador):
 
 def abrir_janela_vitoria_bot(nome2):
     janela_vitoria = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Jogo do Semáforo")
     run = True
 
     label_nome2_redim = pygame.transform.scale(label_nome2, (531,123))
