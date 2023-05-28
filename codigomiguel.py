@@ -228,25 +228,25 @@ def abrir_janela_nomes_1vbot():
     nome_jogador = ""
 
     while digitando:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 return False
 
-            elif evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_RETURN:
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
                     abrir_tabuleiro_1vbot_facil(nome_jogador[:12]) #clicar no enter, passa a prox janela
 
-                elif evento.key == pygame.K_BACKSPACE:
+                elif event.key == pygame.K_BACKSPACE:
                     nome_jogador = nome_jogador[:-1]
 
                 else:
                     if len(nome_jogador) < 12:  # Limitador de 15 caracteres
-                        nome_jogador += evento.unicode
+                        nome_jogador += event.unicode
 
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                if evento.button == 1:
-                    if posicao_texto_jogador.collidepoint(evento.pos):
+                if event.button == 1:
+                    if posicao_texto_jogador.collidepoint(event.pos):
                         jogador_atual = 1
                         nome_jogador = ""
                     elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
@@ -313,10 +313,10 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
     p2 = True
 
     while digitando:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 digitando = False
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     pygame.quit()
@@ -861,10 +861,10 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
     imagem_botao_3_4 = botao_vazio_redim
 
     while digitando:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 digitando = False
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if sair_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     pygame.quit()
@@ -1383,12 +1383,12 @@ def abrir_janela_vitoria_p1(nome_jogador1):
     
     running = True
     while running:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 quit()
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if botao_menu_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     abrir_menu_jogo()
@@ -1411,12 +1411,12 @@ def abrir_janela_vitoria_p2(nome_jogador2):
 
     running = True
     while running:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 quit()
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if botao_menu_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     abrir_menu_jogo()
@@ -1439,12 +1439,12 @@ def abrir_janela_vitoria_player(nome_jogador):
 
     running = True
     while running:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 quit()
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if botao_menu_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     abrir_menu_jogo()
@@ -1467,12 +1467,12 @@ def abrir_janela_vitoria_bot(nome2):
 
     running = True
     while running:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 quit()
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if botao_menu_redim.get_rect(topleft=(1052, 625)).collidepoint(mouse_pos):
                     abrir_menu_jogo()
