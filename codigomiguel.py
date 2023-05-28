@@ -271,13 +271,13 @@ def abrir_janela_nomes_1vbot():
 
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
-                    abrir_tabuleiro_1vbot_facil(nome_jogador) #clicar no enter, passa a prox janela
+                    abrir_tabuleiro_1vbot_facil(nome_jogador[:12]) #clicar no enter, passa a prox janela
 
                 elif evento.key == pygame.K_BACKSPACE:
                     nome_jogador = nome_jogador[:-1]
 
                 else:
-                    if len(nome_jogador) < 15:  # Limitador de 15 caracteres
+                    if len(nome_jogador) < 12:  # Limitador de 15 caracteres
                         nome_jogador += evento.unicode
 
             elif evento.type == pygame.MOUSEBUTTONDOWN:
@@ -620,6 +620,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 imagem_botao_1_1 = quadrado_redim
                                 valida = True
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                        
                         if(casa == 'B1'):
                             if imagem_botao_1_2 == botao_vazio_redim:
@@ -639,6 +641,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 imagem_botao_1_2 = quadrado_redim
                                 valida = True
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if(casa == 'C1'):
                             if imagem_botao_1_3 == botao_vazio_redim:
@@ -658,6 +662,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 imagem_botao_1_3 = quadrado_redim
                                 valida = True
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'D1':
                             if imagem_botao_1_4 == botao_vazio_redim:
@@ -675,6 +681,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 imagem_botao_1_4 = quadrado_redim
                                 valida = True
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'A2':
                             if imagem_botao_2_1 == botao_vazio_redim:
@@ -692,6 +700,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 imagem_botao_2_1 = quadrado_redim
                                 valida = True
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'B2':
                             if imagem_botao_2_2 == botao_vazio_redim:
@@ -706,6 +716,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (261, 349))
                                 imagem_botao_2_2 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'C2':
                             if imagem_botao_2_3 == botao_vazio_redim:
@@ -720,6 +732,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (435, 349))
                                 imagem_botao_2_3 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'D2':
                             if imagem_botao_2_4 == botao_vazio_redim:
@@ -734,6 +748,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (609, 349))
                                 imagem_botao_2_4 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'A3':
                             if imagem_botao_3_1 == botao_vazio_redim:
@@ -748,6 +764,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (87, 493))
                                 imagem_botao_3_1 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'B3':
                             if imagem_botao_3_2 == botao_vazio_redim:
@@ -762,6 +780,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (261, 493))
                                 imagem_botao_3_2 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'C3':
                             if imagem_botao_3_3 == botao_vazio_redim:
@@ -776,6 +796,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (435, 493))
                                 imagem_botao_3_3 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
                         
                         if casa == 'D4':
                             if imagem_botao_3_4 == botao_vazio_redim:
@@ -790,6 +812,8 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                                 menu_tabuleiro_redim.blit(quadrado_redim, (609, 493))
                                 imagem_botao_3_4 = quadrado_redim
                                 jogador_atual = nome_jogador
+                            else:
+                                valida = False
 
                     p1 = True
                     p2 = False
@@ -920,25 +944,24 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
         #resultado do random dos nomes
         if nome_ou_bot_selecionado == nome_jogador:
-            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            texto_nome_selecionado = fonte.render(nome_jogador, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
             janela_tabuleiro_1vbot_facil.blit(label_nome1_redim, (855, 120))
-            janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado,posicao_nome_selecionado)
-            
-            if  jogador_atual == nome_jogador:
-                texto_nome1 = fonte.render(nome_jogador, True, BRANCO)
-                posicao_nome1 = (900, 145)
-                janela_tabuleiro_1vbot_facil.blit(label_nome1_redim, (855, 120))
-                janela_tabuleiro_1vbot_facil.blit(texto_nome1, posicao_nome1)
+            janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado, posicao_nome_selecionado)
 
-            elif jogador_atual == 2:
-                texto_nome2 = fonte.render(nome2, True, BRANCO)
-                posicao_nome2 = (900, 145)
-                janela_tabuleiro_1vbot_facil.blit(label_nome2_redim, (855, 120))
-                janela_tabuleiro_1vbot_facil.blit(texto_nome2, posicao_nome2)
+        if jogador_atual == nome_jogador:
+            texto_nome1 = fonte.render(nome_jogador, True, BRANCO)
+            posicao_nome1 = (900, 145)
+            janela_tabuleiro_1vbot_facil.blit(label_nome1_redim, (855, 120))
+            janela_tabuleiro_1vbot_facil.blit(texto_nome1, posicao_nome1)
+        elif jogador_atual == 2:
+            texto_nome2 = fonte.render(nome2, True, BRANCO)
+            posicao_nome2 = (900, 145)
+            janela_tabuleiro_1vbot_facil.blit(label_nome2_redim, (855, 120))
+            janela_tabuleiro_1vbot_facil.blit(texto_nome2, posicao_nome2)
 
         else:
-            texto_nome_selecionado = fonte.render(nome_ou_bot_selecionado, True, BRANCO)
+            texto_nome_selecionado = fonte.render(nome2, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
             janela_tabuleiro_1vbot_facil.blit(label_nome2_redim, (855, 120))
             janela_tabuleiro_1vbot_facil.blit(texto_nome_selecionado, posicao_nome_selecionado)
