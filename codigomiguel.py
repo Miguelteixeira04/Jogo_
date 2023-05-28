@@ -115,7 +115,6 @@ botao_menu_redim = pygame.transform.scale(botao_menu, (236,101)) #compor igual a
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
-    main_menu = False
 
     janela_regras = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
@@ -137,11 +136,9 @@ def abrir_janela_regras():
 
         pygame.display.update()
 
-    main_menu = True
 
 # mostrar qd se clica no botao comecar (1v1 e 1vbot)
 def abrir_janela_comecar():
-    main_menu = False
 
     janela_comecar = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
@@ -172,11 +169,9 @@ def abrir_janela_comecar():
 
         pygame.display.update()
 
-    main_menu = True
 
 # inserir o nome dos jogadores 1v1
 def abrir_janela_nomes_1v1():
-    main_menu = False
     janela_nomes = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Jogo do Semáforo")
 
@@ -195,7 +190,7 @@ def abrir_janela_nomes_1v1():
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # Limiting names to 15 characters
+                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # Limiting names to 12 characters
 
                 elif event.key == pygame.K_BACKSPACE:
                     if jogador_atual == 1:
@@ -205,10 +200,10 @@ def abrir_janela_nomes_1v1():
                 
                 else:
                     if jogador_atual == 1:
-                        if len(nome_jogador1) < 12:  # Limiting name length to 15 characters
+                        if len(nome_jogador1) < 12:  # Limiting name length to 12 characters
                             nome_jogador1 += event.unicode
                     else:
-                        if len(nome_jogador2) < 12:  # Limiting name length to 15 characters
+                        if len(nome_jogador2) < 12:  # Limiting name length to 12 characters
                             nome_jogador2 += event.unicode
 
             elif event.type == pygame.MOUSEBUTTONDOWN:  
@@ -376,7 +371,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
     jogador_atual = nome_ou_bot_selecionado 
     digitando = True
-    p1 = False #player 1 joga
+    p1 = False
     p2 = True
 
     while digitando:
@@ -399,180 +394,144 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
                         if imagem_botao_1_1 == botao_vazio_redim:
                             imagem_botao_1_1 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_1 == circulo_redim:
                             imagem_botao_1_1 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_1 == triangulo_redim:
                             imagem_botao_1_1 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                
                     elif botao_tabuleiro_1_2_redim.get_rect(topleft=(254, 214)).collidepoint(mouse_pos):
                         
                         if imagem_botao_1_2 == botao_vazio_redim:
                             imagem_botao_1_2 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_2 == circulo_redim:
                             imagem_botao_1_2 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_2 == triangulo_redim:
                             imagem_botao_1_2 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_1_3_redim.get_rect(topleft=(428, 214)).collidepoint(mouse_pos):
                         
                         if imagem_botao_1_3 == botao_vazio_redim:
                             imagem_botao_1_3 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_3 == circulo_redim:
                             imagem_botao_1_3 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_3 == triangulo_redim:
                             imagem_botao_1_3 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_1_4_redim.get_rect(topleft=(602, 214)).collidepoint(mouse_pos):
                         
                         if imagem_botao_1_4 == botao_vazio_redim:
                             imagem_botao_1_4 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_4 == circulo_redim:
                             imagem_botao_1_4 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_1_4 == triangulo_redim:
                             imagem_botao_1_4 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_2_1_redim.get_rect(topleft=(80, 358)).collidepoint(mouse_pos):
                         
                         if imagem_botao_2_1 == botao_vazio_redim:
                             imagem_botao_2_1 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_1 == circulo_redim:
                             imagem_botao_2_1 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_1 == triangulo_redim:
                             imagem_botao_2_1 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_2_2_redim.get_rect(topleft=(254, 358)).collidepoint(mouse_pos):
                         
                         if imagem_botao_2_2 == botao_vazio_redim:
                             imagem_botao_2_2 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_2 == circulo_redim:
                             imagem_botao_2_2 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_2 == triangulo_redim:
                             imagem_botao_2_2 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                
                     elif botao_tabuleiro_2_3_redim.get_rect(topleft=(428, 358)).collidepoint(mouse_pos):
                         
                         if imagem_botao_2_3 == botao_vazio_redim:
                             imagem_botao_2_3 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_3 == circulo_redim:
                             imagem_botao_2_3 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_3 == triangulo_redim:
                             imagem_botao_2_3 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_2_4_redim.get_rect(topleft=(602, 358)).collidepoint(mouse_pos):
                         
                         if imagem_botao_2_4 == botao_vazio_redim:
                             imagem_botao_2_4 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_4 == circulo_redim:
                             imagem_botao_2_4 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_2_4 == triangulo_redim:
                             imagem_botao_2_4 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_3_1_redim.get_rect(topleft=(80, 502)).collidepoint(mouse_pos):
                         
                         if imagem_botao_3_1 == botao_vazio_redim:
                             imagem_botao_3_1 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_1 == circulo_redim:
                             imagem_botao_3_1 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_1 == triangulo_redim:
                             imagem_botao_3_1 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_3_2_redim.get_rect(topleft=(254, 502)).collidepoint(mouse_pos):
                         
                         if imagem_botao_3_2 == botao_vazio_redim:
                             imagem_botao_3_2 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_2 == circulo_redim:
                             imagem_botao_3_2 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_2 == triangulo_redim:
                             imagem_botao_3_2 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                 
                     elif botao_tabuleiro_3_3_redim.get_rect(topleft=(428, 502)).collidepoint(mouse_pos):
                         
                         if imagem_botao_3_3 == botao_vazio_redim:
                             imagem_botao_3_3 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_3 == circulo_redim:
                             imagem_botao_3_3 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_3 == triangulo_redim:
                             imagem_botao_3_3 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
                                
                     elif botao_tabuleiro_3_4_redim.get_rect(topleft=(602, 502)).collidepoint(mouse_pos):
                         
                         if imagem_botao_3_4 == botao_vazio_redim:
                             imagem_botao_3_4 = circulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_4 == circulo_redim:
                             imagem_botao_3_4 = triangulo_redim
-                            valida = True
                             jogador_atual = nome2
                         elif imagem_botao_3_4 == triangulo_redim:
                             imagem_botao_3_4 = quadrado_redim
-                            valida = True
                             jogador_atual = nome2
 
                     p1 = False
@@ -586,8 +545,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 random.seed()
                 opcoes_linha = ('1','2','3')
                 opcoes_coluna = ('A','B','C','D')
-                valida = False
-
                 
                 opcao_lin = random.choice(opcoes_linha)
                 opcao_col = random.choice(opcoes_coluna)
@@ -598,100 +555,78 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                     if imagem_botao_1_1 == botao_vazio_redim:
                         janela_tabuleiro_1vbot_facil.blit(circulo_redim,(100, 217))
                         imagem_botao_1_1 = circulo_redim
-                        valida = True
+
                         jogador_atual = nome_jogador
                     elif imagem_botao_1_1 == circulo_redim :
                         janela_tabuleiro_1vbot_facil.blit(triangulo_redim,(86, 205))
                         imagem_botao_1_1 = triangulo_redim
-                        valida = True
+
                         jogador_atual = nome_jogador
                     elif(imagem_botao_1_1 == triangulo_redim):
                         janela_tabuleiro_1vbot_facil.blit(quadrado_redim,(87, 205))
                         imagem_botao_1_1 = quadrado_redim
-                        valida = True
+
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if(casa == 'B1'):
                     if imagem_botao_1_2 == botao_vazio_redim:
                         janela_tabuleiro_1vbot_facil.blit(circulo_redim,(274, 217))
                         imagem_botao_1_2 = circulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
 
                     elif imagem_botao_1_2 == circulo_redim:
                         janela_tabuleiro_1vbot_facil.blit(triangulo_redim,(260, 205))
                         imagem_botao_1_2 = triangulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
 
                     elif(imagem_botao_1_2 == triangulo_redim):
                         janela_tabuleiro_1vbot_facil.blit(quadrado_redim,(261, 205))
                         imagem_botao_1_2 = quadrado_redim
-                        valida = True
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if(casa == 'C1'):
                     if imagem_botao_1_3 == botao_vazio_redim:
                         janela_tabuleiro_1vbot_facil.blit(circulo_redim,(448, 217))
                         imagem_botao_1_3 = circulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
 
                     elif(imagem_botao_1_3 == circulo_redim):
                         janela_tabuleiro_1vbot_facil.blit(triangulo_redim,(434, 205))
                         imagem_botao_1_3 = triangulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
 
                     elif(imagem_botao_1_3 == triangulo_redim):
                         janela_tabuleiro_1vbot_facil.blit(quadrado_redim,(435, 205))
                         imagem_botao_1_3 = quadrado_redim
-                        valida = True
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'D1':
                     if imagem_botao_1_4 == botao_vazio_redim:
                         menu_tabuleiro_redim.blit(circulo_redim, (622, 217))
                         imagem_botao_1_4 = circulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
                     elif imagem_botao_1_4 == circulo_redim:
                         menu_tabuleiro_redim.blit(triangulo_redim, (608, 205))
                         imagem_botao_1_4 = triangulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
                     elif imagem_botao_1_4 == triangulo_redim:
                         menu_tabuleiro_redim.blit(quadrado_redim, (609, 205))
                         imagem_botao_1_4 = quadrado_redim
-                        valida = True
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'A2':
                     if imagem_botao_2_1 == botao_vazio_redim:
                         menu_tabuleiro_redim.blit(circulo_redim, (100, 361))
                         imagem_botao_2_1 = circulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
                     elif imagem_botao_2_1 == circulo_redim:
                         menu_tabuleiro_redim.blit(triangulo_redim, (86, 349))
                         imagem_botao_2_1 = triangulo_redim
-                        valida = True
                         jogador_atual = nome_jogador
                     elif imagem_botao_2_1 == triangulo_redim:
                         menu_tabuleiro_redim.blit(quadrado_redim, (87, 349))
                         imagem_botao_2_1 = quadrado_redim
-                        valida = True
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'B2':
                     if imagem_botao_2_2 == botao_vazio_redim:
@@ -706,8 +641,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (261, 349))
                         imagem_botao_2_2 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'C2':
                     if imagem_botao_2_3 == botao_vazio_redim:
@@ -722,8 +655,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (435, 349))
                         imagem_botao_2_3 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'D2':
                     if imagem_botao_2_4 == botao_vazio_redim:
@@ -738,8 +669,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (609, 349))
                         imagem_botao_2_4 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'A3':
                     if imagem_botao_3_1 == botao_vazio_redim:
@@ -754,8 +683,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (87, 493))
                         imagem_botao_3_1 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'B3':
                     if imagem_botao_3_2 == botao_vazio_redim:
@@ -770,8 +697,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (261, 493))
                         imagem_botao_3_2 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'C3':
                     if imagem_botao_3_3 == botao_vazio_redim:
@@ -786,8 +711,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (435, 493))
                         imagem_botao_3_3 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 if casa == 'D4':
                     if imagem_botao_3_4 == botao_vazio_redim:
@@ -802,8 +725,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         menu_tabuleiro_redim.blit(quadrado_redim, (609, 493))
                         imagem_botao_3_4 = quadrado_redim
                         jogador_atual = nome_jogador
-                    else:
-                        valida = False
                 
                 p1 = True
                 p2 = False
