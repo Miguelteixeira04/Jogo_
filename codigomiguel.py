@@ -816,7 +816,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                         jogador_atual = nome_jogador
                     else:
                         valida = False
-                time.sleep(0.5)
+                
                 p1 = True
                 p2 = False
 
