@@ -190,8 +190,6 @@ def abrir_janela_nomes_1v1():
                         nome_jogador2 = ""
                     elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                         digitando = False
-
-        pygame.display.update()
    
         screen.blit(menu_nomes_redim, (0, 0))
         screen.blit(botao_voltar_redim, (1200, 5))
@@ -298,7 +296,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
                     digitando = False
                 
-                if (jogador_atual == nome_jogador):
+                if (jogador_atual == nome_jogador): # Verifica se é a vez do player jogar
                     p1 = True
                     p2 = False
 
@@ -1149,7 +1147,7 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         screen.blit(botao_tabuleiro_3_3_redim, (428, 502))
         screen.blit(botao_tabuleiro_3_4_redim, (602, 502))
 
-        # compor posiçao das peças
+        # Compor estetica/posiçao das peças nos botoes
         if imagem_botao_1_1 == circulo_redim:
             screen.blit(imagem_botao_1_1, (100, 217))
         elif imagem_botao_1_1 == triangulo_redim:
@@ -1246,7 +1244,7 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         screen.blit(label_nome2_redim, (855, 350))
         screen.blit(texto_nome2, posicao_nome2)
 
-        #resultado do random dos nomes
+        # Resultado do random dos nomes
         if jogador_selecionado == 1:
             texto_nome_selecionado = fonte.render(nome_jogador1, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
@@ -1471,7 +1469,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         
-        # abrir o menu do jogo se clicar no rato ou no teclado
+        # Abrir o menu do jogo se clicar no rato ou no teclado
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             abrir_menu_jogo()
