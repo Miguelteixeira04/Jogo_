@@ -17,6 +17,7 @@ CINZA = (68, 68, 68)
 # import pagina inicial
 pagina_inicial = pygame.image.load('pagina_inicial.png')
 pagina_inicial_redim = pygame.transform.scale(pagina_inicial, (1280, 720)) 
+
 # import fundo menu inicial
 menu_inicial = pygame.image.load('menu_jogo.png')
 menu_redim = pygame.transform.scale(menu_inicial, (1280, 720))
@@ -40,7 +41,14 @@ menu_vitoria = pygame.image.load("vitoria.png")
 menu_vitoria_redim = pygame.transform.scale(menu_vitoria, (1280, 720))
 # import fundo 1vbot
 fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
-fundo_tabuleiro_redim = pygame.transform.scale(fundo_tabuleiro, (screen_width, screen_height))
+fundo_tabuleiro_redim = pygame.transform.scale(fundo_tabuleiro, (1280, 720))
+
+# import label nome1
+label_nome1 = pygame.image.load('nome1.png')
+label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
+# import label nome2
+label_nome2 = pygame.image.load('nome2.png')
+label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
 
 # import botao sair
 botao_sair = pygame.image.load('sair.png')
@@ -104,12 +112,7 @@ botao_tabuleiro_3_3_redim = pygame.transform.scale(botao_tabuleiro_3_3, (163, 13
 botao_tabuleiro_3_4 = pygame.image.load('botao_tabuleiro.png')
 botao_tabuleiro_3_4_redim = pygame.transform.scale(botao_tabuleiro_3_4, (163, 133))
 
-# import label nome1
-label_nome1 = pygame.image.load('nome1.png')
-label_nome1_redim = pygame.transform.scale(label_nome1, (332,77))
-# import label nome2
-label_nome2 = pygame.image.load('nome2.png')
-label_nome2_redim = pygame.transform.scale(label_nome2, (332,77))
+
 
 # mostrar as regras do jogo
 def abrir_janela_regras():
@@ -1534,5 +1537,4 @@ while running:
             abrir_menu_jogo()
     
     screen.blit(pagina_inicial_redim, (0,0))
-
     pygame.display.update()
