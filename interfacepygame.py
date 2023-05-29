@@ -4,6 +4,7 @@ import time
 
 pygame.init()
 random.seed()
+
 screen_width = 1280 
 screen_height = 720 
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -36,7 +37,7 @@ menu_nomebot_redim = pygame.transform.scale(menu_nomebot, (1280, 720))
 menu_tabuleiro = pygame.image.load("menu_tabuleiro.png")
 menu_tabuleiro_redim = pygame.transform.scale(menu_tabuleiro, (1280, 720))
 # import fundo vitoria
-menu_vitoria = pygame.image.load("vitoria.png")
+menu_vitoria = pygame.image.load("menu_vitoria.png")
 menu_vitoria_redim = pygame.transform.scale(menu_vitoria, (1280, 720))
 # import fundo 1vbot
 fundo_tabuleiro = pygame.image.load('menu_tabuleiro.png')
@@ -161,12 +162,12 @@ def abrir_janela_nomes_1v1():
             if event.type == pygame.QUIT:
                 digitando = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_RETURN: # clicar no enter para passar ao nome 2
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # limitar num de caracteres do nome
-                elif event.key == pygame.K_BACKSPACE:
+                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # clicar 2a vez no enter para avançar para o tabuleiro
+                elif event.key == pygame.K_BACKSPACE: # apagar caracteres 1 a 1
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
                     else:
@@ -174,11 +175,11 @@ def abrir_janela_nomes_1v1():
                 else:
                     if jogador_atual == 1:
                         if len(nome_jogador1) < 12:
-                            nome_jogador1 += event.unicode
+                            nome_jogador1 += event.unicode # adiciona cara caracter ao nome enquanto foir <12
                     else:
                         if len(nome_jogador2) < 12:
                             nome_jogador2 += event.unicode
-            elif event.type == pygame.MOUSEBUTTONDOWN:  
+            elif event.type == pygame.MOUSEBUTTONDOWN: # apaga o nome se clicar por cima dele  
                 mouse_pos = pygame.mouse.get_pos()       
                 if event.button == 1:
                     if posicao_texto_jogador1.collidepoint(event.pos):
@@ -190,8 +191,6 @@ def abrir_janela_nomes_1v1():
                     elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                         digitando = False
 
-        pygame.display.update()
-   
         screen.blit(menu_nomes_redim, (0, 0))
         screen.blit(botao_voltar_redim, (1200, 5))
 
@@ -297,7 +296,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
                     digitando = False
                 
-                if (jogador_atual == nome_jogador):
+                if jogador_atual == nome_jogador: # Verifica se é a vez do player jogar
                     p1 = True
                     p2 = False
 
@@ -437,11 +436,10 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                     p2 = True
 
             #bot
-            elif (jogador_atual == nome2):  # Verifica se é a vez do bot jogar
-                time.sleep(0.5)
+            elif jogador_atual == nome2:  # Verifica se é a vez do bot jogar
+                time.sleep(0.25)
                 p1 = False 
                 p2 = True 
-                random.seed()
                 opcoes_linha = ('1','2','3')
                 opcoes_coluna = ('A','B','C','D')
                 opcao_lin = random.choice(opcoes_linha)
@@ -618,17 +616,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 
                 p1 = True
                 p2 = False
-            
-            if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
-                if jogador_atual == nome_jogador:
-                    #pygame.time.delay(1000)
-                    #time.sleep(1)
-                    abrir_janela_vitoria_bot(nome2)
-                elif jogador_atual == nome2:
-                    #pygame.time.delay(1000)
-                    #time.sleep(1)
-                    abrir_janela_vitoria_player(nome_jogador)
-
+                
         screen.blit(botao_voltar_redim, (1200, 5))
         screen.blit(fundo_tabuleiro_redim, (0, 0))
 
@@ -647,7 +635,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
         screen.blit(botao_tabuleiro_3_3_redim, (428, 502))
         screen.blit(botao_tabuleiro_3_4_redim, (602, 502))
 
-        # compor posiçao das peças
+        # Compor estetica/posiçao das peças nos botoes
         if imagem_botao_1_1 == circulo_redim:
             screen.blit(imagem_botao_1_1, (100, 217))
         elif imagem_botao_1_1 == triangulo_redim:
@@ -744,7 +732,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
         screen.blit(label_nome2_redim, (855, 350))
         screen.blit(texto_nome2, posicao_nome2)
 
-        #resultado do random dos nomes
+        # Resultado do random dos nomes
         if nome_ou_bot_selecionado == nome_jogador:
             texto_nome_selecionado = fonte.render(nome_jogador, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
@@ -780,6 +768,14 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
         screen.blit(sair_redim, (1052, 625))
         screen.blit(botao_voltar_redim, (1200, 5))
         pygame.display.update()
+
+        if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
+            if jogador_atual == nome_jogador:
+                time.sleep(0.5)
+                abrir_janela_vitoria_bot(nome2)
+            elif jogador_atual == nome2:
+                time.sleep(0.5)
+                abrir_janela_vitoria_player(nome_jogador)
 
 # jogo 1vs1
 def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
@@ -1122,13 +1118,6 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
                         elif jogador_atual == 2:
                             imagem_botao_3_4 = quadrado_redim
                             jogador_atual = 1
-                 
-                if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
-                    nome_jogador_win = jogador_atual
-                    if jogador_atual == 1:
-                        abrir_janela_vitoria_p2(nome_jogador2)
-                    elif jogador_atual == 2:
-                        abrir_janela_vitoria_p1(nome_jogador1)
 
         screen.blit(botao_voltar_redim, (1200, 5))
         screen.blit(menu_tabuleiro_redim, (0, 0))
@@ -1148,7 +1137,7 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         screen.blit(botao_tabuleiro_3_3_redim, (428, 502))
         screen.blit(botao_tabuleiro_3_4_redim, (602, 502))
 
-        # compor posiçao das peças
+        # Compor estetica/posiçao das peças nos botoes
         if imagem_botao_1_1 == circulo_redim:
             screen.blit(imagem_botao_1_1, (100, 217))
         elif imagem_botao_1_1 == triangulo_redim:
@@ -1245,7 +1234,7 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         screen.blit(label_nome2_redim, (855, 350))
         screen.blit(texto_nome2, posicao_nome2)
 
-        #resultado do random dos nomes
+        # Resultado do random dos nomes
         if jogador_selecionado == 1:
             texto_nome_selecionado = fonte.render(nome_jogador1, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
@@ -1280,6 +1269,14 @@ def abrir_tabuleiro_1v1(nome_jogador1, nome_jogador2):
         screen.blit(sair_redim, (1052, 625))
         screen.blit(botao_voltar_redim, (1200, 5))
         pygame.display.update()
+
+        if verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4) == True:
+            if jogador_atual == 1:
+                time.sleep(0.5)
+                abrir_janela_vitoria_p2(nome_jogador2)
+            elif jogador_atual == 2:
+                time.sleep(0.5)
+                abrir_janela_vitoria_p1(nome_jogador1)
 
 # verificar vitoria no tabuleiro
 def verificar_vitoria(botao_vazio_redim,imagem_botao_1_1,imagem_botao_1_2,imagem_botao_1_3,imagem_botao_1_4,imagem_botao_2_1,imagem_botao_2_2,imagem_botao_2_3,imagem_botao_2_4,imagem_botao_3_1,imagem_botao_3_2,imagem_botao_3_3,imagem_botao_3_4):
@@ -1470,7 +1467,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         
-        # abrir o menu do jogo se clicar no rato ou no teclado
+        # Abrir o menu do jogo se clicar no rato ou no teclado
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             abrir_menu_jogo()
