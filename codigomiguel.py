@@ -166,12 +166,12 @@ def abrir_janela_nomes_1v1():
             if event.type == pygame.QUIT:
                 digitando = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_RETURN: # clicar no enter para passar ao nome 2
                     if jogador_atual == 1:
                         jogador_atual = 2
                     else:
-                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # limitar num de caracteres do nome
-                elif event.key == pygame.K_BACKSPACE:
+                        abrir_tabuleiro_1v1(nome_jogador1[:12], nome_jogador2[:12])  # clicar 2a vez no enter para avançar para o tabuleiro
+                elif event.key == pygame.K_BACKSPACE: # apagar caracteres 1 a 1
                     if jogador_atual == 1:
                         nome_jogador1 = nome_jogador1[:-1]
                     else:
@@ -179,11 +179,11 @@ def abrir_janela_nomes_1v1():
                 else:
                     if jogador_atual == 1:
                         if len(nome_jogador1) < 12:
-                            nome_jogador1 += event.unicode
+                            nome_jogador1 += event.unicode # adiciona cara caracter ao nome enquanto foir <12
                     else:
                         if len(nome_jogador2) < 12:
                             nome_jogador2 += event.unicode
-            elif event.type == pygame.MOUSEBUTTONDOWN:  
+            elif event.type == pygame.MOUSEBUTTONDOWN: # apaga o nome se clicar por cima dele  
                 mouse_pos = pygame.mouse.get_pos()       
                 if event.button == 1:
                     if posicao_texto_jogador1.collidepoint(event.pos):
@@ -194,7 +194,7 @@ def abrir_janela_nomes_1v1():
                         nome_jogador2 = ""
                     elif botao_voltar_redim.get_rect(topleft=(1200,5)).collidepoint(mouse_pos):
                         digitando = False
-   
+
         screen.blit(menu_nomes_redim, (0, 0))
         screen.blit(botao_voltar_redim, (1200, 5))
 
