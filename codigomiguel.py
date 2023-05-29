@@ -441,7 +441,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
 
             #bot
             elif jogador_atual == nome2:  # Verifica se é a vez do bot jogar
-                time.sleep(0.5)
+                time.sleep(0.25)
                 p1 = False 
                 p2 = True 
                 opcoes_linha = ('1','2','3')
