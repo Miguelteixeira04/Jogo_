@@ -300,7 +300,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 elif botao_voltar_redim.get_rect(topleft=(1200, 5)).collidepoint(mouse_pos):
                     digitando = False
                 
-                if (jogador_atual == nome_jogador): # Verifica se é a vez do player jogar
+                if jogador_atual == nome_jogador: # Verifica se é a vez do player jogar
                     p1 = True
                     p2 = False
 
@@ -440,11 +440,10 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                     p2 = True
 
             #bot
-            elif (jogador_atual == nome2):  # Verifica se é a vez do bot jogar
+            elif jogador_atual == nome2:  # Verifica se é a vez do bot jogar
                 time.sleep(0.5)
                 p1 = False 
                 p2 = True 
-                random.seed()
                 opcoes_linha = ('1','2','3')
                 opcoes_coluna = ('A','B','C','D')
                 opcao_lin = random.choice(opcoes_linha)
@@ -622,9 +621,6 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
                 p1 = True
                 p2 = False
                 
-
-
-
         screen.blit(botao_voltar_redim, (1200, 5))
         screen.blit(fundo_tabuleiro_redim, (0, 0))
 
@@ -643,7 +639,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
         screen.blit(botao_tabuleiro_3_3_redim, (428, 502))
         screen.blit(botao_tabuleiro_3_4_redim, (602, 502))
 
-        # compor posiçao das peças
+        # Compor estetica/posiçao das peças nos botoes
         if imagem_botao_1_1 == circulo_redim:
             screen.blit(imagem_botao_1_1, (100, 217))
         elif imagem_botao_1_1 == triangulo_redim:
@@ -740,7 +736,7 @@ def abrir_tabuleiro_1vbot_facil(nome_jogador):
         screen.blit(label_nome2_redim, (855, 350))
         screen.blit(texto_nome2, posicao_nome2)
 
-        #resultado do random dos nomes
+        # Resultado do random dos nomes
         if nome_ou_bot_selecionado == nome_jogador:
             texto_nome_selecionado = fonte.render(nome_jogador, True, BRANCO)
             posicao_nome_selecionado = (900, 145)
