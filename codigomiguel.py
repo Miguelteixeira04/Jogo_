@@ -3,7 +3,7 @@ import random
 import time
 
 #cenas que faltam fazer:
-#pausa no jogo antes da janela da vitoria para ver a ultima jogada
+#guardar e carregar :,)
 #qd clicar no X de qq janela, sair de tudo
 
 pygame.init()
